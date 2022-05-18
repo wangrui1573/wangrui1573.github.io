@@ -1,0 +1,27 @@
+# This is a basic workflow to help you get started with Actions
+name: 🚀 Deploy website on real.eu5.com
+
+on:
+  workflow_run:
+    workflows: ["pages-build-deployment"]
+    branches: [master]
+    types: 
+      - completed
+
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2
+      with:
+        ref: master
+    
+    - name: FTP-Deploy-Action
+      uses: SamKirkland/FTP-Deploy-Action@3.1.1
+      with:
+        ftp-server: ftp://real.eu5.org
+        ftp-username: real.eu5.org
+        ftp-password: ${{ secrets.ftp_password }}
