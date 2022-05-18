@@ -2,11 +2,9 @@
 name: 🚀 Deploy website on real.eu5.com
 
 on:
-  workflow_run:
-    workflows: ["pages-build-deployment"]
-    branches: [master]
-    types: 
-      - completed
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '00 04 * * *'
 
 
 jobs:
