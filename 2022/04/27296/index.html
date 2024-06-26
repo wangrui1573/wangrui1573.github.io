@@ -1,0 +1,688 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>RHCE EX300 题库及答案解析 | Real的博客</title><meta name="keywords" content="Linux"><meta name="author" content="Real"><meta name="copyright" content="Real"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="RHCE    7.0   考试考试环境介绍： 1、考试分为上午RHCSA考试，下午RHCE考试 2、考试时间上午2.5小时，下午3.5个小时 3、总分都是300分，&gt;&#x3D;210成绩就算通过考试 4、准备签字笔、身份证 5、考试时要填写姓名（拼音）与邮箱，请注意保持一致 6、考试都是在虚拟机里面操作。物理机上有各种图标，来用操作虚拟机，比如重启，关机，重置等。 7、考试注意机器网络要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RHCE EX300 题库及答案解析">
+<meta property="og:url" content="https://blog.real9.ml/2022/04/27296/index.html">
+<meta property="og:site_name" content="Real的博客">
+<meta property="og:description" content="RHCE    7.0   考试考试环境介绍： 1、考试分为上午RHCSA考试，下午RHCE考试 2、考试时间上午2.5小时，下午3.5个小时 3、总分都是300分，&gt;&#x3D;210成绩就算通过考试 4、准备签字笔、身份证 5、考试时要填写姓名（拼音）与邮箱，请注意保持一致 6、考试都是在虚拟机里面操作。物理机上有各种图标，来用操作虚拟机，比如重启，关机，重置等。 7、考试注意机器网络要">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg">
+<meta property="article:published_time" content="2022-04-30T23:26:00.000Z">
+<meta property="article:modified_time" content="2024-06-26T02:15:45.378Z">
+<meta property="article:author" content="Real">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blog.real9.ml/2022/04/27296/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'RHCE EX300 题库及答案解析',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-06-26 10:15:45'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://img1.baidu.com/it/u=3927275426,66649734&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPG?w=889&amp;h=500" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/mov"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/tlv1"><i class="fa-fw fas fa-video"></i><span> TV Show</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> Message</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://bu.dusays.com/2021/03/06/daffe400090d4.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Real的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/mov"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/tlv1"><i class="fa-fw fas fa-video"></i><span> TV Show</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> Message</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">RHCE EX300 题库及答案解析</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-04-30T23:26:00.000Z" title="发表于 2022-05-01 07:26:00">2022-05-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-06-26T02:15:45.378Z" title="更新于 2024-06-26 10:15:45">2024-06-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/csdn/">csdn</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>RHCE    7.0   考试<br>考试环境介绍：</p>
+<p>1、考试分为上午RHCSA考试，下午RHCE考试</p>
+<p>2、考试时间上午2.5小时，下午3.5个小时</p>
+<p>3、总分都是300分，&gt;&#x3D;210成绩就算通过考试</p>
+<p>4、准备签字笔、身份证</p>
+<p>5、考试时要填写姓名（拼音）与邮箱，请注意保持一致</p>
+<p>6、考试都是在虚拟机里面操作。物理机上有各种图标，来用操作虚拟机，比如重启，关机，重置等。</p>
+<p>7、考试注意机器网络要通，网络不通试卷收不上来0分</p>
+<p>注意：</p>
+<ol>
+<li><p>所有的光盘中的软件包考试的时候会给出</p>
+</li>
+<li><p>升级软件包所在目录也会给出</p>
+</li>
+<li><p>你可以用真实机来验证虚拟机中的考试实验是否正确完成</p>
+</li>
+<li><p>考题中出现的 X，是你宿主机的IP 地址主机位</p>
+</li>
+<li><p>example.com 域所在的网络是192.168.0.0&#x2F;24</p>
+</li>
+</ol>
+<p>cracker.com 域所在的网络是172.16.0.0&#x2F;16，一般在题意中被要求拒绝的网络</p>
+<ol start="6">
+<li>RHCSA 部分，在system1 主机上完成</li>
+</ol>
+<p>RHCE 部分，在system1 和system2 上完成</p>
+<p>考试注意看清在哪台机器上做哪题，别做错或者多做了。</p>
+<ol>
+<li><pre><code>  配置SELinux
+</code></pre>
+SElinux必须在两个系统中运行Enfocing模式</li>
+</ol>
+<p>setenforce 1</p>
+<p>vi  &#x2F;etc&#x2F;selinux&#x2F;config</p>
+<p>SELINUX&#x3D;enforcing</p>
+<ol start="2">
+<li><pre><code>  配置SSH访问
+</code></pre>
+按以下要求配置SSH访问</li>
+</ol>
+<p>A 用户能够从域example.com 内的客户端通过SSH远程访问您的两个虚拟机系统</p>
+<p>B 在域cracker.com内的客户端不能访问您的两个虚拟机系统</p>
+<p>在system1和system2上做，</p>
+<p>vim &#x2F;etc&#x2F;hosts.allow</p>
+<p>添加sshd: .example.com</p>
+<p>vim &#x2F;etc&#x2F;hosts.deny</p>
+<p>添加sshd : .cracker.com</p>
+<ol start="3">
+<li><pre><code>  自定义用户环境
+</code></pre>
+在系统system1和system2上创建自定义命名为qstat 此自定义命令将执行以下命令：</li>
+</ol>
+<p>A &#x2F;bin&#x2F;ps  –Ao pid,tt,user,fname,rsz</p>
+<p>B 此命令对系统中所有用户有效。</p>
+<p>修改&#x2F;etc&#x2F;bashrc，在尾部加上一条alias即可</p>
+<p>vi   &#x2F;etc&#x2F;bashrc</p>
+<p>alias  qstat&#x3D;’&#x2F;bin&#x2F;ps -Ao pid,tt,user,fname,rsz’</p>
+<p>source  &#x2F;etc&#x2F;bashrc</p>
+<ol start="4">
+<li><pre><code>  端口转发
+</code></pre>
+在系统ststem1配置端口转发，要求如下:</li>
+</ol>
+<p>A 在网络中的系统，访问system1 的本地端口5230将被转发到222</p>
+<p>B 此设置必须永久有效</p>
+<p>使用图形化界面做，运行firewall-config</p>
+<p>添加本地转发，添加端口</p>
+<ol start="5">
+<li><pre><code>  配置聚合链路
+</code></pre>
+在system1和system2上按以下要求配置一个链路：</li>
+</ol>
+<p>A 此链路使用接口eth1和eth2</p>
+<p>B 此链路在一个接口失败时仍然能工作</p>
+<p>C 此链路在system1使用下面的地址192.168.10.150 X&#x2F;255.255.255.0</p>
+<p>D 此链路在system2使用下面的地址192.168.10.200 X&#x2F;255.255.255.0</p>
+<p>E 此链路在系统重启之后依然保持正常状态</p>
+<p>在system1上做，</p>
+<p>nmcli con add type team con-name team1 ifname team1 config ‘{“runner”:{“name”:”activebackup”}}’</p>
+<p>nmcli con mod team1 ipv4.addresses ‘192.168.10.150 X&#x2F;24’</p>
+<p>nmcli con mod team1 ipv4.method manual</p>
+<p>nmcli con add type team-slave con-name team1-port1 ifname eth1 master team1</p>
+<p>nmcli con add type team-slave con-name team1-port2 ifname eth2 master team1</p>
+<p>nmcli con up team1</p>
+<p>teamdctl team1 state</p>
+<p>同理在system2上操作，</p>
+<ol start="6">
+<li><pre><code>  配置ipv6地址
+</code></pre>
+在您的考试系统上配置接口eth0使用下列Ipv6地址：</li>
+</ol>
+<p>A system1上的地址应该是::192.168.0.150 X&#x2F;64</p>
+<p>B system2上的地址应该是::192.168.0.200 X&#x2F;64</p>
+<p>C 地址必须在重启后依旧生效</p>
+<p>D 两个系统必须保持当前的Ipv4地址并能通信。</p>
+<p>在system1上做，</p>
+<p>nmcli con mod ‘System eth0’ ipv6.addresses ‘::192.168.0.150 X&#x2F;64’</p>
+<p>nmcli con mod ‘System eth0’ ipv6.method manual</p>
+<p>在system2上做，</p>
+<p>nmcli con mod  ‘System eth0’  ipv6.addresses  ‘::192.168.0.200 X&#x2F;64’</p>
+<p>nmcli con mod  ‘System eth0’  ipv6.method manual</p>
+<ol start="7">
+<li><pre><code>  配置本地邮件服务
+</code></pre>
+在系统system1和system2上配置邮件服务，满足以下要求：</li>
+</ol>
+<p>A 这些系统不接收外部发送来的邮件</p>
+<p>B 在这些系统上本地发送的任何邮件都会自动路由到classroom.example.com</p>
+<p>C 在这些系统上发送的邮件显示来自于serverX.example.com</p>
+<p>在system1上做，</p>
+<p>postfix的配置文件是：&#x2F;etc&#x2F;postfix&#x2F;main.cf</p>
+<p>vim  &#x2F;etc&#x2F;postfix&#x2F;main.cf</p>
+<p>inet_interfaces&#x3D;loopback-only”                    &#x2F;&#x2F;116行</p>
+<p>local_transport&#x3D;error: local delivery disabled”           &#x2F;&#x2F;无此行，请自行添加</p>
+<p>relayhost&#x3D;[classroom.example.com]”         &#x2F;&#x2F;317行</p>
+<p>myorigin&#x3D;serverX.example.com”                  &#x2F;&#x2F;98行</p>
+<p>mydestination&#x3D;”            &#x2F;&#x2F;164行</p>
+<p>mynetworks&#x3D;127.0.0.0&#x2F;8,   [::1]&#x2F;128”               &#x2F;&#x2F;264行</p>
+<p>systemctl  restart  postfix</p>
+<p>systemctl  enable  postfix</p>
+<p>firewall-cmd  –permanent  –add-services&#x3D;smtp</p>
+<p>firewall-cmd  –reload</p>
+<p>同理在system2上做，</p>
+<ol start="8">
+<li><pre><code>  通过SMB共享目录
+</code></pre>
+在system1上配置SMB服务</li>
+</ol>
+<p>您的SMB服务器必须是STAFF工作组的一个成员</p>
+<p>共享&#x2F;common目录共享名必须为common</p>
+<p>只有example.com域内的客户端可以访问common共享</p>
+<p>common必须是可以浏览的</p>
+<p>用户harry必须能够读取共享中的内容，如果需要的话，验证的密码是redhat</p>
+<p>在system1上做，</p>
+<p>yum –y install samba samba-client</p>
+<p>mkdir &#x2F;common</p>
+<p>chcon –R -t samba_share_t &#x2F;common        &#x2F;&#x2F;更改common目录的标签</p>
+<p>vim &#x2F;etc&#x2F;samba&#x2F;smb.conf            &#x2F;&#x2F;samba的主配置文件</p>
+<p>修改global下面的</p>
+<p>workgroup &#x3D; STAFF</p>
+<p>在文件最后下添加，</p>
+<p>[common]</p>
+<p>path &#x3D; &#x2F;common</p>
+<p>hosts allow &#x3D; 192.168.0.                  &#x2F;&#x2F;hosts allow &#x3D; .example.com</p>
+<p>browseable &#x3D; yes</p>
+<p>:wq</p>
+<p>smbpasswd –a harry</p>
+<p>systemctl start smb nmb</p>
+<p>systemctl enable smb nmb</p>
+<p>firewall-cmd   –permanent   –add-service&#x3D;samba</p>
+<p>firewall-cmd   –permanent   –add-service&#x3D;mountd</p>
+<p>firewall-cmd   –reload</p>
+<ol start="9">
+<li><pre><code>  配置多用户SMB挂载
+</code></pre>
+在system1共享通过SMB目录&#x2F;devops满足以下要求</li>
+</ol>
+<p>A 共享名为devops</p>
+<p>B 共享目录devops只能被example.com域中的客户端使用</p>
+<p>C 共享目录devops必须可以被浏览</p>
+<p>D 用户harry必须能以读的方式访问此共享，访问密码是redhat</p>
+<p>E 用户natasha必须能以读写的方式访问此共享，访问密码是123</p>
+<p>此共享永久挂载在system2上的&#x2F;mnt&#x2F;multi目录，并使用用户harry作为认证任何用户可以通过用户natasha来临时获取写的权限</p>
+<p>在system1上做，</p>
+<p>mkdir &#x2F;devops</p>
+<p>chcon -t samba_share_t &#x2F;devops</p>
+<p>vim &#x2F;etc&#x2F;samba&#x2F;smb.conf</p>
+<p>在文件最后下添加，</p>
+<p>[devops]</p>
+<p>path &#x3D; &#x2F;devops</p>
+<p>hosts allow &#x3D; 192.168.0.</p>
+<p>browseable &#x3D; yes</p>
+<p>write list &#x3D; natasha</p>
+<p>:wq</p>
+<p>chmod o&#x3D;rwx &#x2F;devops &#x2F;&#x2F;setfacl  -m u:natasha:rwx &#x2F;devops</p>
+<p>smbpasswd –a harry</p>
+<p>smbpasswd –a natasha</p>
+<p>systemctl restart smb nmb</p>
+<p>在system2上做,</p>
+<p>yum –y install cifs-*       &#x2F;&#x2F;包名称:cifs-utlis</p>
+<p>vim &#x2F;etc&#x2F;fstab</p>
+<p>&#x2F;&#x2F;system1的IP&#x2F;devops  &#x2F;mnt&#x2F;multi  cifs defaults,multiuser,username&#x3D;harry,password&#x3D;redhat,sec&#x3D;ntlmssp  0  0</p>
+<p>mount  -a</p>
+<p>df -hT</p>
+<p>su – natasha</p>
+<p>cifscreds   add    system1的IP</p>
+<ol start="10">
+<li>配置NFS服务<br>在system1配置NFS服务，要求如下：</li>
+</ol>
+<p>A 以只读的方式共享目录&#x2F;public 同时只能被example.com域中的系统访问</p>
+<p>B 以读写的方式共享目录&#x2F;protected 能被example.com域中的系统访问</p>
+<p>C 访问&#x2F;protected需要通过kerberos安全加密，您可以使用下面的URL提供的密钥</p>
+<p><a target="_blank" rel="noopener" href="http://classroom.example.com/pub/nfssecure/krb5.keytab">http://classroom.example.com/pub/nfssecure/krb5.keytab</a></p>
+<p>D 目录&#x2F;protected 应该包含名为project 拥有人为ldapuserX的子目录</p>
+<p>E 用户ldapuserX能以读写方式访问&#x2F;protected&#x2F;project</p>
+<p>在system1上做，</p>
+<p>mkdir &#x2F;public</p>
+<p>mkdir –p &#x2F;protected&#x2F;project</p>
+<p>chcon –t public_content_t &#x2F;protected&#x2F;project &#x2F;&#x2F;用户ldapuserX能以读写方式访问&#x2F;protected&#x2F;project</p>
+<p>wget  –O  &#x2F;etc&#x2F;krb5.keytab   <a target="_blank" rel="noopener" href="http://classroom.example.com/pub/nfssecure/krb5.keytab">http://classroom.example.com/pub/nfssecure/krb5.keytab</a></p>
+<p>vim &#x2F;etc&#x2F;sysconfig&#x2F;nfs</p>
+<p>设置RPCNFSDARGS&#x3D;”-V 4.2”       &#x2F;&#x2F;用户ldapuserX能以读写方式访问&#x2F;protected&#x2F;project</p>
+<p>vim &#x2F;etc&#x2F;exports</p>
+<p>&#x2F;public  *.example.com(ro,sync)</p>
+<p>&#x2F;protected  *.example.com (sec&#x3D;krb5p,rw)             &#x2F;&#x2F;kerberos安全加密</p>
+<p>:wq</p>
+<p>chown  ldapuserX  &#x2F;protected&#x2F;project</p>
+<p>systemctl start nfs-server nfs-secure-server</p>
+<p>systemctl enable nfs-server nfs-secure-server</p>
+<p>firewall-cmd   –permanent   –add-service&#x3D;nfs</p>
+<p>firewall-cmd   –permanent   –add-service&#x3D;rpc-bind</p>
+<p>firewall-cmd   –permanent   –add-service&#x3D;mountd</p>
+<p>firewall-cmd   –reload</p>
+<p>exportfs –r</p>
+<p>showmount –e 127.0.0.1</p>
+<ol start="11">
+<li>挂载一个NFS共享<br>在system2上挂载一个来自system1上的NFS共享，并符合下列要求：</li>
+</ol>
+<p>A &#x2F;public 挂载在下面的目录上&#x2F;mnt&#x2F;nfsmount</p>
+<p>B &#x2F;protected挂载在下面的目录上&#x2F;mnt&#x2F;nfssecure并使用安全的方式。密钥下载URL如下：<a target="_blank" rel="noopener" href="http://classroom.example.com/pub/">http://classroom.example.com/pub/</a> nfssecure&#x2F;krb5.keytab</p>
+<p>C 这些文件系统在系统启动时自动挂载</p>
+<p>在system2上做,</p>
+<p>showmount –e system1的IP</p>
+<p>systemctl start nfs-secure</p>
+<p>systemctl enable nfs-secure</p>
+<p>wget –O &#x2F;etc&#x2F;krb5.keytab  <a target="_blank" rel="noopener" href="http://classroom.example.com/pub/nfssecure/krb5.keytab">http://classroom.example.com/pub/nfssecure/krb5.keytab</a></p>
+<p>mkdir &#x2F;mnt&#x2F;nfsmount &#x2F;&#x2F;挂载点</p>
+<p>mkdir &#x2F;mnt&#x2F;nfssecure  &#x2F;&#x2F;挂载点</p>
+<p>vim &#x2F;etc&#x2F;fstab</p>
+<p>system1的IP:&#x2F;public  &#x2F;mnt&#x2F;nfsmount  nfs  defaults  0  0</p>
+<p>system1的IP:&#x2F;protected  &#x2F;mnt&#x2F;nfssecure  nfs  defaults,sec&#x3D;krb5p,v4.2  0  0</p>
+<p>:wq</p>
+<p>mount –a</p>
+<ol start="12">
+<li>配置web站点<br>System1上配置一个站点<a href="http://serverX.example.com然后执行下述步骤：">http://serverX.example.com然后执行下述步骤：</a></li>
+</ol>
+<p>从<a target="_blank" rel="noopener" href="http://classroom.example.com/pub/example.html%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B9%B6%E4%B8%94%E5%B0%86%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8Dindex.html%E4%B8%8D%E8%A6%81%E4%BF%AE%E6%94%B9%E6%AD%A4%E6%96%87%E4%BB%B6%E7%9A%84%E5%86%85%E5%AE%B9">http://classroom.example.com/pub/example.html下载文件，并且将文件重命名index.html不要修改此文件的内容</a></p>
+<p>将文件index.html拷贝到您的web服务器的documentroot目录下</p>
+<p>来自于example.com域的客户端可以访问此Web服务</p>
+<p>来自于cracker.com域的客户端拒绝访问此Web服务</p>
+<p>在system1上做，</p>
+<p>yum –y install httpd</p>
+<p>systemctl start httpd</p>
+<p>systemctl enable httpd</p>
+<p>vim &#x2F;etc&#x2F;httpd&#x2F;conf.d&#x2F;vv.conf    &#x2F;&#x2F;文件以.conf结尾</p>
+<p>documentroot  &#x2F;var&#x2F;www&#x2F;html</p>
+<p>servername  serverX.example.com</p>
+<p>wget –O &#x2F;var&#x2F;www&#x2F;html&#x2F;index.html   <a target="_blank" rel="noopener" href="http://classroom.example.com/pub/example.html">http://classroom.example.com/pub/example.html</a></p>
+<p>firewall-cmd –permanent –add-rich-rule&#x3D;’rule family&#x3D;ipv4 source address&#x3D;172.16.0.0&#x2F;16 service name&#x3D;”http” log level&#x3D;notice reject’ &#x2F;&#x2F;man  firewalld.richlanguage</p>
+<p>firewall-cmd –permanent –add-rich-rule&#x3D;’rule family&#x3D;ipv4 source address&#x3D;192.168.0.0&#x2F;24 service name&#x3D;”http” log level&#x3D;notice accept’         &#x2F;&#x2F;man  firewalld.richlanguage</p>
+<p>firewall-cmd   –permanent   –add-service&#x3D;http</p>
+<p>firewall-cmd   –reload</p>
+<p>或用图形化：firewall-config</p>
+<p>在system2上打开firefox查看,</p>
+<ol start="13">
+<li>配置安全web服务<br>为站点<a target="_blank" rel="noopener" href="http://serverx.example.com配置tls加密一个已签名证书从http//classroom.example.com/pub/certs/serverX.crt%E8%8E%B7%E5%8F%96%EF%BC%8C%E6%AD%A4%E8%AF%81%E4%B9%A6%E7%9A%84%E5%AF%86%E9%92%A5%E4%BB%8Ehttp://classroom.example.com/pub/keys/serverX.key%E8%8E%B7%E5%8F%96%EF%BC%8C">http://serverX.example.com配置TLS加密一个已签名证书从http://classroom.example.com/pub/certs/serverX.crt获取，此证书的密钥从http://classroom.example.com/pub/keys/serverX.key获取，</a> 此证书的签名授权信息从<a target="_blank" rel="noopener" href="http://classroom.example.com/pub/example-ca.crt%E8%8E%B7%E5%8F%96">http://classroom.example.com/pub/example-ca.crt获取</a></li>
+</ol>
+<p>在system1上做，</p>
+<p>yum –y install mod_ssl</p>
+<p>cd &#x2F;var&#x2F;www&#x2F;html&#x2F;</p>
+<p>wget  –O  &#x2F;etc&#x2F;pki&#x2F;tls&#x2F;certs&#x2F;serverX.crt   <a target="_blank" rel="noopener" href="http://classroom.example.com/pub/certs/serverX.crt">http://classroom.example.com/pub/certs/serverX.crt</a></p>
+<p>wget  –O  &#x2F;etc&#x2F;pki&#x2F;tls&#x2F;private&#x2F;serverX.key   <a target="_blank" rel="noopener" href="http://classroom.example.com/pub/keys/serverX.key">http://classroom.example.com/pub/keys/serverX.key</a></p>
+<p>wget  –O  &#x2F;etc&#x2F;pki&#x2F;tls&#x2F;certs&#x2F;example-ca.crt  <a target="_blank" rel="noopener" href="http://classroom.example.com/pub/example-ca.crt">http://classroom.example.com/pub/example-ca.crt</a></p>
+<p>chmod  600  &#x2F;etc&#x2F;pki&#x2F;tls&#x2F;certs&#x2F;*.crt</p>
+<p>chmod  600  &#x2F;etc&#x2F;pki&#x2F;tls&#x2F;private&#x2F;*.key</p>
+<p>vim &#x2F; etc&#x2F;httpd&#x2F;conf.d&#x2F;ssl.conf</p>
+<p>SSLEngine on</p>
+<p>SSLProtocol all -SSLv2  –SSLv3</p>
+<p>SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5</p>
+<p>SSLHonorCipherOrder on              &#x2F;&#x2F;去掉注释的#</p>
+<p>SSLCertificateFile   &#x2F;etc&#x2F;pki&#x2F;tls&#x2F;certs&#x2F;serverX.crt</p>
+<p>SSLCertificateKeyFile   &#x2F;etc&#x2F;pki&#x2F;tls&#x2F;private&#x2F;serverX.key</p>
+<p>SSLCertificateChainFile   &#x2F;etc&#x2F;pki&#x2F;tls&#x2F;certs&#x2F;example-ca.crt</p>
+<p>DocumentRoot  &#x2F;var&#x2F;www&#x2F;html                &#x2F;&#x2F;去掉注释的#</p>
+<p>ServerName  serverX.example.com          &#x2F;&#x2F;去掉注释的#</p>
+<p>firewall-cmd   –permanent  –add-service&#x3D;https</p>
+<p>firewall-cmd   –reload</p>
+<p>在system2上打开firefox查看结果，</p>
+<ol start="14">
+<li>配置虚拟主机<br>在system1上扩展您的web服务器，为站点<a href="http://wwwX.example.com创建一个虚拟主机，然后执行下述步骤：">http://wwwX.example.com创建一个虚拟主机，然后执行下述步骤：</a></li>
+</ol>
+<p>A 设置DocumentRoot为&#x2F;var&#x2F;www&#x2F;virtual</p>
+<p>B 从<a target="_blank" rel="noopener" href="http://classroom.example.com/pub/virtual.html">http://classroom.example.com/pub/virtual.html</a> 下载文件并重命名为index.html 不要对文件index.html的内容做任何修改</p>
+<p>C 将文件index.html放到虚拟主机的DocumentRoot 目录下</p>
+<p>D 确保natasha用户能够在&#x2F;var&#x2F;www&#x2F;virtual目录下创建文件</p>
+<p>注意：原始站点<a target="_blank" rel="noopener" href="http://serverx.example.com必须仍然能够访问/">http://serverX.example.com必须仍然能够访问</a></p>
+<p>在system1上做，</p>
+<p>mkdir &#x2F;var&#x2F;www&#x2F;virtual</p>
+<p>wget  -O  &#x2F;var&#x2F;www&#x2F;virtual&#x2F;index.html  http:&#x2F;&#x2F; classroom.example.com&#x2F;pub&#x2F;virtual.html</p>
+<p>setfacl –m u:natasha:rwx  &#x2F;var&#x2F;www&#x2F;virtual</p>
+<p>vim &#x2F; etc&#x2F;httpd&#x2F;conf.d&#x2F;vv.conf</p>
+<p>DocumentRoot &#x2F;var&#x2F;www&#x2F;html</p>
+<p>ServerName serverX.example.com</p>
+<p>DocumentRoot   &#x2F;var&#x2F;www&#x2F;virtual</p>
+<p>ServerName   wwwX.example.com</p>
+<p>systemctl restart httpd</p>
+<p>在system2上打开firefox查看结果，</p>
+<ol start="15">
+<li>配置web内容的访问<br>在您的system1上的web服务器的DocumentRoot目录下创建一个名为private的目录，要求如下:</li>
+</ol>
+<p>A 从<a target="_blank" rel="noopener" href="http://classroom.example.com/pub/secret.html%E4%B8%8B%E8%BD%BD%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E5%89%AF%E6%9C%AC%E5%88%B0%E8%BF%99%E4%B8%AA%E7%9B%AE%E5%BD%95%EF%BC%8C%E5%B9%B6%E4%B8%94%E9%87%8D%E5%91%BD%E5%90%8D%E4%B8%BAindex.html">http://classroom.example.com/pub/secret.html下载一个文件副本到这个目录，并且重命名为index.html</a></p>
+<p>B 不要对这个文件的内容做任何修改</p>
+<p>C 在system1上，任何人都可以浏览private的内容，但是从其他系统不能访问这个目录的内容</p>
+<p>在system1上做，</p>
+<p>mkdir &#x2F;var&#x2F;www&#x2F;html&#x2F;private</p>
+<p>wget  -O  &#x2F;var&#x2F;www&#x2F;html&#x2F;private&#x2F;index.html  http:&#x2F;&#x2F; classroom.example.com&#x2F;pub&#x2F;secret.html</p>
+<p>vim &#x2F;etc&#x2F;httpd&#x2F;conf.d&#x2F;vv.conf</p>
+<p>DocumentRoot &#x2F;var&#x2F;www&#x2F;html</p>
+<p>ServerName serverX.example.com</p>
+<p>order  allow,deny                 &#x2F;&#x2F;先允许再拒绝，没有明确允许的都是拒绝</p>
+<p>allow  from  192.168.0.150 X</p>
+<p>allow  from  serverX.example.com</p>
+<p>DocumentRoot   &#x2F;var&#x2F;www&#x2F;virtual</p>
+<p>ServerName   wwwX.example.com</p>
+<ol start="16">
+<li>实现动态WEB内容<br>在system1上配置提供动态Web内容，要求如下：</li>
+</ol>
+<p>A 动态内容名为dymanicX.example.com的虚拟主机提供</p>
+<p>B 虚拟主机侦听在端口8998</p>
+<p>C 从<a target="_blank" rel="noopener" href="http://classroom.example.com/pub/webapp.wsgi%E4%B8%8B%E8%BD%BD%E4%B8%80%E4%B8%AA%E8%84%9A%E6%9C%AC%EF%BC%8C%E7%84%B6%E5%90%8E%E6%94%BE%E5%9C%A8%E9%80%82%E5%BD%93%E7%9A%84%E4%BD%8D%E7%BD%AE%EF%BC%8C%E6%97%A0%E8%AE%BA%E5%A6%82%E4%BD%95%E9%83%BD%E4%B8%8D%E8%A6%81%E6%B1%82%E4%BF%AE%E6%94%B9%E6%AD%A4%E6%96%87%E4%BB%B6%E7%9A%84%E5%86%85%E5%AE%B9">http://classroom.example.com/pub/webapp.wsgi下载一个脚本，然后放在适当的位置，无论如何都不要求修改此文件的内容</a></p>
+<p>D 客户端访问<a target="_blank" rel="noopener" href="http://dymanicx.example.com:8998/%E6%97%B6%E5%BA%94%E8%AF%A5%E6%8E%A5%E6%94%B6%E5%88%B0%E5%8A%A8%E6%80%81%E7%94%9F%E6%88%90%E7%9A%84web%E9%A1%B5%E9%9D%A2">http://dymanicX.example.com:8998/时应该接收到动态生成的web页面</a></p>
+<p>E 此<a target="_blank" rel="noopener" href="http://dymanicx.example.com:8998/">http://dymanicX.example.com:8998/</a> 必须被example.com域内的所有系统访问</p>
+<p>在system1上做，</p>
+<p>yum –y install mod_wsgi</p>
+<p>mkdir &#x2F;var&#x2F;www&#x2F;webapp</p>
+<p>cd &#x2F;var&#x2F;www&#x2F;webapp</p>
+<p>wget <a target="_blank" rel="noopener" href="http://classroom.example.com/pub/webapp.wsgi">http://classroom.example.com/pub/webapp.wsgi</a></p>
+<p>vim &#x2F; etc&#x2F;httpd&#x2F;conf.d&#x2F;vv.conf   &#x2F;&#x2F;在文件中添加以下内容</p>
+<p>listen 8998</p>
+<p>ServerName dymanicX.example.com</p>
+<p>WSGIScriptAlias   &#x2F;    &#x2F;var&#x2F;www&#x2F;webapp&#x2F;webapp.wsgi</p>
+<p>semanage   port   –a   –t   http_port_t   –p   tcp   8998    &#x2F;&#x2F;添加端口标签</p>
+<p>systemctl restart httpd</p>
+<p>firewall-cmd –permanent –add-port&#x3D;8998&#x2F;tcp</p>
+<p>firewall-cmd –reload</p>
+<ol start="17">
+<li>创建一个脚本<br>在system1上创建一个名为&#x2F;root&#x2F;foo.sh 的脚本，让其提供下列特征</li>
+</ol>
+<p>A 当运行&#x2F;root&#x2F;foo.sh redhat， 输出为fedora</p>
+<p>B 当运行&#x2F;root&#x2F;foo.sh fedora，输出为redhat</p>
+<p>C 当没有任何参数或者参数不是redhat或者fedora时，其错误输出产生以下的信息：&#x2F;root&#x2F;foo.sh redhat|fedora</p>
+<p>在system1上做，</p>
+<p>vim  &#x2F;root&#x2F;foo.sh</p>
+<p>#!&#x2F;bin&#x2F;bash</p>
+<p>case  “$1”  in</p>
+<p>redhat)</p>
+<p>echo  fedora</p>
+<p>;;</p>
+<p>fedora)</p>
+<p>echo  redhat</p>
+<p>;;</p>
+<p>*)</p>
+<p>echo ‘&#x2F;root&#x2F;foo.sh redhat|fedora’     1&gt;&amp;2</p>
+<p>;;</p>
+<p>esac</p>
+<p>chmod a x &#x2F;root&#x2F;foo.sh</p>
+<ol start="18">
+<li>创建一个添加用户的脚本<br>在system1上创建一个脚本，名为&#x2F;root&#x2F;batchusers,此脚本能实现为系统system1创建本地用户，并且这些用户的用户名来自一个包含用户名列表的文件。同时满足下列要求：</li>
+</ol>
+<p>A 此脚本要求提供一个参数，此参数就是包含用户名列表的文件</p>
+<p>B 如果没有提供参数，此脚本应该给出下面的提示信息Usage: &#x2F;root&#x2F;batchusers然后退出并返回相应的值</p>
+<p>C 如果提供一个不存在的文件名，此脚本应该给出下面的提示信息input file not found 然后退出并返回相应的值</p>
+<p>D 创建的用户登录shell为&#x2F;bin&#x2F;false</p>
+<p>E 此脚本不需要为用户设置密码</p>
+<p>你可以从下面的URL获取用户名列表作为测试用<a target="_blank" rel="noopener" href="http://classroom.example.com/pub/multiusers.txt">http://classroom.example.com/pub/multiusers.txt</a></p>
+<p>在system1上做，</p>
+<p>cd  &#x2F;root</p>
+<p>wget  <a target="_blank" rel="noopener" href="http://classroom.example.com/pub/multiusers.txt">http://classroom.example.com/pub/multiusers.txt</a></p>
+<p>vim &#x2F;root&#x2F;batchusers</p>
+<p>if   [  “$#” –eq  0  ];then</p>
+<p>echo ‘Usage: &#x2F;root&#x2F;batchusers’</p>
+<p>exit 1</p>
+<p>fi</p>
+<p>if   [  !  –f  “$1”  ];then</p>
+<p>echo ‘Input file not found’</p>
+<p>exit 1</p>
+<p>fi</p>
+<p>for  NAME  in  $(cat  “$1”)</p>
+<p>do</p>
+<p>useradd  -s  &#x2F;bin&#x2F;fales  $NAME</p>
+<p>done</p>
+<p>:wq</p>
+<p>chmod  a x  &#x2F;root&#x2F;batchusers</p>
+<ol start="19">
+<li>配置iSCSI服务端<br>配置system1提供一个iSCSI 服务磁盘名为iqn.2015-02.com.example:system1并符合下列要求</li>
+</ol>
+<p>A 服务端口为3260</p>
+<p>B 使用iscsi-store作其后端卷其大小为2G</p>
+<p>C 此服务只能被system2访问</p>
+<p>在system1上做，</p>
+<p>yum –y install targetcli</p>
+<p>systemctl enable target</p>
+<p>systemctl start target</p>
+<p>先分一个2G的空间出来，此处省略了。</p>
+<p>targetcli</p>
+<p>&#x2F;backstores&#x2F;block  create  iscsi-store  &#x2F;dev&#x2F;vda7       &#x2F;&#x2F;vda7是我在上面分出来的，实际上根据自己分的盘来设置</p>
+<p>&#x2F;iscsi create iqn.2015-02.com.example:system1</p>
+<p>&#x2F;iscsi&#x2F;iqn.2015-02.com.example:system1&#x2F;tpg1&#x2F;acls&#x2F;  create  iqn.2015-02.com.example:system2        &#x2F;&#x2F;客户端挂载使用此共享的凭据</p>
+<p>&#x2F;iscsi&#x2F;iqn.2015-02.com.example:system1&#x2F;tpg1&#x2F;luns  create  &#x2F;backstores&#x2F;block&#x2F;iscsi-store</p>
+<p>&#x2F;iscsi&#x2F;iqn.2015-02.com.example:system1&#x2F;tpg1&#x2F;portals&#x2F;  create  192.168.0.150 X</p>
+<p>exit</p>
+<p>systemctl restart target</p>
+<p>firewall-cmd –permanent –add-port&#x3D;3260&#x2F;tcp</p>
+<p>firewall-cmd –reload</p>
+<ol start="20">
+<li>配置iSCSI的客户端<br>配置system2是其能连接在system1上提供的iqn.2015-02.com.example:system1并符合以下要求</li>
+</ol>
+<p>A iSCSI 设备在系统启动的期间自动加载</p>
+<p>B 块设备iSCSI上包含一个大小为1G的分区，并格式为ext4</p>
+<p>C 此分区挂载在 &#x2F;mnt&#x2F;data上同时在系统启动的期间自动挂载</p>
+<p>在system2上做，</p>
+<p>yum –y install iscsi-*</p>
+<p>vim &#x2F;etc&#x2F;iscsi&#x2F;initiatorname.iscsi</p>
+<p>InitiatorName&#x3D;iqn.2015-02.com.example:system2</p>
+<p>systemctl restart iscsi</p>
+<p>systemctl enable iscsi</p>
+<p>iscsiadm –m discovery –t st –p system1的IP     &#x2F;&#x2F;man iscsiadm 可查到此条命令</p>
+<p>iscsiadm -m node –T  iqn.2015-02.com.example:system1 –l    &#x2F;&#x2F;man iscsiadm 可查到此条命令</p>
+<p>fdisk  &#x2F;dev&#x2F;sda</p>
+<p>然后分配一个1G的分区，此处我省略了。</p>
+<p>mkfs.ext4  &#x2F;dev&#x2F;sda1</p>
+<p>mkdir &#x2F;mnt&#x2F;data</p>
+<p>vim &#x2F;etc&#x2F;fstab</p>
+<p>&#x2F;dev&#x2F;sda1        &#x2F;mnt&#x2F;data       ext4   defaults,_netdev    0    0</p>
+<p>mount  -a</p>
+<ol start="21">
+<li>配置一个数据库<br>在system1上创建一个MariaDB数据库，名为employees，并符合以下条件：</li>
+</ol>
+<p>A 数据库应该包含来自数据库复制的内容，复制文件的URL为<a target="_blank" rel="noopener" href="http://classroom.example.com/pub/employees.dump">http://classroom.example.com/pub/employees.dump</a></p>
+<p>B 数据库只能被localhost访问</p>
+<p>C 创建bob用户，此用户的密码为redhat</p>
+<p>D 除了root用户，此数据库只能被用户bob查询</p>
+<p>E root用户的密码为redhat,同时不允许空密码登录</p>
+<p>在system1上做，</p>
+<p>yumgroupinstall -y  mariadb  mariadb-client</p>
+<p>systemctl enable mariadb</p>
+<p>systemctl start mariadb</p>
+<p>mysql_secure_installation   &#x2F;&#x2F;使用向导来设置root密码,其余选项，默认全是Y。</p>
+<p>mysql  -u root  -p</p>
+<p>create  user  bob@localhost  identified  by  ‘redhat’;</p>
+<p>show databases;</p>
+<p>create database employees;</p>
+<p>grant  select  on  employees.*  to  bob@localhost  identified  by   ‘redhat’;</p>
+<p>exit</p>
+<p>wget  <a target="_blank" rel="noopener" href="http://classroom.example.com/pub/employees.dump">http://classroom.example.com/pub/employees.dump</a></p>
+<p>mysql  -u  root  -p  employees  &lt;  employees.dump</p>
+<p>mysql  -u  root  -p</p>
+<p>use  employees;</p>
+<p>exit</p>
+<ol start="22">
+<li><p>数据库查询<br>在系统system1上使用数据库employees，并使用相应的SQL查询以回答下列问题：</p>
+</li>
+<li><p>从 employees 表中查询last_name 是＇Zucker＇，first_name 是＇Oguz＇的用户emp_no</p>
+</li>
+<li><p>查询 emp_no 是477008 用户的部门名称</p>
+</li>
+<li><p>将查询结果写到&#x2F;root&#x2F;mariadb.txt</p>
+</li>
+</ol>
+<p>mysql  -u  root  -p</p>
+<p>use  employees;</p>
+<p>rhce7–EX300</p>
+<p>select dept_no from dept_emp where emp_no &#x3D; 477008;</p>
+<p>select * from departments where dept_no &#x3D; ‘d003’;</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://blog.real9.ml">Real</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.real9.ml/2022/04/27296/">https://blog.real9.ml/2022/04/27296/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.real9.ml" target="_blank">Real的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a></div><div class="post_share"><div class="social-share" data-image="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://jsdelivr.pai233.top/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/04/45408/"><img class="prev-cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">RHCE 7考试环境 虚拟机</div></div></a></div><div class="next-post pull-right"><a href="/2022/04/62143/"><img class="next-cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">RHCSA 7 ex200 考題</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/17F1PWV/" title="10 个你该了解的 GitHub Actions 进阶技巧"><img class="cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-12</div><div class="title">10 个你该了解的 GitHub Actions 进阶技巧</div></div></a></div><div><a href="/2022/05/18762/" title="HP MicroServer Gen8 安装ESXI 磁盘性能低下问题"><img class="cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">HP MicroServer Gen8 安装ESXI 磁盘性能低下问题</div></div></a></div><div><a href="/2022/05/17607/" title="Linux Mint Mount cifs 格式报错解决办法"><img class="cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">Linux Mint Mount cifs 格式报错解决办法</div></div></a></div><div><a href="/2022/05/65289/" title="Linux _ 玩客云 Armbian使用脚本根据温度调整CPU主频防止矿渣死机"><img class="cover" src="https://img-blog.csdnimg.cn/20210708171106472.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">Linux _ 玩客云 Armbian使用脚本根据温度调整CPU主频防止矿渣死机</div></div></a></div><div><a href="/2022/05/14962/" title="Linux 查找特定文件 并移动到特定目录  自动剪切"><img class="cover" src="https://img-blog.csdnimg.cn/20210224162934610.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">Linux 查找特定文件 并移动到特定目录  自动剪切</div></div></a></div><div><a href="/2022/05/61217/" title="Linux 清理缓存，定时清理缓存脚本"><img class="cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">Linux 清理缓存，定时清理缓存脚本</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Twikoo</span><span class="switch-btn"></span><span class="second-comment">Waline</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://img1.baidu.com/it/u=3927275426,66649734&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPG?w=889&amp;h=500" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Real</div><div class="author-info__description">瑞哥的博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/wangrui1573/"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的小站！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/2XY2Z9J/" title="Emby 全平台开心版、认证服务器设置方法 | Velaciela"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Emby 全平台开心版、认证服务器设置方法 | Velaciela"/></a><div class="content"><a class="title" href="/2024/06/2XY2Z9J/" title="Emby 全平台开心版、认证服务器设置方法 | Velaciela">Emby 全平台开心版、认证服务器设置方法 | Velaciela</a><time datetime="2024-06-26T02:15:14.000Z" title="发表于 2024-06-26 10:15:14">2024-06-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/2SFMQJM/" title="KubeSphere 最佳实战：一文搞定 KubeKey v3"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="KubeSphere 最佳实战：一文搞定 KubeKey v3"/></a><div class="content"><a class="title" href="/2024/06/2SFMQJM/" title="KubeSphere 最佳实战：一文搞定 KubeKey v3">KubeSphere 最佳实战：一文搞定 KubeKey v3</a><time datetime="2024-06-12T08:05:53.000Z" title="发表于 2024-06-12 16:05:53">2024-06-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/2TA7R64/" title="虚拟机释放磁盘空间 | TIM Blog"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="虚拟机释放磁盘空间 | TIM Blog"/></a><div class="content"><a class="title" href="/2024/02/2TA7R64/" title="虚拟机释放磁盘空间 | TIM Blog">虚拟机释放磁盘空间 | TIM Blog</a><time datetime="2024-02-26T03:11:14.000Z" title="发表于 2024-02-26 11:11:14">2024-02-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/3CTW4J1/" title="Windows 自带的端口转发 | kekxv 技术博客"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Windows 自带的端口转发 | kekxv 技术博客"/></a><div class="content"><a class="title" href="/2024/02/3CTW4J1/" title="Windows 自带的端口转发 | kekxv 技术博客">Windows 自带的端口转发 | kekxv 技术博客</a><time datetime="2024-02-02T08:18:49.000Z" title="发表于 2024-02-02 16:18:49">2024-02-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/1HVQ0T5/" title="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客"/></a><div class="content"><a class="title" href="/2023/08/1HVQ0T5/" title="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客">IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客</a><time datetime="2023-08-01T07:55:53.000Z" title="发表于 2023-08-01 15:55:53">2023-08-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Real</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://jsdelivr.pai233.top/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://comment-rosy.vercel.app',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://comment-rosy.vercel.app',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://jsdelivr.pai233.top/npm/twikoo@1/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script><script>function loadWaline () {
+  function insertCSS () {
+    const link = document.createElement("link")
+    link.rel = "stylesheet"
+    link.href = "https://jsdelivr.pai233.top/npm/@waline/client/dist/waline.css"
+    document.head.appendChild(link)
+  }
+
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://walline.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+  }
+
+  if (typeof Waline === 'function') initWaline()
+  else {
+    insertCSS()
+    getScript('https://jsdelivr.pai233.top/npm/@waline/client/dist/waline.js').then(initWaline)
+  }
+}
+
+if ('Twikoo' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

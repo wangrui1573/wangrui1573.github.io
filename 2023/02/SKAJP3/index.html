@@ -1,0 +1,317 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>使用 zerotier 搭建自己的 IPv6 网络 - 仲儿的自留地 | Real的博客</title><meta name="keywords" content="Windows,Linux"><meta name="author" content="Real"><meta name="copyright" content="Real"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本文由 简悦 SimpRead 转码， 原文地址 lisz.me   个人的一个技术博客站点，主要用于记录个人在学习过程中遇到的技术问题及解决方法、技术实验，以及一些比较有趣的事情。  前言  2019 年 11 月 27 日，通过欧洲网络协调中心（RIPE NCC）的邮件确认，全球所有 43 亿个 IPv4 地址已全部分配完毕。事实上，IPv4 地址的数量是非常有限的，算起来全球 60 多亿人">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 zerotier 搭建自己的 IPv6 网络 - 仲儿的自留地">
+<meta property="og:url" content="https://blog.real9.ml/2023/02/SKAJP3/index.html">
+<meta property="og:site_name" content="Real的博客">
+<meta property="og:description" content="本文由 简悦 SimpRead 转码， 原文地址 lisz.me   个人的一个技术博客站点，主要用于记录个人在学习过程中遇到的技术问题及解决方法、技术实验，以及一些比较有趣的事情。  前言  2019 年 11 月 27 日，通过欧洲网络协调中心（RIPE NCC）的邮件确认，全球所有 43 亿个 IPv4 地址已全部分配完毕。事实上，IPv4 地址的数量是非常有限的，算起来全球 60 多亿人">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg">
+<meta property="article:published_time" content="2023-02-22T01:59:02.000Z">
+<meta property="article:modified_time" content="2024-06-26T02:15:45.386Z">
+<meta property="article:author" content="Real">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blog.real9.ml/2023/02/SKAJP3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '使用 zerotier 搭建自己的 IPv6 网络 - 仲儿的自留地',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-06-26 10:15:45'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://img1.baidu.com/it/u=3927275426,66649734&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPG?w=889&amp;h=500" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/mov"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/tlv1"><i class="fa-fw fas fa-video"></i><span> TV Show</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> Message</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://bu.dusays.com/2021/03/06/daffe400090d4.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Real的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/mov"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/tlv1"><i class="fa-fw fas fa-video"></i><span> TV Show</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> Message</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">使用 zerotier 搭建自己的 IPv6 网络 - 仲儿的自留地</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-22T01:59:02.000Z" title="发表于 2023-02-22 09:59:02">2023-02-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-06-26T02:15:45.386Z" title="更新于 2024-06-26 10:15:45">2024-06-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%BD%AC%E8%BD%BD/">转载</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>本文由 <a target="_blank" rel="noopener" href="http://ksria.com/simpread/">简悦 SimpRead</a> 转码， 原文地址 <a target="_blank" rel="noopener" href="https://lisz.me/tech/linux/zerotier.html">lisz.me</a></p>
+</blockquote>
+<blockquote>
+<p>个人的一个技术博客站点，主要用于记录个人在学习过程中遇到的技术问题及解决方法、技术实验，以及一些比较有趣的事情。</p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>  2019 年 11 月 27 日，通过欧洲网络协调中心（RIPE NCC）的邮件确认，全球所有 43 亿个 IPv4 地址已全部分配完毕。事实上，IPv4 地址的数量是非常有限的，算起来全球 60 多亿人每个人平均不到 1 个。由于 IP 地址是由国际上的几大网络协调中心统一进行分配，必须由单位向所在区域的网络协调中心提出申请，并每年缴纳一定的费用。这笔费用对于单位来说算不了什么，对于个人来说就比较高。因此，在每个国家基本上是由国家网络中心进行国内的 IP 地址分配，分配的单位一般是政府、国家机构、高校、基础通信服务商、数据中心或企业等。我们通常家用的宽带主要是由中国移动、中国联通、中国电信三大基础通信服务商提供的。近年来也有由广播电视提供的家用宽带。在学校、国家科技机构单位，一般使用的是教育网、教育科技网，也有很多学校采用的基础通信服务商提供的商用网络。不管是学校，还是家里，基础通信服务商为了节约 IP 地址的使用，在进行基础通信网络搭建的时候，大部分采用了内部局域网共享一个公网 IP 地址代理上网的方式。现有家用使用的宽带网络基本上无法获取到公网 IPv4 地址，只能获得一个以<code>100</code>开头的通信专用的局域网地址。</p>
+<p>  随着中国 IPv6 的不断部署推进，家用宽带大部分也拥有了 IPv6 地址。相比 IPv4 地址来说，IPv6 地址的数量则非常庞大，全世界人口人均分配几十个都绰绰有余。因此，IPv6 地址在使用上比 IPv4 地址就显得非常大度。通常来说，基础通信服务商会直接分配给每一个家用账户一个<code>/64</code>段的 IPv6 地址段。</p>
+<p>个人所知中国移动宽带只有在使用了中国移动的专用路由器光纤接入后会分配 IPv6 地址。</p>
+<p>  由于考虑到分配的 IPv6 地址直接就是公网 IP 地址，如果知道设备的 IPv6 地址，即可通过 IPv6 网络直接进入设备，这对于一般没有安全意识的家用用户来说不是一件好事，所以基础通信服务商一般会在两三天内重新分配 IPv6 地址段，以此确保家用用户不可能长时间拥有同一个 IPv6 地址。</p>
+<p>  IPv6 地址的 DHCP 几乎没有强制性，通常来说如果知道网络段号，可以自定义 IPv6 地址的后面位数。 比如被分配到的 IPv6 段是 2409:470:88:80::&#x2F;64，则用户可以设置自己的 IPv6 地址静态为 2409:470:88:80::8&#x2F;64。 这样一来安全性会变得更低。</p>
+<p>  但对于喜欢 “搞事情” 的小伙伴来说，这就有很大的限制了。如果有内网的服务器想要暴露在公网，或者想要使用 IPv6 进行管理，就需要有静态公网可达的地址来提供服务。想要实现这一目标，有很多方法来实现。</p>
+<ul>
+<li>方法一：使用 FRP、Ngrok 等技术，通过公网服务器的端口代理来实现管理和对外服务。</li>
+<li>方法二：使用拥有公网 IP 的服务器。</li>
+<li>方法三：使用 zerotier 来进行 SDN 组网，并构建 IPv6 网络来对外提供访问。</li>
+</ul>
+<p>  这里，就来尝试使用方法三来实现管理和对外服务。</p>
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><ul>
+<li>一台 Ubuntu 公网 ECS 服务器</li>
+<li>一台 Ubuntu 内网服务器</li>
+<li>一台 Mac</li>
+<li>一个可用的固定 IPv6 网段</li>
+</ul>
+<h3 id="申请-IPv6-网段"><a href="#申请-IPv6-网段" class="headerlink" title="申请 IPv6 网段"></a>申请 IPv6 网段</h3><p>  目前，全球范围内除了由基础通信服务商、数据中心、高校等拥有一大批可用的 IPv6 网段外，基本上无法个人进行申请。唯一可用的无限制 IPv6 网段申请就是 <a target="_blank" rel="noopener" href="https://www.tunnelbroker.net/">He.net</a> 提供的 6to4 IPv6 隧道服务。可访问网站进行注册登录，登录后在左上方的 User Functions 里选择 Create Regular Tunnel，然后在 You are viewing from 这个位置会显示出你访问时所用的公网 IP 地址。此处的 IPv4 Endpoint 填的是 ECS 服务器的公网 IPv4 地址，至于以下的 Tunnel Server 应该选择哪个需要在 ECS 服务器上 ping 各个服务器来确定延迟，选取延迟最低的一个位置。</p>
+<p>  由于 He.net 的全球网络与阿里云的全球网络之间的路由不是直接到达的，往往会绕很大一圈，所以建议不要选择<strong>香港</strong>的 Tunnel Server，体验下来 Fremont、CA、US 的 Tunnel Server 效果较好。</p>
+<p><a target="_blank" rel="noopener" href="https://i.lisz.top/blog/ebV5en.webp"><img src="https://i.lisz.top/blog/ebV5en.webp"></a>菜单栏 Menu <a target="_blank" rel="noopener" href="https://i.lisz.top/blog/vXS3jk.webp"><img src="https://i.lisz.top/blog/vXS3jk.webp"></a>添加隧道 Add tunnel</p>
+<p>  选择好 Tunnel Server 之后，点击最下方的 Create Tunnel 按钮即可获得一个 <strong>::&#x2F;64</strong> 的 IPv6 网段。以下为创建完成后获得 Tunnel 详情。实际上，He.net 是支持申请 <strong>::&#x2F;48</strong> 的 IPv6 网段的，只需要点击以下图片的 Assign&#x2F;48 按钮即可。</p>
+<p><a target="_blank" rel="noopener" href="https://i.lisz.top/blog/qHbE8a.webp"><img src="https://i.lisz.top/blog/qHbE8a.webp"></a>查看分配的 &#x2F;64 网段 Check &#x2F;64 ip blocks <a target="_blank" rel="noopener" href="https://i.lisz.top/blog/1t2OP4.webp"><img src="https://i.lisz.top/blog/1t2OP4.webp"></a>请求分配 &#x2F;48 网段 Check &#x2F;48 ip blocks</p>
+<p>  如上所示，现在获得了<code>2001:470:811d::/48</code>网段。</p>
+<h3 id="配置-ECS-服务器的-IPv6"><a href="#配置-ECS-服务器的-IPv6" class="headerlink" title="配置 ECS 服务器的 IPv6"></a>配置 ECS 服务器的 IPv6</h3><p>  由于 ECS 服务器是由 Ubuntu 16.04 升级的 18.04，网络配置仍使用 networking 进行管理，配置比较简单。编辑 &#x2F;etc&#x2F;network&#x2F;interfaces 文件，添加如下内容。</p>
+<p>BASH</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">auto he-ipv6</span><br><span class="line">iface he-ipv6 inet6 v4tunnel</span><br><span class="line">    address 2001:470:811d::80</span><br><span class="line">    netmask 64</span><br><span class="line">    endpoint 72.52.104.74</span><br><span class="line">    local ECS_INTERNAL_IP</span><br><span class="line">    ttl 255</span><br><span class="line">    gateway 2001:470:811d::1</span><br></pre></td></tr></table></figure>
+
+<p>  local 地址一定要填写 ECS 服务器的内网 IP，直接填写公网 IP 会无法认证。如果使用的公网服务器使用 ifconfig 能够直接看到公网 IP，那么一定要填成公网 IP。只要保持与本地的 IP 一致即可。</p>
+<p>  修改网卡配置文件完成后，执行<code>sudo service networking restart</code>来启用 IPv6 隧道。至此，公网 ECS 服务器就拥有了 IPv6 地址。</p>
+<h3 id="配置-zerotier"><a href="#配置-zerotier" class="headerlink" title="配置 zerotier"></a>配置 zerotier</h3><p>  zerotier 是一款先进的 SDN (软件定义网络) 软件，通过发现路由来找到两台机器之间的通路。显然，如果两台机器在不同的内部局域网当中，由 zerotier 中心服务节点发现的路由通路就会非常漫长，尤其是客户端访问到 zerotier 中心服务节点的路由通路可能千差万别，造成 zerotier 本身理解建立两个客户端之间最短通路的方法也会变得无效。由此，zerotier 开放了 moon 功能，任何一台 zerotier 客户端都可以成为 moon 节点。 moon 节点可以作为辅助甚至是缩短路由通路的发现者，在国内的不同基础通信服务商的网路中就格外有用。此处就尝试将 ECS 服务器加入 zerotier，成为 moon 节点不在此赘述。</p>
+<h4 id="安装-zerotier"><a href="#安装-zerotier" class="headerlink" title="安装 zerotier"></a>安装 zerotier</h4><p>  zerotier 的安装比较简单，Mac 操作系统、Windows 操作系统可以直接访问 <a target="_blank" rel="noopener" href="https://zerotier.com/download/">zerotier 官网</a>获取安装包。Linux 操作系统上则只需要使用官方提供的一键脚本即可，如下所示。</p>
+<p>BASH</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -s https://install.zerotier.com | sudo bash</span><br></pre></td></tr></table></figure>
+
+<p>  安装完成后，使用<code>sudo zerotier-cli info</code>命令获取 10 位的唯一设备识别码，如 <strong>1f23c0dd99</strong> 。</p>
+<h4 id="配置-zerotier-网络"><a href="#配置-zerotier-网络" class="headerlink" title="配置 zerotier 网络"></a>配置 zerotier 网络</h4><p>  访问 <a target="_blank" rel="noopener" href="https://my.zerotier.com/">zerotier web 配置面板</a>，注册一个 zerotier 账户并登录。由于 zerotier 的免费套餐允许 100 台设备同时连入到 zerotier 网络中，所以可以放心大胆使用。登录后选择 Networks 创建一个新的网络，并进入开始配置。网络默认是隐秘网络，需要通过验证后才可以加入，这样也比较安全。此处创建完成后会获得一个网络 ID，在 ECS 服务器上执行以下命令申请加入到该 zerotier 网络。</p>
+<p>BASH</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo zerotier-cli join 159924d6308e1d7e</span><br></pre></td></tr></table></figure>
+
+<p>  以下的配置主要是配置 zerotier 网络的路由和 IPv6 地址分配。网络创建完成后本身会自动创建一个<code>10.147.17.0/24</code>的局域网 IPv4 网段，并添加默认路由。由于刚才已经在 ECS 服务器上申请加入了，现在需要在 Memebers 里勾选最前面的 Auth 选项。过几秒后，ECS 服务器会被自动分配在设定好的 IPv4 网段中的一个地址，这里也可以自定义某一个段内地址。</p>
+<p><a target="_blank" rel="noopener" href="https://i.lisz.top/blog/f7aPPA.webp"><img src="https://i.lisz.top/blog/f7aPPA.webp"></a>加入 zerotier <a target="_blank" rel="noopener" href="https://i.lisz.top/blog/SOsz0I.webp"><img src="https://i.lisz.top/blog/SOsz0I.webp"></a>允许加入 zerotier <a target="_blank" rel="noopener" href="https://i.lisz.top/blog/Godokw.webp"><img src="https://i.lisz.top/blog/Godokw.webp"></a>查看分配的 ip check ip</p>
+<p>  接下来需要做的就是配置 zerotier 可用的 IPv6 网段及相关路由。开启 zerotier IPv6，并添加可用网段<code>2001:470:811d::/48</code>到可分配地址池中，如下图所示。</p>
+<p><a target="_blank" rel="noopener" href="https://i.lisz.top/blog/psp65s.webp"><img src="https://i.lisz.top/blog/psp65s.webp"></a>添加 IPv6 网段 Add IPv6 blocks <a target="_blank" rel="noopener" href="https://i.lisz.top/blog/eQODfX.webp"><img src="https://i.lisz.top/blog/eQODfX.webp"></a>查看添加结果 Check results</p>
+<p>  如下图所示，读取 zerotier 根据 RFC4193 文档分配给 ECS 服务器的局域网 IPv6 地址。此处为<code>fd15:9924:d630:8e1d:7e99:9333:8a13:b4bb</code>。</p>
+<p><a target="_blank" rel="noopener" href="https://i.lisz.top/blog/pY0uEK.webp"><img src="https://i.lisz.top/blog/pY0uEK.webp"></a>查看主机被分配内网 IPv6 地址 Check internal IPv6 address</p>
+<p>  接下来添加两条 IPv6 的路由到 zerotier 的默认路由中。一条是设置 ECS 服务器为 zerotier 网络中的网关，如下图所示。</p>
+<p><a target="_blank" rel="noopener" href="https://i.lisz.top/blog/thidmP.webp"><img src="https://i.lisz.top/blog/thidmP.webp"></a>添加 IPv6 网关 Add IPv6 gateway</p>
+<p>  另一条是添加公网 IPv6 网段的默认路由，如下图所示。</p>
+<p><a target="_blank" rel="noopener" href="https://i.lisz.top/blog/tPhf5g.webp"><img src="https://i.lisz.top/blog/tPhf5g.webp"></a>添加内网默认路由 Add default route <a target="_blank" rel="noopener" href="https://i.lisz.top/blog/KP6Bc2.webp"><img src="https://i.lisz.top/blog/KP6Bc2.webp"></a>查看所有默认路由 Check all default routes</p>
+<p>  完成以上步骤可以看到如下图所示的 ECS 服务器也被分配到了一个可用的公网 IPv6 地址。 <a target="_blank" rel="noopener" href="https://i.lisz.top/blog/3Yidfo.webp"><img src="https://i.lisz.top/blog/3Yidfo.webp"></a>查看被分配的公网 IPv6 地址 Check public IPv6 address</p>
+<p>  为了让 zerotier 可以在 ECS 服务器上成功创建公网 IPv6 地址以及添加默认路由，需要在 ECS 服务器上做如下设置。设置成功后会看到网卡上出现上图中分配的公网 IPv6 地址。所有 zerotier 初次连入都需要进行此步骤。</p>
+<p>BASH</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo zerotier-cli set 159924d6308e1d7e allowGlobal=true</span><br><span class="line">sudo zerotier-cli set 159924d6308e1d7e allowDefault=1</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置-IPv6-广播"><a href="#配置-IPv6-广播" class="headerlink" title="配置 IPv6 广播"></a>配置 IPv6 广播</h3><p>  经过以上步骤，IPv6 网络的基本框架已经搭建好了，现在任何一台通过该 zerotier 网络认证的客户端都会获得一个可用的公网 IPv6 地址，它们彼此之间可以通信。但是现在为止除 ECS 服务器外，其他客户端依然无法访问外部 IPv6 地址及被其他 IPv6 地址访问。这是因为 zerotier 申明的公网 IPv6 地址未进行正常的 IPv6 广播，不能被其他的 IPv6 地址知道。</p>
+<h4 id="配置-NDPPD-广播"><a href="#配置-NDPPD-广播" class="headerlink" title="配置 NDPPD 广播"></a>配置 NDPPD 广播</h4><p>  在 ECS 服务器上安装 ndppd 软件以支持 IPv6 地址广播，安装后的 &#x2F;etc&#x2F;ndppd.conf 配置文件内容如下。eth0 修改为 ECS 服务器的默认网卡，rule 修改为对应 IPv6 地址网段。</p>
+<p>BASH</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y ndppd</span><br></pre></td></tr></table></figure>
+
+<p>CONF</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">route-ttl 30000</span><br><span class="line"></span><br><span class="line">address-ttl 30000</span><br><span class="line"></span><br><span class="line">proxy eth0 &#123;</span><br><span class="line">    router yes</span><br><span class="line">    timeout 500</span><br><span class="line">    autowire no</span><br><span class="line">    keepalive yes</span><br><span class="line">    retries 3</span><br><span class="line">    ttl 30000</span><br><span class="line">    rule 2001:470:811d::/48 &#123;</span><br><span class="line">        auto</span><br><span class="line">        autovia no</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>BASH</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#安装完成后</span><br><span class="line">#使用以下命令重启 ndppd 服务。</span><br><span class="line">sudo systemctl restart ndppd</span><br><span class="line">但缺少ipv6转发部分</span><br><span class="line"></span><br><span class="line">向 /etc/sysctl.conf 添加如下指令：</span><br><span class="line"></span><br><span class="line">net.ipv6.conf.default.forwarding=1</span><br><span class="line">net.ipv6.conf.all.forwarding=1</span><br><span class="line">net.ipv6.conf.all.proxy_ndp=1</span><br><span class="line">net.ipv6.conf.all.accept_ra=2</span><br><span class="line">保存后运行 sysctl -p 生效。</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置其他客户端"><a href="#配置其他客户端" class="headerlink" title="配置其他客户端"></a>配置其他客户端</h3><h4 id="Linux-客户端"><a href="#Linux-客户端" class="headerlink" title="Linux 客户端"></a>Linux 客户端</h4><p>  仿照上述步骤安装 zerotier 并加入到 zeoriter 网络中。</p>
+<p>BASH</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl -s https://install.zerotier.com | sudo bash</span><br><span class="line">sudo zerotier-cli join 159924d6308e1d7e</span><br><span class="line">sudo zerotier-cli set 159924d6308e1d7e allowGlobal=true</span><br><span class="line">sudo zerotier-cli set 159924d6308e1d7e allowDefault=1</span><br></pre></td></tr></table></figure>
+
+<h4 id="Mac-客户端"><a href="#Mac-客户端" class="headerlink" title="Mac 客户端"></a>Mac 客户端</h4><p>  下载安装包后加入到 zerotier 网络中，并在界面上允许 Global 和 Default，再勾选 connected。正常情况下能够获取到公网 IPv6 地址并添加好 IPv6 路由。如果发生能够 ping 通包括 ECS 服务器的 zerotier 网卡在内的该段公网 IPv6 地址，但无法访问其他 IPv6 地址。那么需要手动添加一条全局 IPv6 路由，命令如下。此处设置的网关是 ECS 服务器的 zerotier 网卡的根据 RFC4193 文档生成的局域网 IPv6 地址。</p>
+<p>BASH</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo route add -inet6 -prefixlen 0 default fd15:9924:d630:8e1d:7e99:9333:8a13:b4bb</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试及问题解决"><a href="#测试及问题解决" class="headerlink" title="测试及问题解决"></a>测试及问题解决</h3><p>  执行完上述步骤可以看到获取到了一个公网 IPv6 地址，尝试是否与外界相通。</p>
+<p>BASH</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ping6 -c 10 ip.sb</span><br><span class="line">ping6 -c 2001:470:811d::80</span><br></pre></td></tr></table></figure>
+
+<p>  如果发现网络不通，就将 zerotier web 控制面板上节点使用的公网 IPv6 段换成一个<code>::/64</code>段就可以了，比如<code>2001:470:811d:8::/64</code>。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>  根据实践部分的各个步骤，我们可以搭建一个自主可控的公网 IPv6 网络来进行管理和对外服务。由于公网 IPv6 网络会被全世界 IPv6 地址访问到，每一台连入的客户端的安全都需要提前保证，如果存在弱密码或者无密码服务，就很容易被攻破。当然，zerotier web 控制面板是允许自定义 IPv6 地址的，可以根据自己的喜好将所有连入网络的地址进行更改。</p>
+<p>  由于 He.net 的 Tunnel Server 不在国内，所获取到的 IPv6 地址在访问国内的 IPv6 地址时延迟会比较高，毕竟需要绕一个大圈。但是对于 zerotier 网络内的客户端之间来说，通信的延迟应该还是比较低的，完全取决于原本到 ECS 服务器的延迟。ECS 服务器在这里也起到了一个路由转发、地址广播的交换机作用。</p>
+<p>  欢迎走进 IPv6 的世界！</p>
+<p>版权声明：如无特别声明，本文版权归 <a target="_blank" rel="noopener" href="https://lisz.me/">仲儿的自留地</a> 所有，转载请注明本文链接。</p>
+<p>（采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议进行授权）</p>
+<p>本文标题：《 使用 zerotier 搭建自己的 IPv6 网络 》</p>
+<p>本文链接：<a target="_blank" rel="noopener" href="https://lisz.me/tech/linux/zerotier.html">https://lisz.me/tech/linux/zerotier.html</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://blog.real9.ml">Real</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.real9.ml/2023/02/SKAJP3/">https://blog.real9.ml/2023/02/SKAJP3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.real9.ml" target="_blank">Real的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Windows/">Windows</a><a class="post-meta__tags" href="/tags/Linux/">Linux</a></div><div class="post_share"><div class="social-share" data-image="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://jsdelivr.pai233.top/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/13PEK4J/"><img class="prev-cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">IPV6 设置方法 - OPENWRT 专版 - 恩山无线论坛 -  Powered by Discuz!</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/1XFZ65Y/"><img class="next-cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">PS5 远程游玩 wifi 下端口转发设置 – 平凡之路</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/17F1PWV/" title="10 个你该了解的 GitHub Actions 进阶技巧"><img class="cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-12</div><div class="title">10 个你该了解的 GitHub Actions 进阶技巧</div></div></a></div><div><a href="/2022/05/18762/" title="HP MicroServer Gen8 安装ESXI 磁盘性能低下问题"><img class="cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">HP MicroServer Gen8 安装ESXI 磁盘性能低下问题</div></div></a></div><div><a href="/2022/05/17607/" title="Linux Mint Mount cifs 格式报错解决办法"><img class="cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">Linux Mint Mount cifs 格式报错解决办法</div></div></a></div><div><a href="/2022/05/65378/" title="笔记本安装Linux Mint 19 操作系统办公"><img class="cover" src="https://img.iplaysoft.com/wp-content/uploads/2017/linuxmint/linux_mint_desktop2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">笔记本安装Linux Mint 19 操作系统办公</div></div></a></div><div><a href="/2024/06/2XY2Z9J/" title="Emby 全平台开心版、认证服务器设置方法 | Velaciela"><img class="cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-26</div><div class="title">Emby 全平台开心版、认证服务器设置方法 | Velaciela</div></div></a></div><div><a href="/2023/04/1TJ1MCA/" title="alist 修改刷新缓存时间，改善在电脑上的使用体验 - 搞机技术 - 姿势论坛—姿势小王子"><img class="cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-11</div><div class="title">alist 修改刷新缓存时间，改善在电脑上的使用体验 - 搞机技术 - 姿势论坛—姿势小王子</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Twikoo</span><span class="switch-btn"></span><span class="second-comment">Waline</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://img1.baidu.com/it/u=3927275426,66649734&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPG?w=889&amp;h=500" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Real</div><div class="author-info__description">瑞哥的博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/wangrui1573/"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的小站！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5"><span class="toc-number">2.</span> <span class="toc-text">实践</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83"><span class="toc-number">2.1.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B3%E8%AF%B7-IPv6-%E7%BD%91%E6%AE%B5"><span class="toc-number">2.2.</span> <span class="toc-text">申请 IPv6 网段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-ECS-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84-IPv6"><span class="toc-number">2.3.</span> <span class="toc-text">配置 ECS 服务器的 IPv6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-zerotier"><span class="toc-number">2.4.</span> <span class="toc-text">配置 zerotier</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-zerotier"><span class="toc-number">2.4.1.</span> <span class="toc-text">安装 zerotier</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-zerotier-%E7%BD%91%E7%BB%9C"><span class="toc-number">2.4.2.</span> <span class="toc-text">配置 zerotier 网络</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-IPv6-%E5%B9%BF%E6%92%AD"><span class="toc-number">2.5.</span> <span class="toc-text">配置 IPv6 广播</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-NDPPD-%E5%B9%BF%E6%92%AD"><span class="toc-number">2.5.1.</span> <span class="toc-text">配置 NDPPD 广播</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%85%B6%E4%BB%96%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">2.6.</span> <span class="toc-text">配置其他客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">2.6.1.</span> <span class="toc-text">Linux 客户端</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mac-%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">2.6.2.</span> <span class="toc-text">Mac 客户端</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E5%8F%8A%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="toc-number">2.7.</span> <span class="toc-text">测试及问题解决</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">3.</span> <span class="toc-text">结语</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/2XY2Z9J/" title="Emby 全平台开心版、认证服务器设置方法 | Velaciela"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Emby 全平台开心版、认证服务器设置方法 | Velaciela"/></a><div class="content"><a class="title" href="/2024/06/2XY2Z9J/" title="Emby 全平台开心版、认证服务器设置方法 | Velaciela">Emby 全平台开心版、认证服务器设置方法 | Velaciela</a><time datetime="2024-06-26T02:15:14.000Z" title="发表于 2024-06-26 10:15:14">2024-06-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/2SFMQJM/" title="KubeSphere 最佳实战：一文搞定 KubeKey v3"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="KubeSphere 最佳实战：一文搞定 KubeKey v3"/></a><div class="content"><a class="title" href="/2024/06/2SFMQJM/" title="KubeSphere 最佳实战：一文搞定 KubeKey v3">KubeSphere 最佳实战：一文搞定 KubeKey v3</a><time datetime="2024-06-12T08:05:53.000Z" title="发表于 2024-06-12 16:05:53">2024-06-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/2TA7R64/" title="虚拟机释放磁盘空间 | TIM Blog"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="虚拟机释放磁盘空间 | TIM Blog"/></a><div class="content"><a class="title" href="/2024/02/2TA7R64/" title="虚拟机释放磁盘空间 | TIM Blog">虚拟机释放磁盘空间 | TIM Blog</a><time datetime="2024-02-26T03:11:14.000Z" title="发表于 2024-02-26 11:11:14">2024-02-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/3CTW4J1/" title="Windows 自带的端口转发 | kekxv 技术博客"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Windows 自带的端口转发 | kekxv 技术博客"/></a><div class="content"><a class="title" href="/2024/02/3CTW4J1/" title="Windows 自带的端口转发 | kekxv 技术博客">Windows 自带的端口转发 | kekxv 技术博客</a><time datetime="2024-02-02T08:18:49.000Z" title="发表于 2024-02-02 16:18:49">2024-02-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/1HVQ0T5/" title="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客"/></a><div class="content"><a class="title" href="/2023/08/1HVQ0T5/" title="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客">IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客</a><time datetime="2023-08-01T07:55:53.000Z" title="发表于 2023-08-01 15:55:53">2023-08-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Real</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://jsdelivr.pai233.top/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://comment-rosy.vercel.app',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://comment-rosy.vercel.app',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://jsdelivr.pai233.top/npm/twikoo@1/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script><script>function loadWaline () {
+  function insertCSS () {
+    const link = document.createElement("link")
+    link.rel = "stylesheet"
+    link.href = "https://jsdelivr.pai233.top/npm/@waline/client/dist/waline.css"
+    document.head.appendChild(link)
+  }
+
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://walline.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+  }
+
+  if (typeof Waline === 'function') initWaline()
+  else {
+    insertCSS()
+    getScript('https://jsdelivr.pai233.top/npm/@waline/client/dist/waline.js').then(initWaline)
+  }
+}
+
+if ('Twikoo' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

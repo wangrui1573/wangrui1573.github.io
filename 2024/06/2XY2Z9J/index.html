@@ -1,0 +1,322 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Emby 全平台开心版、认证服务器设置方法 | Velaciela | Real的博客</title><meta name="keywords" content="Docker,Windows,Linux,Android"><meta name="author" content="Real"><meta name="copyright" content="Real"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本文由 简悦 SimpRead 转码， 原文地址 velaciela.ms   声明：我买了 emby 的正版，虽然只有一个月。  声明：我买了 emby 的正版，虽然只有一个月。 Emby 的一些问题： Emby 作为一款不错的 Self-hosted 播放器 &#x2F; 媒体服务项目，我用了一段时间。这期间也尝试过开源版本的 Jellyfin，和付费成为 emby 的会员。但是 Emby">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Emby 全平台开心版、认证服务器设置方法 | Velaciela">
+<meta property="og:url" content="https://blog.real9.ml/2024/06/2XY2Z9J/index.html">
+<meta property="og:site_name" content="Real的博客">
+<meta property="og:description" content="本文由 简悦 SimpRead 转码， 原文地址 velaciela.ms   声明：我买了 emby 的正版，虽然只有一个月。  声明：我买了 emby 的正版，虽然只有一个月。 Emby 的一些问题： Emby 作为一款不错的 Self-hosted 播放器 &#x2F; 媒体服务项目，我用了一段时间。这期间也尝试过开源版本的 Jellyfin，和付费成为 emby 的会员。但是 Emby">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg">
+<meta property="article:published_time" content="2024-06-26T02:15:14.000Z">
+<meta property="article:modified_time" content="2024-06-26T02:15:45.382Z">
+<meta property="article:author" content="Real">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blog.real9.ml/2024/06/2XY2Z9J/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Emby 全平台开心版、认证服务器设置方法 | Velaciela',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-06-26 10:15:45'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://img1.baidu.com/it/u=3927275426,66649734&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPG?w=889&amp;h=500" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/mov"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/tlv1"><i class="fa-fw fas fa-video"></i><span> TV Show</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> Message</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://bu.dusays.com/2021/03/06/daffe400090d4.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Real的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/mov"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/tlv1"><i class="fa-fw fas fa-video"></i><span> TV Show</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> Message</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Emby 全平台开心版、认证服务器设置方法 | Velaciela</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-06-26T02:15:14.000Z" title="发表于 2024-06-26 10:15:14">2024-06-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-06-26T02:15:45.382Z" title="更新于 2024-06-26 10:15:45">2024-06-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%BD%AC%E8%BD%BD/">转载</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>本文由 <a target="_blank" rel="noopener" href="http://ksria.com/simpread/">简悦 SimpRead</a> 转码， 原文地址 <a target="_blank" rel="noopener" href="https://velaciela.ms/emby-free-premier">velaciela.ms</a></p>
+</blockquote>
+<blockquote>
+<p>声明：我买了 emby 的正版，虽然只有一个月。</p>
+</blockquote>
+<p>声明：我买了 emby 的正版，虽然只有一个月。</p>
+<p><strong>Emby 的一些问题：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://emby.media/">Emby</a> 作为一款不错的 Self-hosted 播放器 &#x2F; 媒体服务项目，我用了一段时间。这期间也尝试过开源版本的 Jellyfin，和付费成为 emby 的会员。但是 Emby 的价格和服务让我感到不值，某些定价更让人困惑：Emby 会员一个月 $5，终身会员 $120，这个价格已经比很多大型商业软件还要昂贵了。而 Emby 却大量使用开源工具，软件 bug 也多，收这个价格实在没有道理。另外就是 Android 客户端至少可以看视频，iOS 客户端竟然要 $5 来激活，激活了也仅仅是能看视频而已，这个 iOS 的激活还不能带给服务器（服务器的激活可以带给 iOS）。如此种种，让我想到了干脆破解算了。我支持开源软件，但是开发者不能这么瞎搞。如果 iOS 客户端能看视频，但某些高级功能花钱解锁，这还说得过去。要么就一视同仁，安卓端也收费。</p>
+<p><strong>破解思路：</strong></p>
+<p>很简单，Emby 服务器、客户端都向 <code>mb3admin.com</code> 发送客户的 key，获取返回的会员有效期等状态。搞一个假的验证服务器。</p>
+<p><strong>如果你只是要随便看看视频，那不需要再往下看了：</strong></p>
+<p>服务器端直接用别人破解好的 docker：<a target="_blank" rel="noopener" href="https://hub.docker.com/r/lovechen/embyserver">lovechen&#x2F;embyserver</a> 或者 <a target="_blank" rel="noopener" href="https://hub.docker.com/r/xinjiawei1/emby_unlockd">xinjiawei1&#x2F;emby_unlockd</a></p>
+<p>配置兼容官方，只要把 image 换了，数据库等可以继承。</p>
+<p>iOS 端使用 Surge、Shadowrocket 等软件破解，方法<a target="_blank" rel="noopener" href="https://embywiki.feverss.cloud/use-on-various-devices/use-on-ios/use-official-client">见这篇文章</a>。基本常见的代理软件就能实现。</p>
+<p>Android 端本来就不用交钱，凑合看看吧。</p>
+<p>而我的要求是，在全平台（PC，Mac，Android，iOS，Web）和服务器实现免费使用会员功能，且不依赖于特定的软件（比如 Shadowrocket）。</p>
+<p>所以思路就是先搭建一个自己的认证服务器，然后所有设备统一找这个认证服务器认证。</p>
+<p>需求：</p>
+<p>1，对 DNS 有控制权</p>
+<p>2，有一台 http 服务器（以 nginx 为例），内外网均可。</p>
+<p><strong>构造认证服务器</strong> <code>mb3admin.com</code></p>
+<p>1，建立一个 Nginx 反代服务器，如果没有 Internet 上的 VPS，可以用内网的任意一台虚拟机。当然最简单的就是和 Emby 服务器共用一台机器，使用同一个 Nginx 反代就行了。</p>
+<p>2，在你控制的 DNS 上，把 <code>mb3admin.com</code> 指向这台机器的 IP。</p>
+<p>3，nginx 新建一个反向代理，主机名字就是 mb3admin.com，具体代到哪里都无所谓（反正又不是真的代），配置文件添加以下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">location /admin/service/registration/validateDevice &#123;</span><br><span class="line">	    default_type application/json;</span><br><span class="line">	  return 200 &#x27;&#123;&quot;cacheExpirationDays&quot;: 3650,&quot;message&quot;: &quot;Device Valid&quot;,&quot;resultCode&quot;: &quot;GOOD&quot;&#125;&#x27;;</span><br><span class="line">	&#125;</span><br><span class="line">	location /admin/service/registration/validate &#123;</span><br><span class="line">	    default_type application/json;</span><br><span class="line">	  return 200 &#x27;&#123;&quot;featId&quot;:&quot;&quot;,&quot;registered&quot;:true,&quot;expDate&quot;:&quot;2099-01-01&quot;,&quot;key&quot;:&quot;&quot;&#125;&#x27;;</span><br><span class="line">	&#125;</span><br><span class="line">	location /admin/service/registration/getStatus &#123;</span><br><span class="line">	    default_type application/json;</span><br><span class="line">	  return 200 &#x27;&#123;&quot;deviceStatus&quot;:&quot;&quot;,&quot;planType&quot;:&quot;Lifetime&quot;,&quot;subscriptions&quot;:&#123;&#125;&#125;&#x27;;</span><br><span class="line">	&#125;</span><br><span class="line">	location /admin/service/appstore/register &#123;</span><br><span class="line">	    default_type application/json;</span><br><span class="line">	  return 200 &#x27;&#123;&quot;featId&quot;: &quot;&quot;,&quot;registered&quot;: true,&quot;expDate&quot;: &quot;2099-01-01&quot;,&quot;key&quot;: &quot;&quot;&#125;&#x27;;</span><br><span class="line">	&#125;</span><br><span class="line">	location /emby/Plugins/SecurityInfo &#123;</span><br><span class="line">	    default_type application/json;</span><br><span class="line">	  return 200 &#x27;&#123;SupporterKey: &quot;&quot;, IsMBSupporter: true&#125;&#x27;;</span><br><span class="line">	&#125;</span><br><span class="line">    add_header Access-Control-Allow-Origin *;</span><br><span class="line">    add_header Access-Control-Allow-Headers *;</span><br><span class="line">    add_header Access-Control-Allow-Method *;</span><br><span class="line">    add_header Access-Control-Allow-Credentials true;</span><br></pre></td></tr></table></figure>
+
+<p>如果你是全容器化管理，那就用 nginx-proxy-manager，新建一个 Host，随便代理到哪里，最后在 Custom 里面输入这些内容。</p>
+<p><a target="_blank" rel="noopener" href="https://velaciela.ms/wp-content/uploads/2023/10/npm1.png"><img src="https://velaciela.ms/wp-content/uploads/2023/10/npm1.png"></a>Nginx-Proxy-Manager 添加自定义字段</p>
+<p>先不要选择证书，先用 http 测试一遍：</p>
+<p><code>http://mb3admin.com/admin/service/registration/validateDevice</code></p>
+<p>如果返回:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;cacheExpirationDays&quot;: 3650,&quot;message&quot;: &quot;Device Valid&quot;,&quot;resultCode&quot;: &quot;GOOD&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>说明配置正确了。服务器返回了伪造的会员信息，剩余 3650 天。</p>
+<p>*CORS 经过实测，仅为 iOS 设备要求，如果不需要 iOS 使用，可以不加 CORS。</p>
+<p><strong>配置服务器 CA、自签名证书</strong></p>
+<p>SSL&#x2F;TLS 的规则保证了我们无法获得真正的 <code>mb3admin.com</code> 的证书。因此我们需要自签发一套证书，并在设备上手工添加这些证书。由于当前各类设备的安全设置，通常不允许添加自签名证书，因此我们需要添加一个私有 CA，用私有 CA 签发一套证书。</p>
+<p><strong>构建 CA</strong></p>
+<p>需要一台 linux 主机，通常情况下可以使用 emby 本身的服务器，如果是 NAS 机器可能要 进入到” 终端 “。Mac 或者微软系统需要安装 openssl 库，建议直接虚拟机安装一套 Ubuntu 一次性使用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">openssl genrsa -des3 -out rootCA.key 2048</span><br><span class="line">#建立CA私钥，之后要求输入密码，记住密码。我这里设置为123456。</span><br><span class="line">openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 3650 -out rootCA.pem</span><br><span class="line">#建立CA证书 有效期 3650天。注意：iOS不允许有效期超过825天。如果是iOS设备，应为：</span><br><span class="line">openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 824 -out rootCA.pem</span><br><span class="line">#iOS设备，有效期824天</span><br><span class="line">openssl req -new -sha256 -nodes -out mb3admin.csr -newkey rsa:2048 -keyout mb3admin.key -config &lt;(cat rootCA.csr.cnf)</span><br><span class="line">#生成 mb3admin.com的CSR和私钥，使用 rootCA.csr.cnf 配置</span><br><span class="line">openssl x509 -req -in mb3admin.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out mb3admin.crt -days 824 -sha256 -extfile v3.ext</span><br><span class="line">#生成 mb3admin.com的证书，使用 v3.ext 中的配置指定服务器证书用途</span><br></pre></td></tr></table></figure>
+
+<p>其中， <code>rootCA.scr.cnf</code> 为 CSR 配置文件，内容为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># rootCA.csr.cnf</span><br><span class="line">[req]</span><br><span class="line">default_bits = 2048</span><br><span class="line">prompt = no</span><br><span class="line">default_md = sha256</span><br><span class="line">distinguished_name = dn</span><br><span class="line">[dn]</span><br><span class="line">C=US</span><br><span class="line">ST=CA</span><br><span class="line">L=LA</span><br><span class="line">O=fuckemby</span><br><span class="line">OU=fuckemby</span><br><span class="line">emailAddress=fuckyou@emby.com</span><br><span class="line">CN = *.mb3admin.com</span><br></pre></td></tr></table></figure>
+
+<p>v3.ext 为服务器证书用途配置文件，内容为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># v3.ext</span><br><span class="line">authorityKeyIdentifier=keyid,issuer</span><br><span class="line">basicConstraints=CA:FALSE</span><br><span class="line">keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment</span><br><span class="line">subjectAltName = @alt_names</span><br><span class="line">extendedKeyUsage=serverAuth</span><br><span class="line">[alt_names]</span><br><span class="line">DNS.1 = mb3admin.com</span><br></pre></td></tr></table></figure>
+
+<p>所有东西放在同一个目录里，操作下来，得到文件</p>
+<p>rootCA.key, rootCA.pem, mb3admin.key, mb3admin.csr, mb3admin.crt</p>
+<p>其中 <code>mb3admin.key, mb3admin.csr</code> 为我们使用自己的 rootCA 制作的假的 mb3admin.com 的证书和私钥。</p>
+<p><code>rootCA.pem</code> 为 rootCA 的根证书，这里我给 rootCA 的根起名字叫”test“。</p>
+<p>在 Nginx 中安装证书</p>
+<p>把<code>mb3admin.key, mb3admin.csr</code> 添加到之前为 mb3admin.com 设置的反代里。</p>
+<p><strong>接下来再各个设备中安装 CA 根证书。</strong></p>
+<p>Windows 需要安装到受信任的根证书颁发机构</p>
+<p>iOS 需要添加为配置文件（办法是把<code>rootCA.pem</code>想办法让手机去下载，或者通过邮件附件发给手机，然后会出现添加配置文件的说明），按照说明添加配置文件，添加证书信任。</p>
+<p>Android 同上，使用 Android 证书管理器加载证书并安装证书，信任。</p>
+<p>安装后使用 https 协议访问刚才的 API 查询：</p>
+<p><code>https://mb3admin.com/admin/service/registration/validateDevice</code></p>
+<p><a target="_blank" rel="noopener" href="https://velaciela.ms/wp-content/uploads/2023/10/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2023-10-13-204716.png"><img src="https://velaciela.ms/wp-content/uploads/2023/10/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2023-10-13-204716.png"></a>Windows 下锁头正常</p>
+<p><a target="_blank" rel="noopener" href="https://velaciela.ms/wp-content/uploads/2023/10/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2023-10-13-204921.png"><img src="https://velaciela.ms/wp-content/uploads/2023/10/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2023-10-13-204921-544x1024.png"></a>iOS 下也正常了，说明证书安装完毕。</p>
+<p>ping 一下服务器：</p>
+<p>C:\Users\user&gt;ping mb3admin.com</p>
+<p>正在 Ping mb3admin.com [192.168.1.200] 具有 32 字节的数据:<br>来自 192.168.1.200 的回复: 字节 &#x3D; 32 时间 &lt; 1ms TTL&#x3D;64</p>
+<p>这说明我们已经通过虚假的 DNS 把 mb3admin.com 成功指向了虚假的服务器，并用假证书成功完成了握手。</p>
+<p>（知道为什么一定要吊销 CNNIC 的根证书了吗？——）</p>
+<p><strong>验证</strong></p>
+<p>iOS</p>
+<p>进入 iOS 客户端后，点击会员验证，如果不出来就关掉重新开一下 APP。</p>
+<p><a target="_blank" rel="noopener" href="https://velaciela.ms/wp-content/uploads/2023/10/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2023-10-13-205550.png"><img src="https://velaciela.ms/wp-content/uploads/2023/10/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2023-10-13-205550.png"></a>验证成功</p>
+<p>注意这个验证有效期很长，就算离开了本局域网还能用很久。如果登出会要求重新验证。</p>
+<p>Android 同上，解锁后可以用所有功能，包括歌曲播放和歌词显示。</p>
+<p>Win、Mac</p>
+<p>Win 和 Mac 都要在系统里安装完证书后（Mac 安装根证书方法不赘述），打开客户端验证一遍。客户端我用的是 emby 在 github 上的安装包，不是官网的安装程序。</p>
+<p>Web</p>
+<p>Web 的权限，在 PC 或 Mac 等桌面环境下是跟随服务器的，服务器有会员权限，Web 就有会员权限。</p>
+<p>Web 在 iOS 上（只要 User-Agent 为 iOS）就必须额外要会员（神经病），要么改掉 UA，要么也在同一个局域网里一起被破解掉。</p>
+<p>注意 Web 的 Session 有时限，被退出了，会要求再要验证会员，不过反正都在这一局域网了，还怕它个啥…</p>
+<p><strong>服务器的破解</strong></p>
+<p>因为现在大多数情况都是用容器安装了，所以破解起来比较麻烦，大多数情况可以使用上面提到的两款已经破解好的容器。如果怕被删了，可以 commit 到自己的 docker 账号里哦。</p>
+<p>如果一定要自己破解容器，先下载官方容器。</p>
+<p>思路 1，<a target="_blank" rel="noopener" href="https://blog.jiawei.xin/?p=469">替换掉官方的某些文件</a>，直接指向一个假的验证服务器（都不需要证书）。</p>
+<p>思路 2，进到容器里，添加根证书，修改 DNS，出来，commit 容器，上传保存，再开。</p>
+<p>也可以用 bind 挂载破解文件进容器，<a target="_blank" rel="noopener" href="https://github.com/fejich/docker-embyhack">参考这篇</a></p>
+<p>这样就实现了内网中全平台的 Emby 开心版，类似于内网中的 KMS 服务器一样。设备在获取了有效期（比如 999 天或者 3650 天）后，应该不会再向服务器请求有效期，除非登出了 emby 播放服务器。除了 Web 需要保持在内网环境中，其他设备也可以在其他地方正常使用。</p>
+<p>iOS 必须在 nginx 中加入 CORS 设定。</p>
+<p>参考资料：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/fejich/docker-embyhack">使用 Docker Compose 编排整合 emby 伪站授权</a></p>
+<p><a target="_blank" rel="noopener" href="https://gist.github.com/tiagofreire-pt/4920be8d03a3dfa8201c6afedd00305e">tiagofreire-pt&#x2F;self-signed-certificate-with-custom-ca-for-home-assistant.md</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Ethan-7seng/embyonekey">群辉 emby 套件版服务端一点五键白嫖</a></p>
+<p><a target="_blank" rel="noopener" href="https://s1oz.github.io/post/docker-an-zhuang-emby-bing-bai-piao/">安装 Emby 并白嫖</a></p>
+<p><a target="_blank" rel="noopener" href="https://tech.he-sb.top/posts/cracking-emby-client/">Emby 客户端破解</a></p>
+<p><a target="_blank" rel="noopener" href="http://yuanfangblog.xyz/technology/159.html">Emby Premiere 破解思路</a></p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000012550346">Nginx 配置跨域请求 Access-Control-Allow-Origin *</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://blog.real9.ml">Real</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.real9.ml/2024/06/2XY2Z9J/">https://blog.real9.ml/2024/06/2XY2Z9J/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.real9.ml" target="_blank">Real的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Docker/">Docker</a><a class="post-meta__tags" href="/tags/Windows/">Windows</a><a class="post-meta__tags" href="/tags/Linux/">Linux</a><a class="post-meta__tags" href="/tags/Android/">Android</a></div><div class="post_share"><div class="social-share" data-image="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://jsdelivr.pai233.top/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/06/2SFMQJM/"><img class="next-cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">KubeSphere 最佳实战：一文搞定 KubeKey v3</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/17F1PWV/" title="10 个你该了解的 GitHub Actions 进阶技巧"><img class="cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-12</div><div class="title">10 个你该了解的 GitHub Actions 进阶技巧</div></div></a></div><div><a href="/2022/05/3D7B6TN/" title="如何给 GitHub Actions 添加自己的 Runner 主机 - 云 + 社区 - 腾讯云"><img class="cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-18</div><div class="title">如何给 GitHub Actions 添加自己的 Runner 主机 - 云 + 社区 - 腾讯云</div></div></a></div><div><a href="/2022/05/10HEY2J/" title="最全总结，GitHub Action 自动化部署"><img class="cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-12</div><div class="title">最全总结，GitHub Action 自动化部署</div></div></a></div><div><a href="/2022/05/3YNNRWP/" title="让你满意的 GitHub Actions 详解 - 简书"><img class="cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-18</div><div class="title">让你满意的 GitHub Actions 详解 - 简书</div></div></a></div><div><a href="/2023/01/1A3F306/" title="跨平台数据库管理器 DbGate | 老苏的 blog"><img class="cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-02</div><div class="title">跨平台数据库管理器 DbGate | 老苏的 blog</div></div></a></div><div><a href="/2022/05/65289/" title="Linux _ 玩客云 Armbian使用脚本根据温度调整CPU主频防止矿渣死机"><img class="cover" src="https://img-blog.csdnimg.cn/20210708171106472.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">Linux _ 玩客云 Armbian使用脚本根据温度调整CPU主频防止矿渣死机</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Twikoo</span><span class="switch-btn"></span><span class="second-comment">Waline</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://img1.baidu.com/it/u=3927275426,66649734&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPG?w=889&amp;h=500" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Real</div><div class="author-info__description">瑞哥的博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/wangrui1573/"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的小站！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/2XY2Z9J/" title="Emby 全平台开心版、认证服务器设置方法 | Velaciela"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Emby 全平台开心版、认证服务器设置方法 | Velaciela"/></a><div class="content"><a class="title" href="/2024/06/2XY2Z9J/" title="Emby 全平台开心版、认证服务器设置方法 | Velaciela">Emby 全平台开心版、认证服务器设置方法 | Velaciela</a><time datetime="2024-06-26T02:15:14.000Z" title="发表于 2024-06-26 10:15:14">2024-06-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/2SFMQJM/" title="KubeSphere 最佳实战：一文搞定 KubeKey v3"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="KubeSphere 最佳实战：一文搞定 KubeKey v3"/></a><div class="content"><a class="title" href="/2024/06/2SFMQJM/" title="KubeSphere 最佳实战：一文搞定 KubeKey v3">KubeSphere 最佳实战：一文搞定 KubeKey v3</a><time datetime="2024-06-12T08:05:53.000Z" title="发表于 2024-06-12 16:05:53">2024-06-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/2TA7R64/" title="虚拟机释放磁盘空间 | TIM Blog"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="虚拟机释放磁盘空间 | TIM Blog"/></a><div class="content"><a class="title" href="/2024/02/2TA7R64/" title="虚拟机释放磁盘空间 | TIM Blog">虚拟机释放磁盘空间 | TIM Blog</a><time datetime="2024-02-26T03:11:14.000Z" title="发表于 2024-02-26 11:11:14">2024-02-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/3CTW4J1/" title="Windows 自带的端口转发 | kekxv 技术博客"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Windows 自带的端口转发 | kekxv 技术博客"/></a><div class="content"><a class="title" href="/2024/02/3CTW4J1/" title="Windows 自带的端口转发 | kekxv 技术博客">Windows 自带的端口转发 | kekxv 技术博客</a><time datetime="2024-02-02T08:18:49.000Z" title="发表于 2024-02-02 16:18:49">2024-02-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/1HVQ0T5/" title="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客"/></a><div class="content"><a class="title" href="/2023/08/1HVQ0T5/" title="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客">IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客</a><time datetime="2023-08-01T07:55:53.000Z" title="发表于 2023-08-01 15:55:53">2023-08-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Real</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://jsdelivr.pai233.top/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://comment-rosy.vercel.app',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://comment-rosy.vercel.app',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://jsdelivr.pai233.top/npm/twikoo@1/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script><script>function loadWaline () {
+  function insertCSS () {
+    const link = document.createElement("link")
+    link.rel = "stylesheet"
+    link.href = "https://jsdelivr.pai233.top/npm/@waline/client/dist/waline.css"
+    document.head.appendChild(link)
+  }
+
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://walline.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+  }
+
+  if (typeof Waline === 'function') initWaline()
+  else {
+    insertCSS()
+    getScript('https://jsdelivr.pai233.top/npm/@waline/client/dist/waline.js').then(initWaline)
+  }
+}
+
+if ('Twikoo' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

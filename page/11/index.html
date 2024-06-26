@@ -1,0 +1,377 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Real的博客 - 记录各种折腾</title><meta name="keywords" content="Linux, Android, Hexo"><meta name="author" content="Real"><meta name="copyright" content="Real"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="瑞哥的博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Real的博客">
+<meta property="og:url" content="https://blog.real9.ml/page/11/index.html">
+<meta property="og:site_name" content="Real的博客">
+<meta property="og:description" content="瑞哥的博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img1.baidu.com/it/u=3927275426,66649734&fm=253&fmt=auto&app=138&f=JPG?w=889&h=500">
+<meta property="article:author" content="Real">
+<meta property="article:tag" content="Linux, Android, Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img1.baidu.com/it/u=3927275426,66649734&fm=253&fmt=auto&app=138&f=JPG?w=889&h=500"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blog.real9.ml/page/11/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Real的博客',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-06-26 10:16:21'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://img1.baidu.com/it/u=3927275426,66649734&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPG?w=889&amp;h=500" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/mov"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/tlv1"><i class="fa-fw fas fa-video"></i><span> TV Show</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> Message</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://bu.dusays.com/2022/05/03/627010707b598.webp')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Real的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/mov"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/tlv1"><i class="fa-fw fas fa-video"></i><span> TV Show</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> Message</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Real的博客</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2022/05/6178/" title="命令行SSH解决 群晖 IP地址封锁问题 _ 群晖此ip已被封锁"><img class="post_bg" src="https://img-blog.csdnimg.cn/2020122814091346.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="命令行SSH解决 群晖 IP地址封锁问题 _ 群晖此ip已被封锁"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/6178/" title="命令行SSH解决 群晖 IP地址封锁问题 _ 群晖此ip已被封锁">命令行SSH解决 群晖 IP地址封锁问题 _ 群晖此ip已被封锁</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-06T03:16:53.000Z" title="发表于 2022-05-06 11:16:53">2022-05-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/csdn/">csdn</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/2022/05/6178/#post-comment"></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">
+
+问题：群晖登陆提示此 IP 已被封锁
+环境：群晖 6.X 不在家，无法改自己 IP
+原因：登陆失败太多次，IP 永封
+解决办法：通过跳板机 ssh 到群晖后删除，DB
+
+问题说明：家里群晖使用 FRPC 开了端口映射之后，在外面登陆提示 IP 地址被封了，因为是在公网，怎么改 IP 都是 FRPC 代理的那一台，所以无法去控制面板删除 IP
+解决思路：家里还映射了路由器的 WBESSH，所有使用 web 登陆到路由器，再从路由器 ssh 到群晖，这个时候就好做了
+
+web 登陆到路由器，从路由器 webssh，再 ssh 到群晖，切换到 root 用户
+
+查找 block&#x2F;black 字样的文件
+
+
+12find / -name *black*   find / -name *block*
+
+
+找到这几个可疑的文件
+
+123456/usr/syno/synoman/webman/help/nor/AdminCenter/connection_autoblock.html                                                     ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/05/26799/" title="在NFS文件系统上运行的Linux 下使用Docker的解决办法"><img class="post_bg" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在NFS文件系统上运行的Linux 下使用Docker的解决办法"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/26799/" title="在NFS文件系统上运行的Linux 下使用Docker的解决办法">在NFS文件系统上运行的Linux 下使用Docker的解决办法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-06T03:16:53.000Z" title="发表于 2022-05-06 11:16:53">2022-05-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/csdn/">csdn</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/2022/05/26799/#post-comment"></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">问题：安装 Docker 后无法启动服务，报错文件系统不支持
+环境：从网络启动的树莓派 4B | boot via pxe over NFS
+解决办法：VFS 或者 loop device 下面别看了，最终解法把 docker rootfs 挂载到 samba 目录中
+背景描述：
+
+这个问题的标题可能有点难理解，场景是没有 SD 卡的树莓派，使用 PXE 从网络启动，本地无盘，root 目录在远端的 NFS 上，当安装好 docker 后发现无法启动服务，报错文件系统不支持
+看起来 docker 是不支持跑在 NFS 文件系统架构中的，查询 docker 文档后有两种解决办法
+一种是 VFS，解决比较简单，改参数就行，缺点是速度慢，而且占用存储空间相当多，我粗略算了一下，至少 5 倍
+另一种是挂在 loop device，是比较推荐的做法，但是不好扩容，可以一开始建大一点
+
+
+
+解法一：
+直接修改 docker 配置文件，将文件系统修改为 vfs 后，重启服务即可
+12sudo systemctl stop dockervi /etc/docker/daemon.json
+
+改成这样： ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/05/55027/" title="在centos中增加硬盘而不用重启"><img class="post_bg" src="https://www.linuxprobe.com/wp-content/uploads/2016/04/centos71.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在centos中增加硬盘而不用重启"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/55027/" title="在centos中增加硬盘而不用重启">在centos中增加硬盘而不用重启</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-06T03:16:53.000Z" title="发表于 2022-05-06 11:16:53">2022-05-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/csdn/">csdn</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/2022/05/55027/#post-comment"></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">目的：部分虚拟化 centos 需要存储扩容
+环境：vsphere6 下的 centos7
+1. 在虚拟机客户端扩充磁盘空间:
+在为 Linux 系统增加磁盘卷之前，您首先需要添加一块新的物理磁盘，或在 VMware vShere、VMware 工作站以及你使用的其它虚拟环境软件中进行设置来增加一块虚拟磁盘的容量。
+2. 检查磁盘空间:
+运行如下命令来检查当前磁盘空间大小。
+12# df -h# fdisk -l
+
+可以看到，虽然我们已经在后端给其增加到 50 GB 的空间，但此时的总磁盘大小仍然为 10 GB。
+3. 扩展空间而无需重启虚拟机
+现在运行如下命令，通过重新扫描 SCSI （注：Small Computer System Interface 小型计算机系统接口）总线并添加 SCSI 设备，系统就可以扩展操作系统的物理卷磁盘空间，而且不需要重启虚拟机。
+1234# ls /sys/class/scsi_host/# echo &quot;- - -&quot; &gt; /sys/class/scsi_host/host0/scan# echo &quot;- - -&qu ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/05/41902/" title="在docker中安装代理服务器 SQUID _ Linux代理服务器"><img class="post_bg" src="https://img-blog.csdnimg.cn/20210225135741484.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在docker中安装代理服务器 SQUID _ Linux代理服务器"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/41902/" title="在docker中安装代理服务器 SQUID _ Linux代理服务器">在docker中安装代理服务器 SQUID _ Linux代理服务器</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-06T03:16:53.000Z" title="发表于 2022-05-06 11:16:53">2022-05-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/csdn/">csdn</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/2022/05/41902/#post-comment"></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">
+本文由 简悦 SimpRead 转码， 原文地址 blog.csdn.net
+
+环境：Docker
+
+下载并运行容器，路径映射自己改下 &#x2F;srv&#x2F;docker&#x2F;squid&#x2F;cache
+
+123vi /etc/squid/passwd admin:$apr1$eztgnc1xn$uBhK0S/qwE18A2/lGEvSnY/
+
+
+准备密码文件，在下列页面生成账户和密码，复制字符串
+
+https://tool.oschina.net/htpasswd
+
+写入到密码文件
+
+1234567891011121314151617#启用验证，不想要密码可以不配这一段 auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwd acl auth_user proxy_auth REQUIRED http_access allow auth_user #允许客户端IP范围 acl client src 10.0.0.0/8 http_access allow client   ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/05/28340/" title="如何在saface laptop 中开区intel vt-x 虚拟化 _ Exception 0xc0000005 (access violation) has occurred"><img class="post_bg" src="https://img-blog.csdnimg.cn/d7d961b662254987ac641757e93d5f91.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何在saface laptop 中开区intel vt-x 虚拟化 _ Exception 0xc0000005 (access violation) has occurred"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/28340/" title="如何在saface laptop 中开区intel vt-x 虚拟化 _ Exception 0xc0000005 (access violation) has occurred">如何在saface laptop 中开区intel vt-x 虚拟化 _ Exception 0xc0000005 (access violation) has occurred</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-06T03:16:53.000Z" title="发表于 2022-05-06 11:16:53">2022-05-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/csdn/">csdn</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/2022/05/28340/#post-comment"></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">环境：suface laptop 4 +  Windows11
+问题：装了 vmwar workstation，无法添加 1 个以上的 CPU,BIOS 中无此设置
+解决办法：关闭内核隔离
+症状：打开虚拟机会出现下列报错：Exception 0xc0000005 (access violation) has occurred
+解法：
+
+在控制面板，新增功能中删除 hyper-V
+
+在管理员下 CMD，查询 bcd 并关闭 hyper-v
+
+
+1bcdedit
+
+大概显示这样：
+
+ 3. 关闭他：
+1bcdedit /set hypervisorlaunchtype off
+
+
+修改组策略，禁用内核隔离
+
+
+
+打开安全中心，关闭内核隔离，重启电脑后 OK
+
+ 
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/05/37701/" title="定时重启群晖 SurveillanceStation  NVR服务"><img class="post_bg" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="定时重启群晖 SurveillanceStation  NVR服务"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/37701/" title="定时重启群晖 SurveillanceStation  NVR服务">定时重启群晖 SurveillanceStation  NVR服务</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-06T03:16:53.000Z" title="发表于 2022-05-06 11:16:53">2022-05-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/csdn/">csdn</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/2022/05/37701/#post-comment"></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">
+
+环境：群晖 + SurveillanceStation 套件
+问题：我的群晖接入了水星摄像头，使用 onvif 自动将录制文件传到群晖中，但此摄像头不支持动态侦测
+           只好开启群晖软件算法的移动侦测，但是运行一段时间后 发现内存爆满
+解法：设置任务计划，定时重启 NVR 服务，可以适当降低内存
+1/usr/syno/sbin/synoservice --restart pkgctl-SurveillanceStation
+
+
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/05/32475/" title="小米手环5NFC 门卡模拟 使用CH340模拟加密卡"><img class="post_bg" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="小米手环5NFC 门卡模拟 使用CH340模拟加密卡"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/32475/" title="小米手环5NFC 门卡模拟 使用CH340模拟加密卡">小米手环5NFC 门卡模拟 使用CH340模拟加密卡</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-06T03:16:53.000Z" title="发表于 2022-05-06 11:16:53">2022-05-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/csdn/">csdn</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/2022/05/32475/#post-comment"></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">环境：小米手环 5NFC 版 + CH340+PN532 芯片需求：模拟加密卡
+解法：使用 mifareonetool，先自行下载驱动和软件 MifareOneTool
+步骤如下
+
+检测设备
+
+
+
+
+
+扫描卡片并一键破解，保存文件
+
+
+
+格式化空白卡后 UID 写号
+
+
+写入的号码为 扇区 0 前 8 位
+
+
+模拟门卡，在小米手环上模拟门卡 将空白卡贴在手环上
+
+
+
+模拟成功后，把手环放到写卡器上，再次写入 CUID，选择步骤 2 保存的文件，写入成功
+
+
+
+
+把手环拿到门禁机上测试或者使用比对软件测试
+
+加载密钥 - 选择步骤 2 另存的文件 - 选择已知密钥读 - 读取手环内容，另存为手环卡文件
+
+7、选择高级 - 差异比较，比较步骤 2 的文件和步骤 6 的文件，一般 0 扇区最后几位不让写，索引会有不同
+
+
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/05/59744/" title="嵌套虚拟化(在esxi中安装esxi)安装注意事项"><img class="post_bg" src="https://img-blog.csdnimg.cn/20190212103716990.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="嵌套虚拟化(在esxi中安装esxi)安装注意事项"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/59744/" title="嵌套虚拟化(在esxi中安装esxi)安装注意事项">嵌套虚拟化(在esxi中安装esxi)安装注意事项</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-06T03:16:53.000Z" title="发表于 2022-05-06 11:16:53">2022-05-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/csdn/">csdn</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/2022/05/59744/#post-comment"></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">
+
+目的：实验需求 (测试 vsan)，个人电脑内存不够
+方法：在内存较大的 esxi 中再安装 esxi 的虚拟机
+遇到问题：无法在嵌套 esxi 中开机虚拟机，报错需要在 bios 中开启 intel vt
+注意事项：
+
+网卡建议选择 vmnet3
+
+虚拟机设置中选择 硬件虚拟化，这部分只能在网页版的 vcenter 只完成
+
+
+
+
+cpu 中选择 inter vt 虚拟化
+
+
+
+虚拟交换机选择混杂模式，否则可能网络不通
+
+
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/05/30268/" title="开机自动更新时间"><img class="post_bg" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="开机自动更新时间"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/30268/" title="开机自动更新时间">开机自动更新时间</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-06T03:16:53.000Z" title="发表于 2022-05-06 11:16:53">2022-05-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/csdn/">csdn</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/2022/05/30268/#post-comment"></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">
+环境：Windows 电脑
+
+症状：电脑安装 Windows+MAC 双系统后 系统切换后时间不对，或者双因素认证时间不对
+解决办法：建立任务计划，设置开机立即更新时间
+步骤
+
+将 windows 时间服务设置为自动并启动
+
+从阿里云同步时间
+
+
+12sc config W32Time start= autonet start w32time
+
+1w32tm /config /manualpeerlist:&quot;time.pool.aliyun.com&quot; /syncfromflags:manual /reliable:yes /update
+
+
+
+将上述步骤设置为任务计划，触发条件为开机启动
+
+
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/05/58063/" title="操作不能完成 （错误 0x00000709)  共享打印机无法连接解决办法"><img class="post_bg" src="https://img-blog.csdnimg.cn/20190829153646870.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="操作不能完成 （错误 0x00000709)  共享打印机无法连接解决办法"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/58063/" title="操作不能完成 （错误 0x00000709)  共享打印机无法连接解决办法">操作不能完成 （错误 0x00000709)  共享打印机无法连接解决办法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-06T03:16:53.000Z" title="发表于 2022-05-06 11:16:53">2022-05-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/csdn/">csdn</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/2022/05/58063/#post-comment"></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">环境：windows Server 2012 + Win10 客户端
+问题：使用计算机名和 IP 地址可以正常连接打印机，但是使用另外的 A 记录或 CN 记录无法连接，报此错误
+原因：这是打印服务 DNS 解析的问题
+故障补充：假设你的服务器电脑名称叫 print01，但是你又建了一条 A 记录或者 CNname 叫 PR01，就会发现使用额外的 A 记录或 CN 记录就无法连接
+故障截图：
+操作不能完成 （错误 0x00000709)
+解决办法：
+
+注册表加入下列值
+
+12345# localhost name resolution is handled within DNS itself.#	127.0.0.1       localhost#	::1             localhost127.0.0.1 kspr0110.1.1.1 kspr01
+
+
+修改服务器的 host 文件 加入 cname 或者 A 记录
+
+12345# localhost name resolution is handled within DNS itself.#	127.0.0.1      ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/10/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/#content-inner">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/#content-inner">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/#content-inner">16</a><a class="extend next" rel="next" href="/page/12/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://img1.baidu.com/it/u=3927275426,66649734&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPG?w=889&amp;h=500" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Real</div><div class="author-info__description">瑞哥的博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/wangrui1573/"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的小站！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/2XY2Z9J/" title="Emby 全平台开心版、认证服务器设置方法 | Velaciela"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Emby 全平台开心版、认证服务器设置方法 | Velaciela"/></a><div class="content"><a class="title" href="/2024/06/2XY2Z9J/" title="Emby 全平台开心版、认证服务器设置方法 | Velaciela">Emby 全平台开心版、认证服务器设置方法 | Velaciela</a><time datetime="2024-06-26T02:15:14.000Z" title="发表于 2024-06-26 10:15:14">2024-06-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/2SFMQJM/" title="KubeSphere 最佳实战：一文搞定 KubeKey v3"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="KubeSphere 最佳实战：一文搞定 KubeKey v3"/></a><div class="content"><a class="title" href="/2024/06/2SFMQJM/" title="KubeSphere 最佳实战：一文搞定 KubeKey v3">KubeSphere 最佳实战：一文搞定 KubeKey v3</a><time datetime="2024-06-12T08:05:53.000Z" title="发表于 2024-06-12 16:05:53">2024-06-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/2TA7R64/" title="虚拟机释放磁盘空间 | TIM Blog"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="虚拟机释放磁盘空间 | TIM Blog"/></a><div class="content"><a class="title" href="/2024/02/2TA7R64/" title="虚拟机释放磁盘空间 | TIM Blog">虚拟机释放磁盘空间 | TIM Blog</a><time datetime="2024-02-26T03:11:14.000Z" title="发表于 2024-02-26 11:11:14">2024-02-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/3CTW4J1/" title="Windows 自带的端口转发 | kekxv 技术博客"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Windows 自带的端口转发 | kekxv 技术博客"/></a><div class="content"><a class="title" href="/2024/02/3CTW4J1/" title="Windows 自带的端口转发 | kekxv 技术博客">Windows 自带的端口转发 | kekxv 技术博客</a><time datetime="2024-02-02T08:18:49.000Z" title="发表于 2024-02-02 16:18:49">2024-02-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/1HVQ0T5/" title="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客"/></a><div class="content"><a class="title" href="/2023/08/1HVQ0T5/" title="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客">IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客</a><time datetime="2023-08-01T07:55:53.000Z" title="发表于 2023-08-01 15:55:53">2023-08-01</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/csdn/"><span class="card-category-list-name">csdn</span><span class="card-category-list-count">119</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%BD%AC%E8%BD%BD/"><span class="card-category-list-name">转载</span><span class="card-category-list-count">34</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/AVDC/" style="font-size: 1.1em; color: #999">AVDC</a> <a href="/tags/Android/" style="font-size: 1.21em; color: #999ea4">Android</a> <a href="/tags/Docker/" style="font-size: 1.33em; color: #99a2af">Docker</a> <a href="/tags/Hexo/" style="font-size: 1.27em; color: #99a0a9">Hexo</a> <a href="/tags/IOT/" style="font-size: 1.16em; color: #999b9e">IOT</a> <a href="/tags/Linux/" style="font-size: 1.5em; color: #99a9bf">Linux</a> <a href="/tags/SQL/" style="font-size: 1.1em; color: #999">SQL</a> <a href="/tags/Windows/" style="font-size: 1.39em; color: #99a4b4">Windows</a> <a href="/tags/docker/" style="font-size: 1.16em; color: #999b9e">docker</a> <a href="/tags/hexo/" style="font-size: 1.1em; color: #999">hexo</a> <a href="/tags/markdown/" style="font-size: 1.1em; color: #999">markdown</a> <a href="/tags/mysql/" style="font-size: 1.1em; color: #999">mysql</a> <a href="/tags/vps/" style="font-size: 1.1em; color: #999">vps</a> <a href="/tags/%E6%97%A0%E7%BA%BF/" style="font-size: 1.16em; color: #999b9e">无线</a> <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 1.1em; color: #999">树莓派</a> <a href="/tags/%E7%BE%A4%E6%99%96/" style="font-size: 1.44em; color: #99a7ba">群晖</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">八月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">四月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">三月 2023</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">二月 2023</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/01/"><span class="card-archive-list-date">一月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/11/"><span class="card-archive-list-date">十一月 2022</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">153</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-06-26T02:16:20.484Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Real</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://jsdelivr.pai233.top/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => { 
+  const getCommentUrl = () => {
+    const eleGroup = document.querySelectorAll('#recent-posts .article-title')
+    let urlArray = []
+    eleGroup.forEach(i=>{
+      urlArray.push(i.getAttribute('href'))
+    })
+    return urlArray
+  }
+
+  const getCount = () => {
+    const runTwikoo = () => {
+      twikoo.getCommentsCount({
+        envId: 'https://comment-rosy.vercel.app',
+        region: '',
+        urls: getCommentUrl(),
+        includeReply: false
+      }).then(function (res) {
+        document.querySelectorAll('#recent-posts .twikoo-count').forEach((item,index) => {
+          item.innerText = res[index].count
+        })
+      }).catch(function (err) {
+        console.log(err)
+      })
+    }
+
+      if (typeof twikoo === 'object') {
+        runTwikoo()
+      } else {
+        getScript('https://jsdelivr.pai233.top/npm/twikoo@1/dist/twikoo.all.min.js').then(runTwikoo)
+      }
+  }
+
+  window.pjax ? getCount() : window.addEventListener('load', getCount)
+
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

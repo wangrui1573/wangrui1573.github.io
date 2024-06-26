@@ -1,0 +1,316 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>能与观众实时互动的 Claper | 老苏的 blog | Real的博客</title><meta name="keywords" content="群晖,Docker"><meta name="author" content="Real"><meta name="copyright" content="Real"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本文由 简悦 SimpRead 转码， 原文地址 laosu.ml   Clapper 能将您的演示文稿变成一种互动、引人入胜且令人兴奋的体验。  周六总算休息了一天  杨浦看来还是没清零，2 ~ 4 号实行 3天2检  什么是 Claper ？  Clapper 能将您的演示文稿变成一种互动、引人入胜且令人兴奋的体验。 Clapper 能实现：  帮助人们展示想法或信息，让他们有机会使他们的演">
+<meta property="og:type" content="article">
+<meta property="og:title" content="能与观众实时互动的 Claper | 老苏的 blog">
+<meta property="og:url" content="https://blog.real9.ml/2022/08/1B9JX1V/index.html">
+<meta property="og:site_name" content="Real的博客">
+<meta property="og:description" content="本文由 简悦 SimpRead 转码， 原文地址 laosu.ml   Clapper 能将您的演示文稿变成一种互动、引人入胜且令人兴奋的体验。  周六总算休息了一天  杨浦看来还是没清零，2 ~ 4 号实行 3天2检  什么是 Claper ？  Clapper 能将您的演示文稿变成一种互动、引人入胜且令人兴奋的体验。 Clapper 能实现：  帮助人们展示想法或信息，让他们有机会使他们的演">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg">
+<meta property="article:published_time" content="2022-08-10T06:35:21.000Z">
+<meta property="article:modified_time" content="2024-06-26T02:15:45.386Z">
+<meta property="article:author" content="Real">
+<meta property="article:tag" content="群晖">
+<meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blog.real9.ml/2022/08/1B9JX1V/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '能与观众实时互动的 Claper | 老苏的 blog',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-06-26 10:15:45'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://img1.baidu.com/it/u=3927275426,66649734&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPG?w=889&amp;h=500" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/mov"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/tlv1"><i class="fa-fw fas fa-video"></i><span> TV Show</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> Message</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://bu.dusays.com/2021/03/06/daffe400090d4.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Real的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/mov"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/tlv1"><i class="fa-fw fas fa-video"></i><span> TV Show</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> Message</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">能与观众实时互动的 Claper | 老苏的 blog</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-10T06:35:21.000Z" title="发表于 2022-08-10 14:35:21">2022-08-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-06-26T02:15:45.386Z" title="更新于 2024-06-26 10:15:45">2024-06-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%BD%AC%E8%BD%BD/">转载</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>本文由 <a target="_blank" rel="noopener" href="http://ksria.com/simpread/">简悦 SimpRead</a> 转码， 原文地址 <a target="_blank" rel="noopener" href="https://laosu.ml/2022/08/01/%E8%83%BD%E4%B8%8E%E8%A7%82%E4%BC%97%E5%AE%9E%E6%97%B6%E4%BA%92%E5%8A%A8%E7%9A%84Claper/">laosu.ml</a></p>
+</blockquote>
+<blockquote>
+<p>Clapper 能将您的演示文稿变成一种互动、引人入胜且令人兴奋的体验。</p>
+</blockquote>
+<p>周六总算休息了一天</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wbsu2003/images2022@main/picgo/2022/061/202207301239662.png"></p>
+<p>杨浦看来还是没清零，<code>2</code> ~ <code>4</code> 号实行 <code>3天2检</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/wbsu2003/images2022@main/picgo/2022/061/202207311836899.png"></p>
+<p><strong>什么是 Claper ？</strong></p>
+<blockquote>
+<p><code>Clapper</code> 能将您的演示文稿变成一种互动、引人入胜且令人兴奋的体验。 <code>Clapper</code> 能实现：</p>
+<ul>
+<li>帮助人们展示想法或信息，让他们有机会使他们的演讲与众不同，并从观众那里获得实时反馈。</li>
+<li>帮助每个参与者成为演讲和会议中的演员，并感到自己很重要和有用。</li>
+</ul>
+</blockquote>
+<p><code>Claper</code> 是 <code>Slido</code> 、 <code>AhaSlides</code> 、 <code>Mentimeter</code> 的开源替代品，能帮助公众演讲者和那些必须通过实时消息 &#x2F; 问答和民意调查使他们的演讲具有互动性的人。</p>
+<ul>
+<li><code>Slido - Easy-to-Use Q&amp;A and Polling App</code></li>
+<li><code>AhaSlides: The Best Free Presentation Software Online</code></li>
+<li><code>Mentimeter: Interactive presentation software</code></li>
+</ul>
+<p><code>Claper</code> 官方的介绍视频👇可能会让我们更容易理解软件的用途</p>
+<p>按老苏的理解，有三个角色：</p>
+<ul>
+<li>演讲者：创建、发布演示文档，演讲者；</li>
+<li>主持人：操作演示文档，可以和演讲者是同一个人，也可以不是；</li>
+<li>参与者：只要有 <code>code</code> 就可以参与提问、投票等的听众；</li>
+</ul>
+<p>从应用场景看主要还是现场演讲，但结合远程视频会议，远程互动也是没问题的。</p>
+<p>在群晖上以 Docker 方式安装。</p>
+<p>官方的镜像没有发布在 <code>docker hub</code>，而是在 <code>ghcr.io</code>，所以直接用命令行来安装</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wbsu2003/images2022@main/picgo/2022/061/202207301746037.png"></p>
+<p>在 <code>SSH</code> 客户端中依次执行下面的命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ghcr.io/claperco/claper:latest</span><br></pre></td></tr></table></figure>
+
+<p>如果没有科学上网，很可能会拉不动，可以试试 <code>docker</code> 代理网站：<a target="_blank" rel="noopener" href="https://dockerproxy.com/">https://dockerproxy.com/</a>，但是会多几个步骤</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker pull ghcr.dockerproxy.com/ghcr.io/claperco/claper:latest</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker tag ghcr.dockerproxy.com/ghcr.io/claperco/claper:latest ghcr.io/claperco/claper:latest</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker rmi ghcr.dockerproxy.com/ghcr.io/claperco/claper:latest</span><br></pre></td></tr></table></figure>
+
+<p>现在可以开始用 <code>docker-compose</code> 安装，将下面的内容保存为 <code>docker-compose.yml</code> 文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">version: &#x27;3&#x27;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  db:</span><br><span class="line">    image: postgres:14</span><br><span class="line">    container_name: cp-pdb</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - ./data:/var/lib/postgresql/data</span><br><span class="line">    environment:</span><br><span class="line">      - POSTGRES_DB=claper</span><br><span class="line">      - POSTGRES_USER=claper</span><br><span class="line">      - POSTGRES_PASSWORD=claper</span><br><span class="line"></span><br><span class="line">  claper:</span><br><span class="line">    image: ghcr.io/claperco/claper:latest</span><br><span class="line">    container_name: cp-claper</span><br><span class="line">    restart: always</span><br><span class="line">    depends_on:</span><br><span class="line">      - db</span><br><span class="line">    ports:</span><br><span class="line">      - &#x27;4000:4000&#x27;</span><br><span class="line">    environment:</span><br><span class="line">      - DATABASE_URL=postgresql://claper:claper@db:5432/claper</span><br><span class="line">      - SECRET_KEY_BASE=zrSGxcmp9NVexg9gWK7KozoX3sw7FWkvbwBHePugtD6L5VNT7Wnra5EYuo44ycaE</span><br><span class="line">      - ENDPOINT_HOST=192.168.0.197</span><br><span class="line">      - ENDPOINT_PORT=4000</span><br><span class="line">      - MAIL_TRANSPORT=smtp</span><br><span class="line">      - MAIL_FROM=wbsu2003@88.com</span><br><span class="line">      - MAIL_FROM_NAME=laosu</span><br><span class="line">      - SMTP_RELAY=smtp.88.com</span><br><span class="line">      - SMTP_USERNAME=wbsu2003@88.com</span><br><span class="line">      - SMTP_PASSWORD=&lt;你的第三方邮件客户端密码&gt;</span><br><span class="line">      - SMTP_PORT=25</span><br><span class="line">      - SMTP_SSL=false</span><br></pre></td></tr></table></figure>
+
+<p>环境变量的简单说明：</p>
+<table><thead><tr><th>范围</th><th>默认</th><th>描述</th></tr></thead><tbody><tr><td><code>DATABASE_URL</code></td><td>-</td><td>Postgres 数据库连接字符串，不要改；</td></tr><tr><td><code>SECRET_KEY_BASE</code></td><td>-</td><td>缺省为 <code>64</code> 位字符串</td></tr><tr><td><code>ENDPOINT_HOST</code></td><td>-</td><td>主机 <code>IP</code>，请根据您的群晖 <code>IP</code> 修改</td></tr><tr><td><code>ENDPOINT_PORT</code></td><td>-</td><td>主机端口，要跟随 <code>ports</code> 设置的本机端口；</td></tr><tr><td><code>MAIL_TRANSPORT</code></td><td><code>local</code></td><td>定义电子邮件的发送方式</td></tr><tr><td><code>MAIL_FROM</code></td><td>-</td><td>用于发送电子邮件的电子邮件地址</td></tr><tr><td><code>MAIL_FROM_NAME</code></td><td>-</td><td>用于发送电子邮件的名称</td></tr><tr><td><code>SMTP_RELAY</code></td><td>-</td><td><code>SMTP</code> 中继服务器</td></tr><tr><td><code>SMTP_USERNAME</code></td><td>-</td><td>用于 <code>SMTP</code> 连接的用户名</td></tr><tr><td><code>SMTP_PASSWORD</code></td><td>-</td><td>用于 <code>SMTP</code> 连接的密码</td></tr><tr><td><code>SMTP_PORT</code></td><td>-</td><td><code>SMTP</code> 服务器端口</td></tr><tr><td><code>SMTP_SSL</code></td><td><code>true</code></td><td><code>SMTP</code> 是否启用 <code>SSL</code></td></tr><tr><td><code>SMTP_AUTH</code></td><td><code>always</code></td><td><code>SMTP</code> 验证</td></tr><tr><td><code>SMTP_TLS</code></td><td><code>always</code></td><td><code>SMTP</code> 是否启用 <code>TLS</code></td></tr></tbody></table>
+
+<blockquote>
+<p>更多的环境变量请看官方文档：<a target="_blank" rel="noopener" href="https://docs.claper.co/configuration.html#environment-file">https://docs.claper.co/configuration.html#environment-file</a></p>
+</blockquote>
+<p>然后执行下面的命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /volume2/docker/claper/data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cd /volume2/docker/claper</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>在浏览器中输入 <code>http://群晖IP:4000</code> 就能看到主界面</p>
+<blockquote>
+<p>如果你是 <code>参与者</code>，在收到了邀请后，直接将 <code>code</code> 填入 <code>#</code> 号之后，点 <code>Join</code> 就可以加入；<br>如果你是 <code>演讲者</code> 或者 <code>主持人</code>，需要点右上角的 <code>Login</code> 先登录；</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/wbsu2003/images2022@main/picgo/2022/061/202207302336542.png"></p>
+<p>登录只要输入你的邮箱地址，在输入你的邮箱后，点 <code>Send link by email</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/wbsu2003/images2022@main/picgo/2022/061/202207302338523.png"></p>
+<p>如果发送邮箱的设置没问题的话，你应该会很快就收到邮件</p>
+<blockquote>
+<p>关于邮件的设置，老苏也没啥好的办法，日志中看不到任何调试信息，反正一堆参数慢慢试吧，<code>88</code> 邮箱用到了 <code>5</code> 个 <code>SMTP</code> 开头的参数</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/wbsu2003/images2022@main/picgo/2022/061/202207302329645.png"></p>
+<p>点 <code>ACCESS TO MY ACCOUNT</code> 会打开新的网页</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wbsu2003/images2022@main/picgo/2022/061/202207302330558.png"></p>
+<p>点 <code>Create</code> 开始创建</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wbsu2003/images2022@main/picgo/2022/061/202207310008365.png"></p>
+<p>支持 <code>PDF, PPT, PPTX</code> 格式的文档，但是文件不能超过 <code>15M</code> ，点 <code>Add facilitator</code> 添加 <code>主持人</code> 的邮件</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wbsu2003/images2022@main/picgo/2022/061/202207310012695.png"></p>
+<p>点 <code>My presentations</code> 进入我的演讲稿，可以看到预览、聊天和设置三个分区</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wbsu2003/images2022@main/picgo/2022/061/202207310016132.png"></p>
+<p>点右上角的 <code>Start</code> 后会弹出新的浏览器窗口，按 <code>F11</code> 可以全屏。如果你有双屏，可以将控制窗口留在一号屏，把全屏窗口放到二号屏，可以实现和 <code>PPT</code> 一样的演讲模式。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wbsu2003/images2022@main/picgo/2022/061/202207310019114.png"></p>
+<p><code>参与者</code> 可以直接输入 <code>code</code> 进入</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wbsu2003/images2022@main/picgo/2022/061/202207311135642.jpg"></p>
+<p>随时可以提问</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wbsu2003/images2022@main/picgo/2022/061/202207311136002.jpg"></p>
+<p><code>演讲者</code> 可以实时收到，并在现场直接回答</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wbsu2003/images2022@main/picgo/2022/061/202207311133834.png"></p>
+<p><code>演讲者</code>（或者 <code>主持人</code> ）还可以在文档中加入投票，来实现更多的互动</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wbsu2003/images2022@main/picgo/2022/061/202207311139310.png"></p>
+<p>活动结束后，会自动生成报告</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wbsu2003/images2022@main/picgo/2022/061/202207311441747.png"></p>
+<p><code>Clapper</code> 目前刚开源，后续值得期待~</p>
+<blockquote>
+<p>ClaperCo&#x2F;Claper: The ultimate tool to interact with your audience<br>地址：<a target="_blank" rel="noopener" href="https://github.com/ClaperCo/Claper">https://github.com/ClaperCo/Claper</a></p>
+<p>Claper - The ultimate tool to interact with your audience<br>地址：<a target="_blank" rel="noopener" href="https://claper.co/">https://claper.co/</a></p>
+<p>Overview — Claper v1.0.0<br>地址：<a target="_blank" rel="noopener" href="https://docs.claper.co/overview.html">https://docs.claper.co/overview.html</a></p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://blog.real9.ml">Real</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.real9.ml/2022/08/1B9JX1V/">https://blog.real9.ml/2022/08/1B9JX1V/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.real9.ml" target="_blank">Real的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BE%A4%E6%99%96/">群晖</a><a class="post-meta__tags" href="/tags/Docker/">Docker</a></div><div class="post_share"><div class="social-share" data-image="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://jsdelivr.pai233.top/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/08/1PNNQ0R/"><img class="prev-cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">给N1 armbian安装ttyd命令行工具，通过手机，电脑，平板web浏览器随时随地访问管理-斐讯无线路由器以及其它斐迅网络设备-恩山无线论坛</div></div></a></div><div class="next-post pull-right"><a href="/2022/08/2D6SQK5/"><img class="next-cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Python 启动 http 服务中文乱码问题 - 李勇志 (Yongzhi Li)Python 启动 http 服务中文乱码问题 | 李勇志 (Yongzhi Li)</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/56055/" title="Docker中使用AVDC 自动削刮番号 整理 小姐姐的家 | 削刮 番号AV"><img class="cover" src="https://img2.baidu.com/it/u=2972679164,2289919620&fm=253&fmt=auto&app=120&f=JPEG?w=650&h=366" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">Docker中使用AVDC 自动削刮番号 整理 小姐姐的家 | 削刮 番号AV</div></div></a></div><div><a href="/2022/05/14962/" title="Linux 查找特定文件 并移动到特定目录  自动剪切"><img class="cover" src="https://img-blog.csdnimg.cn/20210224162934610.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">Linux 查找特定文件 并移动到特定目录  自动剪切</div></div></a></div><div><a href="/2022/05/4776/" title="SMTP2BOT _ 群晖 消息推送到teleg bot"><img class="cover" src="https://img-blog.csdnimg.cn/20210628130947735.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">SMTP2BOT _ 群晖 消息推送到teleg bot</div></div></a></div><div><a href="/2022/05/24237/" title="【语音控制】0成本实现小爱远程开关电脑"><img class="cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">【语音控制】0成本实现小爱远程开关电脑</div></div></a></div><div><a href="/2022/05/6189/" title="从网页唤醒电脑WOL _ 群晖 外网网页唤醒群晖、电脑WOL"><img class="cover" src="https://img-blog.csdnimg.cn/2020073011561268.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">从网页唤醒电脑WOL _ 群晖 外网网页唤醒群晖、电脑WOL</div></div></a></div><div><a href="/2022/05/42167/" title="使用 电报机器人 tele bot 远程执行服务器上的命令"><img class="cover" src="https://img-blog.csdnimg.cn/20210628115238816.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">使用 电报机器人 tele bot 远程执行服务器上的命令</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Twikoo</span><span class="switch-btn"></span><span class="second-comment">Waline</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://img1.baidu.com/it/u=3927275426,66649734&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPG?w=889&amp;h=500" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Real</div><div class="author-info__description">瑞哥的博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/wangrui1573/"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的小站！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/2XY2Z9J/" title="Emby 全平台开心版、认证服务器设置方法 | Velaciela"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Emby 全平台开心版、认证服务器设置方法 | Velaciela"/></a><div class="content"><a class="title" href="/2024/06/2XY2Z9J/" title="Emby 全平台开心版、认证服务器设置方法 | Velaciela">Emby 全平台开心版、认证服务器设置方法 | Velaciela</a><time datetime="2024-06-26T02:15:14.000Z" title="发表于 2024-06-26 10:15:14">2024-06-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/2SFMQJM/" title="KubeSphere 最佳实战：一文搞定 KubeKey v3"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="KubeSphere 最佳实战：一文搞定 KubeKey v3"/></a><div class="content"><a class="title" href="/2024/06/2SFMQJM/" title="KubeSphere 最佳实战：一文搞定 KubeKey v3">KubeSphere 最佳实战：一文搞定 KubeKey v3</a><time datetime="2024-06-12T08:05:53.000Z" title="发表于 2024-06-12 16:05:53">2024-06-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/2TA7R64/" title="虚拟机释放磁盘空间 | TIM Blog"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="虚拟机释放磁盘空间 | TIM Blog"/></a><div class="content"><a class="title" href="/2024/02/2TA7R64/" title="虚拟机释放磁盘空间 | TIM Blog">虚拟机释放磁盘空间 | TIM Blog</a><time datetime="2024-02-26T03:11:14.000Z" title="发表于 2024-02-26 11:11:14">2024-02-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/3CTW4J1/" title="Windows 自带的端口转发 | kekxv 技术博客"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Windows 自带的端口转发 | kekxv 技术博客"/></a><div class="content"><a class="title" href="/2024/02/3CTW4J1/" title="Windows 自带的端口转发 | kekxv 技术博客">Windows 自带的端口转发 | kekxv 技术博客</a><time datetime="2024-02-02T08:18:49.000Z" title="发表于 2024-02-02 16:18:49">2024-02-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/1HVQ0T5/" title="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客"/></a><div class="content"><a class="title" href="/2023/08/1HVQ0T5/" title="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客">IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客</a><time datetime="2023-08-01T07:55:53.000Z" title="发表于 2023-08-01 15:55:53">2023-08-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Real</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://jsdelivr.pai233.top/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://comment-rosy.vercel.app',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://comment-rosy.vercel.app',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://jsdelivr.pai233.top/npm/twikoo@1/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script><script>function loadWaline () {
+  function insertCSS () {
+    const link = document.createElement("link")
+    link.rel = "stylesheet"
+    link.href = "https://jsdelivr.pai233.top/npm/@waline/client/dist/waline.css"
+    document.head.appendChild(link)
+  }
+
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://walline.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+  }
+
+  if (typeof Waline === 'function') initWaline()
+  else {
+    insertCSS()
+    getScript('https://jsdelivr.pai233.top/npm/@waline/client/dist/waline.js').then(initWaline)
+  }
+}
+
+if ('Twikoo' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

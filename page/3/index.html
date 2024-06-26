@@ -1,0 +1,362 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Real的博客 - 记录各种折腾</title><meta name="keywords" content="Linux, Android, Hexo"><meta name="author" content="Real"><meta name="copyright" content="Real"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="瑞哥的博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Real的博客">
+<meta property="og:url" content="https://blog.real9.ml/page/3/index.html">
+<meta property="og:site_name" content="Real的博客">
+<meta property="og:description" content="瑞哥的博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img1.baidu.com/it/u=3927275426,66649734&fm=253&fmt=auto&app=138&f=JPG?w=889&h=500">
+<meta property="article:author" content="Real">
+<meta property="article:tag" content="Linux, Android, Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img1.baidu.com/it/u=3927275426,66649734&fm=253&fmt=auto&app=138&f=JPG?w=889&h=500"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blog.real9.ml/page/3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Real的博客',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-06-26 10:16:21'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://img1.baidu.com/it/u=3927275426,66649734&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPG?w=889&amp;h=500" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/mov"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/tlv1"><i class="fa-fw fas fa-video"></i><span> TV Show</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> Message</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://bu.dusays.com/2022/05/03/627010707b598.webp')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Real的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/mov"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/tlv1"><i class="fa-fw fas fa-video"></i><span> TV Show</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> Message</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Real的博客</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2022/08/1PNNQ0R/" title="给N1 armbian安装ttyd命令行工具，通过手机，电脑，平板web浏览器随时随地访问管理-斐讯无线路由器以及其它斐迅网络设备-恩山无线论坛"><img class="post_bg" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="给N1 armbian安装ttyd命令行工具，通过手机，电脑，平板web浏览器随时随地访问管理-斐讯无线路由器以及其它斐迅网络设备-恩山无线论坛"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/08/1PNNQ0R/" title="给N1 armbian安装ttyd命令行工具，通过手机，电脑，平板web浏览器随时随地访问管理-斐讯无线路由器以及其它斐迅网络设备-恩山无线论坛">给N1 armbian安装ttyd命令行工具，通过手机，电脑，平板web浏览器随时随地访问管理-斐讯无线路由器以及其它斐迅网络设备-恩山无线论坛</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-08-26T01:16:21.000Z" title="发表于 2022-08-26 09:16:21">2022-08-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%BD%AC%E8%BD%BD/">转载</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/2022/08/1PNNQ0R/#post-comment"></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">
+本文由 简悦 SimpRead 转码， 原文地址 www.right.com.cn ttyd 是一个 C 语言编写的命令行程序，可以把任意命令行程序分享到网页上操作，可以看做是个网页版的远程终端，支持 Linux、macOS、FreeBSD系统，还可以运行在 OpenWrt&#x2F;LEDE 之类的嵌入式系统上。项目地址 https://github.com/tsl0922/ttyd/releases  
+
+使用方法：下载附件解压后用winscp连同ttyd目录上传到N1的&#x2F;usr&#x2F;local目录，并赋予可执行权限chmod -R 755 &#x2F;usr&#x2F;local&#x2F;ttyd  
+1.前台运行执行 &#x2F;usr&#x2F;local&#x2F;ttyd&#x2F;ttyd -p 8082 login其中8082为端口号，根据自己需求可以自定义，打开浏览器输入N1 IP:8082即可登录访问
+1.png (28.91 KB, 下载次数: 1)
+下载附件  保存到相册
+2020-7-12 17:00 上传
+2.后台运行方式+system ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/08/1B9JX1V/" title="能与观众实时互动的 Claper | 老苏的 blog"><img class="post_bg" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="能与观众实时互动的 Claper | 老苏的 blog"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/08/1B9JX1V/" title="能与观众实时互动的 Claper | 老苏的 blog">能与观众实时互动的 Claper | 老苏的 blog</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-08-10T06:35:21.000Z" title="发表于 2022-08-10 14:35:21">2022-08-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%BD%AC%E8%BD%BD/">转载</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/2022/08/1B9JX1V/#post-comment"></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">
+本文由 简悦 SimpRead 转码， 原文地址 laosu.ml
+
+
+Clapper 能将您的演示文稿变成一种互动、引人入胜且令人兴奋的体验。
+
+周六总算休息了一天
+
+杨浦看来还是没清零，2 ~ 4 号实行 3天2检
+
+什么是 Claper ？
+
+Clapper 能将您的演示文稿变成一种互动、引人入胜且令人兴奋的体验。 Clapper 能实现：
+
+帮助人们展示想法或信息，让他们有机会使他们的演讲与众不同，并从观众那里获得实时反馈。
+帮助每个参与者成为演讲和会议中的演员，并感到自己很重要和有用。
+
+
+Claper 是 Slido 、 AhaSlides 、 Mentimeter 的开源替代品，能帮助公众演讲者和那些必须通过实时消息 &#x2F; 问答和民意调查使他们的演讲具有互动性的人。
+
+Slido - Easy-to-Use Q&amp;A and Polling App
+AhaSlides: The Best Free Presentation Software Online
+Mentimeter: Interactive presentation software
+
+Clap ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/08/2D6SQK5/" title="Python 启动 http 服务中文乱码问题 - 李勇志 (Yongzhi Li)Python 启动 http 服务中文乱码问题 | 李勇志 (Yongzhi Li)"><img class="post_bg" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Python 启动 http 服务中文乱码问题 - 李勇志 (Yongzhi Li)Python 启动 http 服务中文乱码问题 | 李勇志 (Yongzhi Li)"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/08/2D6SQK5/" title="Python 启动 http 服务中文乱码问题 - 李勇志 (Yongzhi Li)Python 启动 http 服务中文乱码问题 | 李勇志 (Yongzhi Li)">Python 启动 http 服务中文乱码问题 - 李勇志 (Yongzhi Li)Python 启动 http 服务中文乱码问题 | 李勇志 (Yongzhi Li)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-08-09T06:28:31.000Z" title="发表于 2022-08-09 14:28:31">2022-08-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%BD%AC%E8%BD%BD/">转载</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/2022/08/2D6SQK5/#post-comment"></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">
+本文由 简悦 SimpRead 转码， 原文地址 www.liyongzhi.xyz
+
+
+A master student in Peking University, China. Majored in computer vision and deep learning.
+
+less than 1 minute read
+Published: November 25, 2021
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/07/24G4KSJ/" title="适合短视频分享的 Fireshare | 老苏的 blog"><img class="post_bg" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="适合短视频分享的 Fireshare | 老苏的 blog"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/07/24G4KSJ/" title="适合短视频分享的 Fireshare | 老苏的 blog">适合短视频分享的 Fireshare | 老苏的 blog</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-07-29T06:41:10.000Z" title="发表于 2022-07-29 14:41:10">2022-07-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%BD%AC%E8%BD%BD/">转载</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/2022/07/24G4KSJ/#post-comment"></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">
+本文由 简悦 SimpRead 转码， 原文地址 laosu.ml
+
+
+Fireshare 通过独特的链接分享您的游戏剪辑、视频或其他媒体。
+
+感谢网友 煦诗儿 提醒，在 RustDesk 官网菜单中，有网页版客户端，使用方法和其他客户端是一样的。
+
+不过只能使用 http 协议，作者在 https://github.com/rustdesk/rustdesk/issues/856 中解释了为何不启用 SSL 的原因。
+老苏还是想自己编译成可自托管的镜像，但官网的说明实在是太简单了点，对老苏这种非程序员来说，难度确实有点大，不过还是有点头绪了，一切随缘吧。
+什么是 Fireshare？
+
+Fireshare 通过独特的链接分享您的游戏剪辑、视频或其他媒体。您所要做的就是将您的视频放在一个文件夹中，Fireshare 会处理剩下的事情。
+
+官方提供了演示站点：https :&#x2F;&#x2F;v.fireshare.net&#x2F;#&#x2F;feed
+
+在群晖上以 Docker 方式安装。
+在注册表中搜索 fireshare ，选择第一个 shaneisrael/firesh ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/07/2AYD8CZ/" title="Flask-MDict搭建在线Mdict词典服务 | 老苏的blog"><img class="post_bg" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Flask-MDict搭建在线Mdict词典服务 | 老苏的blog"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/07/2AYD8CZ/" title="Flask-MDict搭建在线Mdict词典服务 | 老苏的blog">Flask-MDict搭建在线Mdict词典服务 | 老苏的blog</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-07-29T06:40:17.000Z" title="发表于 2022-07-29 14:40:17">2022-07-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%BD%AC%E8%BD%BD/">转载</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/2022/07/2AYD8CZ/#post-comment"></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">
+本文由 简悦 SimpRead 转码， 原文地址 laosu.ml
+
+根据昨天发布的『 告杨浦居民书（二十六）』，新一轮的核酸开始了。
+
+
+
+本文是应网友 司徒 的要求折腾的
+
+什么是 MDict ?
+
+MDict 是一个开放的词典平台。
+
+什么是 Flask-MDict ？
+
+Flask-MDict 是在线 Mdict 词典服务器，可用于读取 MDX/MDD 字典数据并对外提供标准 HTTP 服务。
+
+构建镜像
+如果你不想自己构建，可以跳过，直接阅读下一章节
+
+Flask-MDict 官方没有提供镜像，代码也有点老，但看起来应该是个标准的 flask 应用，下面的 Dockerfile 是老苏基于标准的 flask 框架改的。
+1234567891011121314151617181920FROM python:3.8-slimLABEL maintainer=laosu&lt;wbsu2003@gmail.com&gt;ENV NAME FlaskMDictVOLUME /appWORKDIR /appCOPY . .  # Environment# 阿里源 RUN pip co ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/05/3A42BP0/" title="IT 桌面运维常识系列 -（Windows 部署服务 - 01）_Book 思艺的博客 - CSDN 博客_桌面运维必备知识"><img class="post_bg" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IT 桌面运维常识系列 -（Windows 部署服务 - 01）_Book 思艺的博客 - CSDN 博客_桌面运维必备知识"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/3A42BP0/" title="IT 桌面运维常识系列 -（Windows 部署服务 - 01）_Book 思艺的博客 - CSDN 博客_桌面运维必备知识">IT 桌面运维常识系列 -（Windows 部署服务 - 01）_Book 思艺的博客 - CSDN 博客_桌面运维必备知识</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-30T07:07:52.000Z" title="发表于 2022-05-30 15:07:52">2022-05-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%BD%AC%E8%BD%BD/">转载</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/2022/05/3A42BP0/#post-comment"></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">
+本文由 简悦 SimpRead 转码， 原文地址 blog.csdn.net
+
+IT 桌面运维常识系列 - （Windows 部署服务 - 01）文章目录
+IT 桌面运维常识系列 - （Windows 部署服务 - 01）
+前言
+一、Windows 部署服务是什么？
+二、安装过程
+
+
+创建虚拟机系统
+添加 Windows 部署服务
+配置 WDS 服务器
+添加启动映像
+添加安装映像
+DHCP 服务器配置
+环境测试
+
+
+
+
+总结
+
+前言跟之前一样，这次为了解决装系统的问题。欢迎大佬指教指正。
+最后更新日期为 2021 年 4 月 27 日。
+一、Windows 部署服务是什么？Windows 部署服务 Windows Deployment Services 缩写，中文意思是 Windows 部署服务。 WDS 适用于大中型企业部署大批量新计算机和重装客户端，通过 WDS 来管理多版本映像以及无人参与安装脚本，并提供人工参与安装和无人参与安装的选项。（我百度的）
+二、安装过程创建虚拟机系统
+ESXI 界面点击存储 - 数据存储浏览器
+
+创建目录 创建 ISO 文件夹  点击 ISO 文件 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/05/G0E9S5/" title="0 成本无 VPS 搭建私人导航、图床、音乐服务器 vercel freewha"><img class="post_bg" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="0 成本无 VPS 搭建私人导航、图床、音乐服务器 vercel freewha"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/G0E9S5/" title="0 成本无 VPS 搭建私人导航、图床、音乐服务器 vercel freewha">0 成本无 VPS 搭建私人导航、图床、音乐服务器 vercel freewha</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-30T05:31:40.000Z" title="发表于 2022-05-30 13:31:40">2022-05-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%BD%AC%E8%BD%BD/">转载</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/2022/05/G0E9S5/#post-comment"></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">
+本文由 简悦 SimpRead 转码， 原文地址 blog.csdn.net
+
+
+目的：将一些小服务应用部署到免费的 serverless&#x2F;VPS 上去环境：0 成本实现方式：github + vercel&#x2F;freewha
+
+效果：项目一：个人导航项目二：个人博客
+项目三：个人音乐服务器：
+
+背景：上面的项目以前我都是部署在家里群晖上，或者 VPS 上，但是 FRPC 和 VPS 的流量，延时、运维更新等问题，实际用起来很繁琐，最近两年 serverless 发展很火，于是就萌生了把他们部署到免费的 VPS 或者 serverless 产品上
+
+网络上有很多 hexo 博客部署到 vercel、github.io 的列子，我这里就用第三个个人音乐网站为例子演示一下步骤：
+
+fork 此项目：musify
+
+
+首先你要有一个 github 账户，然后找到一个开源的静态音乐项目，fotk 它，这里拿我的举例：musify
+fork 它，然后上传一些音乐本地文件，或者编辑音乐文件到链接中：
+
+上传本地音乐文件到musify/src/audio/ 目录下
+然后编辑这个文件 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/05/3D7B6TN/" title="如何给 GitHub Actions 添加自己的 Runner 主机 - 云 + 社区 - 腾讯云"><img class="post_bg" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何给 GitHub Actions 添加自己的 Runner 主机 - 云 + 社区 - 腾讯云"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/3D7B6TN/" title="如何给 GitHub Actions 添加自己的 Runner 主机 - 云 + 社区 - 腾讯云">如何给 GitHub Actions 添加自己的 Runner 主机 - 云 + 社区 - 腾讯云</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-18T07:25:41.000Z" title="发表于 2022-05-18 15:25:41">2022-05-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%BD%AC%E8%BD%BD/">转载</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/2022/05/3D7B6TN/#post-comment"></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">
+本文由 简悦 SimpRead 转码， 原文地址 cloud.tencent.com
+
+
+在前面的文档中，我对 GitLab 提供的 CI 功能进行了实践，点击查看 。使用 GitLab 的好处是可以私有化部署、无限的私有仓库数量、CI 配置简单、能…
+
+
+什么是 GitHub Actions
+
+
+在前面的文档中，我对 GitLab 提供的 CI 功能进行了实践，点击查看 。使用 GitLab 的好处是可以私有化部署、无限的私有仓库数量、CI 配置简单、能接入自建的 Runner 。但随着 GitHub 越来越开放，GitLab 的这些优势在逐步丧失。
+从 CICD 的角度看，越接近 Git 仓库的功能，越贴近开发者。未来的开发者市场上，GitHub、GitLab、Coding、Gitee 这样的 SaaS 平台将具有很顽强的生命力。
+GitHub Actions 是一个类似 GitLab CI 的服务。GitLab 默认使用的是 .gitlab-ci.yml 文件，描述 CICD 流程。而 GitHub 使用的是 .github/workflows 目录下的 yaml 文件。最大的 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/05/3YNNRWP/" title="让你满意的 GitHub Actions 详解 - 简书"><img class="post_bg" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="让你满意的 GitHub Actions 详解 - 简书"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/3YNNRWP/" title="让你满意的 GitHub Actions 详解 - 简书">让你满意的 GitHub Actions 详解 - 简书</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-18T07:12:25.000Z" title="发表于 2022-05-18 15:12:25">2022-05-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%BD%AC%E8%BD%BD/">转载</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/2022/05/3YNNRWP/#post-comment"></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">
+本文由 简悦 SimpRead 转码， 原文地址 www.jianshu.com
+
+GitHub Actions 指南GitHub Actions使你可以直接在你的GitHub库中创建自定义的工作流，工作流指的就是自动化的流程，比如构建、测试、打包、发布、部署等等，也就是说你可以直接进行 CI（持续集成）和 CD（持续部署）。
+基本概念（1）workflow: 一个 workflow 工作流就是一个完整的过程，每个workflow 包含一组 jobs任务。
+（2）job : jobs任务包含一个或多个job ，每个 job包含一系列的 steps 步骤。
+（3）step : 每个 step 步骤可以执行指令或者使用一个 action 动作。
+（4）action : 每个 action 动作就是一个通用的基本单元。
+配置 workflowworkflow必须存储在你的项目库根路径下的 .github/workflows 目录中，每一个 workflow对应一个具体的.yml 文件（或者 .yaml）。
+workflow 示例：
+12345678910111213141516171819 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/05/1TKHCF3/" title="zerotier 进阶 使用 zeronsd 作为私有网段 DNS 服务器_瑞哥 - RealWang 的博客 - CSDN 博客"><img class="post_bg" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="zerotier 进阶 使用 zeronsd 作为私有网段 DNS 服务器_瑞哥 - RealWang 的博客 - CSDN 博客"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/05/1TKHCF3/" title="zerotier 进阶 使用 zeronsd 作为私有网段 DNS 服务器_瑞哥 - RealWang 的博客 - CSDN 博客">zerotier 进阶 使用 zeronsd 作为私有网段 DNS 服务器_瑞哥 - RealWang 的博客 - CSDN 博客</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-17T06:03:36.000Z" title="发表于 2022-05-17 14:03:36">2022-05-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%BD%AC%E8%BD%BD/">转载</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/2022/05/1TKHCF3/#post-comment"></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">
+本文由 简悦 SimpRead 转码， 原文地址 blog.csdn.net
+
+
+环境：zerotier-one 组网 + 群晖问题：使用 zerotier-one 组网后，需要记住各个节点的 IP 地址解法：使用 zerotier 自带的 dns 服务参考：https://github.com/zerotier/zeronsd/releases
+
+
+使用 zerotier-one 组网后，需要记住各个节点的 IP 地址，直接 ping 主机名不通，其实官网是提供 DNS 服务器的，
+下面演示在群晖上新建 zerotier dns 服务器
+一个网络只有有一台 DNS 服务器就行
+
+
+到官网创建 token
+
+
+
+
+创建 token 文件
+
+
+1echo 你的token  &gt;/var/lib/zerotier-one/token.txt
+
+
+启动 docker 版 DNS 服务
+
+
+ssh 到群晖，admin 账户，一条命令拉起 docker，前提是这台服务器已经是网络节点之一
+1docker run --net host -itd --name zerodns  -v /var ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/#content-inner">16</a><a class="extend next" rel="next" href="/page/4/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://img1.baidu.com/it/u=3927275426,66649734&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPG?w=889&amp;h=500" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Real</div><div class="author-info__description">瑞哥的博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/wangrui1573/"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的小站！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/2XY2Z9J/" title="Emby 全平台开心版、认证服务器设置方法 | Velaciela"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Emby 全平台开心版、认证服务器设置方法 | Velaciela"/></a><div class="content"><a class="title" href="/2024/06/2XY2Z9J/" title="Emby 全平台开心版、认证服务器设置方法 | Velaciela">Emby 全平台开心版、认证服务器设置方法 | Velaciela</a><time datetime="2024-06-26T02:15:14.000Z" title="发表于 2024-06-26 10:15:14">2024-06-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/2SFMQJM/" title="KubeSphere 最佳实战：一文搞定 KubeKey v3"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="KubeSphere 最佳实战：一文搞定 KubeKey v3"/></a><div class="content"><a class="title" href="/2024/06/2SFMQJM/" title="KubeSphere 最佳实战：一文搞定 KubeKey v3">KubeSphere 最佳实战：一文搞定 KubeKey v3</a><time datetime="2024-06-12T08:05:53.000Z" title="发表于 2024-06-12 16:05:53">2024-06-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/2TA7R64/" title="虚拟机释放磁盘空间 | TIM Blog"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="虚拟机释放磁盘空间 | TIM Blog"/></a><div class="content"><a class="title" href="/2024/02/2TA7R64/" title="虚拟机释放磁盘空间 | TIM Blog">虚拟机释放磁盘空间 | TIM Blog</a><time datetime="2024-02-26T03:11:14.000Z" title="发表于 2024-02-26 11:11:14">2024-02-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/3CTW4J1/" title="Windows 自带的端口转发 | kekxv 技术博客"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Windows 自带的端口转发 | kekxv 技术博客"/></a><div class="content"><a class="title" href="/2024/02/3CTW4J1/" title="Windows 自带的端口转发 | kekxv 技术博客">Windows 自带的端口转发 | kekxv 技术博客</a><time datetime="2024-02-02T08:18:49.000Z" title="发表于 2024-02-02 16:18:49">2024-02-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/1HVQ0T5/" title="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客"/></a><div class="content"><a class="title" href="/2023/08/1HVQ0T5/" title="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客">IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客</a><time datetime="2023-08-01T07:55:53.000Z" title="发表于 2023-08-01 15:55:53">2023-08-01</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/csdn/"><span class="card-category-list-name">csdn</span><span class="card-category-list-count">119</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%BD%AC%E8%BD%BD/"><span class="card-category-list-name">转载</span><span class="card-category-list-count">34</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/AVDC/" style="font-size: 1.1em; color: #999">AVDC</a> <a href="/tags/Android/" style="font-size: 1.21em; color: #999ea4">Android</a> <a href="/tags/Docker/" style="font-size: 1.33em; color: #99a2af">Docker</a> <a href="/tags/Hexo/" style="font-size: 1.27em; color: #99a0a9">Hexo</a> <a href="/tags/IOT/" style="font-size: 1.16em; color: #999b9e">IOT</a> <a href="/tags/Linux/" style="font-size: 1.5em; color: #99a9bf">Linux</a> <a href="/tags/SQL/" style="font-size: 1.1em; color: #999">SQL</a> <a href="/tags/Windows/" style="font-size: 1.39em; color: #99a4b4">Windows</a> <a href="/tags/docker/" style="font-size: 1.16em; color: #999b9e">docker</a> <a href="/tags/hexo/" style="font-size: 1.1em; color: #999">hexo</a> <a href="/tags/markdown/" style="font-size: 1.1em; color: #999">markdown</a> <a href="/tags/mysql/" style="font-size: 1.1em; color: #999">mysql</a> <a href="/tags/vps/" style="font-size: 1.1em; color: #999">vps</a> <a href="/tags/%E6%97%A0%E7%BA%BF/" style="font-size: 1.16em; color: #999b9e">无线</a> <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 1.1em; color: #999">树莓派</a> <a href="/tags/%E7%BE%A4%E6%99%96/" style="font-size: 1.44em; color: #99a7ba">群晖</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">八月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">四月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">三月 2023</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">二月 2023</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/01/"><span class="card-archive-list-date">一月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/11/"><span class="card-archive-list-date">十一月 2022</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">153</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-06-26T02:16:20.484Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Real</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://jsdelivr.pai233.top/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => { 
+  const getCommentUrl = () => {
+    const eleGroup = document.querySelectorAll('#recent-posts .article-title')
+    let urlArray = []
+    eleGroup.forEach(i=>{
+      urlArray.push(i.getAttribute('href'))
+    })
+    return urlArray
+  }
+
+  const getCount = () => {
+    const runTwikoo = () => {
+      twikoo.getCommentsCount({
+        envId: 'https://comment-rosy.vercel.app',
+        region: '',
+        urls: getCommentUrl(),
+        includeReply: false
+      }).then(function (res) {
+        document.querySelectorAll('#recent-posts .twikoo-count').forEach((item,index) => {
+          item.innerText = res[index].count
+        })
+      }).catch(function (err) {
+        console.log(err)
+      })
+    }
+
+      if (typeof twikoo === 'object') {
+        runTwikoo()
+      } else {
+        getScript('https://jsdelivr.pai233.top/npm/twikoo@1/dist/twikoo.all.min.js').then(runTwikoo)
+      }
+  }
+
+  window.pjax ? getCount() : window.addEventListener('load', getCount)
+
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

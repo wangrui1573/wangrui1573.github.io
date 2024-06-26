@@ -1,0 +1,281 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>0 成本无 VPS 搭建私人导航、图床、音乐服务器 vercel freewha | Real的博客</title><meta name="keywords" content="群晖,Docker,Hexo"><meta name="author" content="Real"><meta name="copyright" content="Real"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本文由 简悦 SimpRead 转码， 原文地址 blog.csdn.net   目的：将一些小服务应用部署到免费的 serverless&#x2F;VPS 上去环境：0 成本实现方式：github + vercel&#x2F;freewha  效果：项目一：个人导航项目二：个人博客 项目三：个人音乐服务器：  背景：上面的项目以前我都是部署在家里群晖上，或者 VPS 上，但是 FRPC 和 V">
+<meta property="og:type" content="article">
+<meta property="og:title" content="0 成本无 VPS 搭建私人导航、图床、音乐服务器 vercel freewha">
+<meta property="og:url" content="https://blog.real9.ml/2022/05/G0E9S5/index.html">
+<meta property="og:site_name" content="Real的博客">
+<meta property="og:description" content="本文由 简悦 SimpRead 转码， 原文地址 blog.csdn.net   目的：将一些小服务应用部署到免费的 serverless&#x2F;VPS 上去环境：0 成本实现方式：github + vercel&#x2F;freewha  效果：项目一：个人导航项目二：个人博客 项目三：个人音乐服务器：  背景：上面的项目以前我都是部署在家里群晖上，或者 VPS 上，但是 FRPC 和 V">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg">
+<meta property="article:published_time" content="2022-05-30T05:31:40.000Z">
+<meta property="article:modified_time" content="2024-06-26T02:15:45.382Z">
+<meta property="article:author" content="Real">
+<meta property="article:tag" content="群晖">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blog.real9.ml/2022/05/G0E9S5/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '0 成本无 VPS 搭建私人导航、图床、音乐服务器 vercel freewha',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-06-26 10:15:45'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://img1.baidu.com/it/u=3927275426,66649734&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPG?w=889&amp;h=500" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/mov"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/tlv1"><i class="fa-fw fas fa-video"></i><span> TV Show</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> Message</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://bu.dusays.com/2021/03/06/daffe400090d4.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Real的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/mov"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/tlv1"><i class="fa-fw fas fa-video"></i><span> TV Show</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> Message</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">0 成本无 VPS 搭建私人导航、图床、音乐服务器 vercel freewha</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-30T05:31:40.000Z" title="发表于 2022-05-30 13:31:40">2022-05-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-06-26T02:15:45.382Z" title="更新于 2024-06-26 10:15:45">2024-06-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%BD%AC%E8%BD%BD/">转载</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>本文由 <a target="_blank" rel="noopener" href="http://ksria.com/simpread/">简悦 SimpRead</a> 转码， 原文地址 <a target="_blank" rel="noopener" href="https://blog.csdn.net/wangrui1573/article/details/125043482?csdn_share_tail=%7B%22type%22:%22blog%22,%22rType%22:%22article%22,%22rId%22:%22125043482%22,%22source%22:%22wangrui1573%22%7D&ctrtid=6onQW">blog.csdn.net</a></p>
+</blockquote>
+<blockquote>
+<p>目的：将一些小服务应用部署到免费的 serverless&#x2F;VPS 上去<br>环境：0 成本<br>实现方式：github + vercel&#x2F;freewha</p>
+</blockquote>
+<p>效果：<br>项目一：个人导航<br><img src="https://img-blog.csdnimg.cn/23cb61cd1a17423cbe54aa910520d5ea.png"><br>项目二：个人博客<br><img src="https://img-blog.csdnimg.cn/a85f4cb9728c410184a62aa28cdeb9ce.png"></p>
+<p>项目三：个人音乐服务器：<br><img src="https://img-blog.csdnimg.cn/48b34fcbab3a4ab58b1c4920dd25c264.png"></p>
+<blockquote>
+<p>背景：上面的项目以前我都是部署在家里群晖上，或者 VPS 上，但是 FRPC 和 VPS 的流量，延时、运维更新等问题，实际用起来很繁琐，最近两年 serverless 发展很火，于是就萌生了把他们部署到免费的 VPS 或者 serverless 产品上</p>
+</blockquote>
+<p>网络上有很多 hexo 博客部署到 vercel、github.io 的列子，我这里就用第三个个人音乐网站为例子演示一下步骤：</p>
+<ol>
+<li>fork 此项目：<a target="_blank" rel="noopener" href="https://github.com/wangrui1573/musify">musify</a></li>
+</ol>
+<hr>
+<p>首先你要有一个 github 账户，然后找到一个开源的静态音乐项目，fotk 它，这里拿我的举例：<a target="_blank" rel="noopener" href="https://github.com/wangrui1573/musify">musify</a></p>
+<p>fork 它，然后上传一些音乐本地文件，或者编辑音乐文件到链接中：</p>
+<ul>
+<li>上传本地音乐文件到<code>musify/src/audio/</code> 目录下</li>
+<li>然后编辑这个文件：<code>musify/src/data.js</code> , 怎么编辑就不细节了，参考我的格式就好了</li>
+<li>你问音乐文件上传到哪里，你可以直接上传到 github，但是不要超过 100M，或者推荐下面的方式</li>
+</ul>
+<blockquote>
+<p>自己找个类似图床或者别的<br>申请了个 freewha 的 1.5G 的空间<br>我也试过永硕 E 盘，但是直链会变<br>onedrive 转直链接是个方案，但是太多的重定向，手机上的浏览器不支持</p>
+</blockquote>
+<ol start="2">
+<li>申请一个 vercel 账户：<a target="_blank" rel="noopener" href="https://vercel.com/">https://vercel.com/</a></li>
+</ol>
+<hr>
+<p>上传文件或者编辑 data.js 文件后，我们申请一个 vercel 账户，并使用 github 账户注册，首次注册引导他会让你选择你的仓库，</p>
+<h3 id="2-1-我们选择那个音乐项目即可，选择导入"><a href="#2-1-我们选择那个音乐项目即可，选择导入" class="headerlink" title="2.1 我们选择那个音乐项目即可，选择导入"></a>2.1 我们选择那个音乐项目即可，选择导入</h3><p><img src="https://img-blog.csdnimg.cn/e1146ed53dff4e6b94df0b63a6321ecd.png"></p>
+<h3 id="2-2-在部署设置里面选择默认即可，等待部署完成后"><a href="#2-2-在部署设置里面选择默认即可，等待部署完成后" class="headerlink" title="2.2 在部署设置里面选择默认即可，等待部署完成后"></a>2.2 在部署设置里面选择默认即可，等待部署完成后</h3><p><img src="https://img-blog.csdnimg.cn/30a636ac1fc745b2844ee58d605e0460.png"></p>
+<h3 id="2-3-部署完成后，访问域名查看效果"><a href="#2-3-部署完成后，访问域名查看效果" class="headerlink" title="2.3 部署完成后，访问域名查看效果"></a>2.3 部署完成后，访问域名查看效果</h3><p>系统会自动分配一个域名，访问这个域名就可以看到效果，你也可以绑定自定义域名，按照他的引导或者直接设置 cnname 别名转发</p>
+<p><img src="https://img-blog.csdnimg.cn/b1804f28e9874df6980e039034f08017.png"></p>
+<ol start="3">
+<li>申请一个 freewha 账户 <a target="_blank" rel="noopener" href="https://doms.freewha.com/">freewha</a></li>
+</ol>
+<hr>
+<p>记住域名和密码，你可以自定义域名也可以按系统分配的，在域名后加 &#x2F; cpanel 进入控制台<br><img src="https://img-blog.csdnimg.cn/64572b10eab44da69292ebc1f48e4e81.png"></p>
+<h3 id="3-1-将项目文件编译为静态文件"><a href="#3-1-将项目文件编译为静态文件" class="headerlink" title="3.1 将项目文件编译为静态文件"></a>3.1 将项目文件编译为静态文件</h3><p>还是以上门那个音乐项目为例，vercel 可以自动编译项目为静态文件，freewha 没这个功能，我们也不可能用自己电脑、vps 去编译再上传，这样会失去初衷，所以这里我们使用 github action 来帮助我们编译并上传到 freewha</p>
+<h3 id="3-2-在项目上，创建一个-github-action，并贴入下列代码"><a href="#3-2-在项目上，创建一个-github-action，并贴入下列代码" class="headerlink" title="3.2 在项目上，创建一个 github action，并贴入下列代码:"></a>3.2 在项目上，创建一个 github action，并贴入下列代码:</h3><p>这段代码的用途是拉取一个 docker 使用 vue 去编译为静态文件，并输出到 gh_pages 分支</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">name: 生成静态文件</span><br><span class="line"></span><br><span class="line">on:</span><br><span class="line">  push:</span><br><span class="line">    branches: [ main ]</span><br><span class="line"></span><br><span class="line">jobs:</span><br><span class="line">  build:</span><br><span class="line">    name: 🎉 Deploy</span><br><span class="line">    runs-on: ubuntu-latest</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    steps:</span><br><span class="line">    - name: 🚚 1.Get latest code</span><br><span class="line">      uses: actions/checkout@v2</span><br><span class="line">    - run: echo &#x27;VUE_APP_DEFAULT_CONFIG_URL=$&#123;&#123; secrets.ENV_DEFAULT_CONFIG_URL &#125;&#125;&#x27; &gt; .env</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    - uses: borales/actions-yarn@v2.3.0</span><br><span class="line">      with:</span><br><span class="line">        cmd: install # will run `yarn install` command</span><br><span class="line"></span><br><span class="line">    - uses: borales/actions-yarn@v2.3.0</span><br><span class="line">      with:</span><br><span class="line">          cmd: build # will run `yarn build` command</span><br><span class="line"></span><br><span class="line">    - uses: borales/actions-yarn@v2.3.0</span><br><span class="line">      with:</span><br><span class="line">          cmd: global add serve # will run `yarn test` command</span><br><span class="line">    </span><br><span class="line">    - name: 📂 5.Deploy-gh-pages</span><br><span class="line">      uses: peaceiris/actions-gh-pages@v3</span><br><span class="line">      with:</span><br><span class="line">        github_token: $&#123;&#123; secrets.GITHUB_TOKEN &#125;&#125;</span><br><span class="line">        publish_dir: ./build</span><br><span class="line"></span><br><span class="line">        keep_files: true</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-授予-github-action-创建分支的权限："><a href="#3-3-授予-github-action-创建分支的权限：" class="headerlink" title="3.3 授予 github action 创建分支的权限："></a>3.3 授予 github action 创建分支的权限：</h3><p>在项目的设置中，action-general 中，允许读写<br><img src="https://img-blog.csdnimg.cn/88f48f834c1a44b0a34b60e7357602ed.png"></p>
+<h3 id="3-4-随便改点文件，观察-github-action-成功完成："><a href="#3-4-随便改点文件，观察-github-action-成功完成：" class="headerlink" title="3.4 随便改点文件，观察 github action 成功完成："></a>3.4 随便改点文件，观察 github action 成功完成：</h3><p>我们可以切换到分支 gh-pages 中看到静态文件</p>
+<p><img src="https://img-blog.csdnimg.cn/bdefdc8d85224a6ea944e4da27a348e2.png"></p>
+<h3 id="3-5-将静态文件上传到-freewha"><a href="#3-5-将静态文件上传到-freewha" class="headerlink" title="3.5 将静态文件上传到 freewha"></a>3.5 将静态文件上传到 freewha</h3><h4 id="3-5-1-再创建一个-github-action-脚本，命令如下："><a href="#3-5-1-再创建一个-github-action-脚本，命令如下：" class="headerlink" title="3.5.1 再创建一个 github action 脚本，命令如下："></a>3.5.1 再创建一个 github action 脚本，命令如下：</h4><p>他的作用就是当 action 生成静态文件 完成的时候，触发上传文件到 FREEWHA</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">name: 🚀 Deploy music.real6.ml</span><br><span class="line">on:</span><br><span class="line">  workflow_run:</span><br><span class="line">    workflows: [&quot;生成静态文件&quot;]</span><br><span class="line">    branches: [main]</span><br><span class="line">    types: </span><br><span class="line">      - completed</span><br><span class="line"></span><br><span class="line">jobs:</span><br><span class="line">  web-deploy:</span><br><span class="line">    name: 🎉 Deploy 部署到freewha</span><br><span class="line">    runs-on: ubuntu-latest</span><br><span class="line">    steps:</span><br><span class="line">    - name: 🚚 Get latest code</span><br><span class="line">      uses: actions/checkout@v2</span><br><span class="line">      with:</span><br><span class="line">        ref: gh-pages</span><br><span class="line">    </span><br><span class="line">    - name: FTP-Deploy-Action</span><br><span class="line">      uses: SamKirkland/FTP-Deploy-Action@3.1.1</span><br><span class="line">      with:</span><br><span class="line">        ftp-server: ftp://你的freewha域名</span><br><span class="line">        ftp-username: 你的freewha域名</span><br><span class="line">        ftp-password: $&#123;&#123; secrets.ftp_password &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里有一个环境变量 $ 是 freewha 的密码，我们在项目设置里面设定，不要明文写在脚本里面，如果介意账户名和域名，课可以替换为变量，按下图设置：<br><img src="https://img-blog.csdnimg.cn/38e53b04ac4f4aafaca8f56176765765.png"></p>
+<h4 id="3-5-2-再修改一次仓库文件，观察-github-action，他将按顺序轮流编译静态文件并上传，如果编译错误就是你的代码有问题"><a href="#3-5-2-再修改一次仓库文件，观察-github-action，他将按顺序轮流编译静态文件并上传，如果编译错误就是你的代码有问题" class="headerlink" title="3.5.2 再修改一次仓库文件，观察 github action，他将按顺序轮流编译静态文件并上传，如果编译错误就是你的代码有问题"></a>3.5.2 再修改一次仓库文件，观察 github action，他将按顺序轮流编译静态文件并上传，如果编译错误就是你的代码有问题</h4><p><img src="https://img-blog.csdnimg.cn/cc4358c9fab94f1b8d08a4b60fd90bc5.png"><br>上传完成后，访问 freewha 的域名就会看到 vercel 一样的效果</p>
+<blockquote>
+<p>结语：本文提供了一种方案，借住免费的云服务器和 serverless 平台部署文件，节省 VPS 或家用服务器的资源，<br>你可以在 github 上寻找你感兴趣的 vue next 项目，或者自己写的静态文件， 如果你发现了有趣或者更高级的做法，欢迎在下面留言</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://blog.real9.ml">Real</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.real9.ml/2022/05/G0E9S5/">https://blog.real9.ml/2022/05/G0E9S5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.real9.ml" target="_blank">Real的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BE%A4%E6%99%96/">群晖</a><a class="post-meta__tags" href="/tags/Docker/">Docker</a><a class="post-meta__tags" href="/tags/Hexo/">Hexo</a></div><div class="post_share"><div class="social-share" data-image="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://jsdelivr.pai233.top/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/05/3A42BP0/"><img class="prev-cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">IT 桌面运维常识系列 -（Windows 部署服务 - 01）_Book 思艺的博客 - CSDN 博客_桌面运维必备知识</div></div></a></div><div class="next-post pull-right"><a href="/2022/05/3D7B6TN/"><img class="next-cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">如何给 GitHub Actions 添加自己的 Runner 主机 - 云 + 社区 - 腾讯云</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/56055/" title="Docker中使用AVDC 自动削刮番号 整理 小姐姐的家 | 削刮 番号AV"><img class="cover" src="https://img2.baidu.com/it/u=2972679164,2289919620&fm=253&fmt=auto&app=120&f=JPEG?w=650&h=366" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">Docker中使用AVDC 自动削刮番号 整理 小姐姐的家 | 削刮 番号AV</div></div></a></div><div><a href="/2022/05/14962/" title="Linux 查找特定文件 并移动到特定目录  自动剪切"><img class="cover" src="https://img-blog.csdnimg.cn/20210224162934610.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">Linux 查找特定文件 并移动到特定目录  自动剪切</div></div></a></div><div><a href="/2022/05/4776/" title="SMTP2BOT _ 群晖 消息推送到teleg bot"><img class="cover" src="https://img-blog.csdnimg.cn/20210628130947735.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">SMTP2BOT _ 群晖 消息推送到teleg bot</div></div></a></div><div><a href="/2022/05/24237/" title="【语音控制】0成本实现小爱远程开关电脑"><img class="cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">【语音控制】0成本实现小爱远程开关电脑</div></div></a></div><div><a href="/2022/05/6189/" title="从网页唤醒电脑WOL _ 群晖 外网网页唤醒群晖、电脑WOL"><img class="cover" src="https://img-blog.csdnimg.cn/2020073011561268.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">从网页唤醒电脑WOL _ 群晖 外网网页唤醒群晖、电脑WOL</div></div></a></div><div><a href="/2022/05/42167/" title="使用 电报机器人 tele bot 远程执行服务器上的命令"><img class="cover" src="https://img-blog.csdnimg.cn/20210628115238816.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">使用 电报机器人 tele bot 远程执行服务器上的命令</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Twikoo</span><span class="switch-btn"></span><span class="second-comment">Waline</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://img1.baidu.com/it/u=3927275426,66649734&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPG?w=889&amp;h=500" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Real</div><div class="author-info__description">瑞哥的博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/wangrui1573/"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的小站！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%88%91%E4%BB%AC%E9%80%89%E6%8B%A9%E9%82%A3%E4%B8%AA%E9%9F%B3%E4%B9%90%E9%A1%B9%E7%9B%AE%E5%8D%B3%E5%8F%AF%EF%BC%8C%E9%80%89%E6%8B%A9%E5%AF%BC%E5%85%A5"><span class="toc-number">1.</span> <span class="toc-text">2.1 我们选择那个音乐项目即可，选择导入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%9C%A8%E9%83%A8%E7%BD%B2%E8%AE%BE%E7%BD%AE%E9%87%8C%E9%9D%A2%E9%80%89%E6%8B%A9%E9%BB%98%E8%AE%A4%E5%8D%B3%E5%8F%AF%EF%BC%8C%E7%AD%89%E5%BE%85%E9%83%A8%E7%BD%B2%E5%AE%8C%E6%88%90%E5%90%8E"><span class="toc-number">2.</span> <span class="toc-text">2.2 在部署设置里面选择默认即可，等待部署完成后</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E9%83%A8%E7%BD%B2%E5%AE%8C%E6%88%90%E5%90%8E%EF%BC%8C%E8%AE%BF%E9%97%AE%E5%9F%9F%E5%90%8D%E6%9F%A5%E7%9C%8B%E6%95%88%E6%9E%9C"><span class="toc-number">3.</span> <span class="toc-text">2.3 部署完成后，访问域名查看效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%B0%86%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%E4%B8%BA%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6"><span class="toc-number">4.</span> <span class="toc-text">3.1 将项目文件编译为静态文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%8A%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-github-action%EF%BC%8C%E5%B9%B6%E8%B4%B4%E5%85%A5%E4%B8%8B%E5%88%97%E4%BB%A3%E7%A0%81"><span class="toc-number">5.</span> <span class="toc-text">3.2 在项目上，创建一个 github action，并贴入下列代码:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E6%8E%88%E4%BA%88-github-action-%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF%E7%9A%84%E6%9D%83%E9%99%90%EF%BC%9A"><span class="toc-number">6.</span> <span class="toc-text">3.3 授予 github action 创建分支的权限：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E9%9A%8F%E4%BE%BF%E6%94%B9%E7%82%B9%E6%96%87%E4%BB%B6%EF%BC%8C%E8%A7%82%E5%AF%9F-github-action-%E6%88%90%E5%8A%9F%E5%AE%8C%E6%88%90%EF%BC%9A"><span class="toc-number">7.</span> <span class="toc-text">3.4 随便改点文件，观察 github action 成功完成：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E5%B0%86%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%88%B0-freewha"><span class="toc-number">8.</span> <span class="toc-text">3.5 将静态文件上传到 freewha</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-1-%E5%86%8D%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-github-action-%E8%84%9A%E6%9C%AC%EF%BC%8C%E5%91%BD%E4%BB%A4%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-number">8.1.</span> <span class="toc-text">3.5.1 再创建一个 github action 脚本，命令如下：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-2-%E5%86%8D%E4%BF%AE%E6%94%B9%E4%B8%80%E6%AC%A1%E4%BB%93%E5%BA%93%E6%96%87%E4%BB%B6%EF%BC%8C%E8%A7%82%E5%AF%9F-github-action%EF%BC%8C%E4%BB%96%E5%B0%86%E6%8C%89%E9%A1%BA%E5%BA%8F%E8%BD%AE%E6%B5%81%E7%BC%96%E8%AF%91%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E5%B9%B6%E4%B8%8A%E4%BC%A0%EF%BC%8C%E5%A6%82%E6%9E%9C%E7%BC%96%E8%AF%91%E9%94%99%E8%AF%AF%E5%B0%B1%E6%98%AF%E4%BD%A0%E7%9A%84%E4%BB%A3%E7%A0%81%E6%9C%89%E9%97%AE%E9%A2%98"><span class="toc-number">8.2.</span> <span class="toc-text">3.5.2 再修改一次仓库文件，观察 github action，他将按顺序轮流编译静态文件并上传，如果编译错误就是你的代码有问题</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/2XY2Z9J/" title="Emby 全平台开心版、认证服务器设置方法 | Velaciela"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Emby 全平台开心版、认证服务器设置方法 | Velaciela"/></a><div class="content"><a class="title" href="/2024/06/2XY2Z9J/" title="Emby 全平台开心版、认证服务器设置方法 | Velaciela">Emby 全平台开心版、认证服务器设置方法 | Velaciela</a><time datetime="2024-06-26T02:15:14.000Z" title="发表于 2024-06-26 10:15:14">2024-06-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/2SFMQJM/" title="KubeSphere 最佳实战：一文搞定 KubeKey v3"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="KubeSphere 最佳实战：一文搞定 KubeKey v3"/></a><div class="content"><a class="title" href="/2024/06/2SFMQJM/" title="KubeSphere 最佳实战：一文搞定 KubeKey v3">KubeSphere 最佳实战：一文搞定 KubeKey v3</a><time datetime="2024-06-12T08:05:53.000Z" title="发表于 2024-06-12 16:05:53">2024-06-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/2TA7R64/" title="虚拟机释放磁盘空间 | TIM Blog"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="虚拟机释放磁盘空间 | TIM Blog"/></a><div class="content"><a class="title" href="/2024/02/2TA7R64/" title="虚拟机释放磁盘空间 | TIM Blog">虚拟机释放磁盘空间 | TIM Blog</a><time datetime="2024-02-26T03:11:14.000Z" title="发表于 2024-02-26 11:11:14">2024-02-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/3CTW4J1/" title="Windows 自带的端口转发 | kekxv 技术博客"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Windows 自带的端口转发 | kekxv 技术博客"/></a><div class="content"><a class="title" href="/2024/02/3CTW4J1/" title="Windows 自带的端口转发 | kekxv 技术博客">Windows 自带的端口转发 | kekxv 技术博客</a><time datetime="2024-02-02T08:18:49.000Z" title="发表于 2024-02-02 16:18:49">2024-02-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/1HVQ0T5/" title="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客"/></a><div class="content"><a class="title" href="/2023/08/1HVQ0T5/" title="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客">IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客</a><time datetime="2023-08-01T07:55:53.000Z" title="发表于 2023-08-01 15:55:53">2023-08-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Real</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://jsdelivr.pai233.top/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://comment-rosy.vercel.app',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://comment-rosy.vercel.app',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://jsdelivr.pai233.top/npm/twikoo@1/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script><script>function loadWaline () {
+  function insertCSS () {
+    const link = document.createElement("link")
+    link.rel = "stylesheet"
+    link.href = "https://jsdelivr.pai233.top/npm/@waline/client/dist/waline.css"
+    document.head.appendChild(link)
+  }
+
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://walline.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+  }
+
+  if (typeof Waline === 'function') initWaline()
+  else {
+    insertCSS()
+    getScript('https://jsdelivr.pai233.top/npm/@waline/client/dist/waline.js').then(initWaline)
+  }
+}
+
+if ('Twikoo' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

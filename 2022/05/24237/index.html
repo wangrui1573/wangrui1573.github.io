@@ -1,0 +1,277 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>【语音控制】0成本实现小爱远程开关电脑 | Real的博客</title><meta name="keywords" content="群晖,Docker,IOT"><meta name="author" content="Real"><meta name="copyright" content="Real"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="背景：之前使用 HACS &#x2F; 网页版实现了电脑网络唤醒，但不能关机，不支持小爱 问题：不能语音关机，不支持小爱 环境：支持 WOL 的主板电脑，python 3.X 环境 (我这里用了群晖)   解法：1. 使用小爱添加第三方设备            2. 第三方平台提供 API，           3. 找台服务器运行 Python 脚本虚拟一个开关设备，定义开关触发 bash">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【语音控制】0成本实现小爱远程开关电脑">
+<meta property="og:url" content="https://blog.real9.ml/2022/05/24237/index.html">
+<meta property="og:site_name" content="Real的博客">
+<meta property="og:description" content="背景：之前使用 HACS &#x2F; 网页版实现了电脑网络唤醒，但不能关机，不支持小爱 问题：不能语音关机，不支持小爱 环境：支持 WOL 的主板电脑，python 3.X 环境 (我这里用了群晖)   解法：1. 使用小爱添加第三方设备            2. 第三方平台提供 API，           3. 找台服务器运行 Python 脚本虚拟一个开关设备，定义开关触发 bash">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg">
+<meta property="article:published_time" content="2022-05-06T03:16:53.000Z">
+<meta property="article:modified_time" content="2024-06-26T02:15:45.382Z">
+<meta property="article:author" content="Real">
+<meta property="article:tag" content="群晖">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="IOT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blog.real9.ml/2022/05/24237/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【语音控制】0成本实现小爱远程开关电脑',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-06-26 10:15:45'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://img1.baidu.com/it/u=3927275426,66649734&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPG?w=889&amp;h=500" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/mov"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/tlv1"><i class="fa-fw fas fa-video"></i><span> TV Show</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> Message</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://bu.dusays.com/2021/03/06/daffe400090d4.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Real的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/mov"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://al.chirmyram.com/tlv1"><i class="fa-fw fas fa-video"></i><span> TV Show</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> Message</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【语音控制】0成本实现小爱远程开关电脑</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-06T03:16:53.000Z" title="发表于 2022-05-06 11:16:53">2022-05-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-06-26T02:15:45.382Z" title="更新于 2024-06-26 10:15:45">2024-06-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/csdn/">csdn</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>背景：之前使用 HACS &#x2F; 网页版实现了电脑网络唤醒，但不能关机，不支持小爱</p>
+<p>问题：不能语音关机，不支持小爱</p>
+<p>环境：支持 WOL 的主板电脑，python 3.X 环境 (我这里用了群晖)</p>
+</blockquote>
+<blockquote>
+<p>解法：1. 使用小爱添加第三方设备</p>
+<p>           2. 第三方平台提供 <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=API&spm=1001.2101.3001.7020">API</a>，</p>
+<p>          3. 找台服务器运行 Python 脚本虚拟一个开关设备，定义开关触发 bash 脚本</p>
+</blockquote>
+<ul>
+<li>方案评估：在评估方案时，在网上查资料最终方案为点灯科技 Blinker</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/d3b06f02c25f4f56a83cb2b933538bb2.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA55Ge5ZOlLVJlYWxXYW5n,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+<ul>
+<li>系统架构：一番研究后最终系统架构和步骤如下：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/53daa3022f9740f28f35660345644602.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA55Ge5ZOlLVJlYWxXYW5n,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+<ul>
+<li> Python 程序逻辑如下</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/123cb824dbb24a9994b6ba91c1f34994.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA55Ge5ZOlLVJlYWxXYW5n,size_11,color_FFFFFF,t_70,g_se,x_16"></p>
+<blockquote>
+<p>流程、<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%9E%B6%E6%9E%84&spm=1001.2101.3001.7020">架构</a>理清了，开始执行：</p>
+</blockquote>
+<ol>
+<li>准备 python3.X 的环境，确保 pip3 命令可用，群晖没有 PIP3 可以装，但是后面很多库、依赖安装出错，最终放弃，我直接使用 docker python 环境</li>
+</ol>
+<p>已经搞好的 (包含依赖环境) 上传到了：<a target="_blank" rel="noopener" href="https://hub.docker.com/r/realwang/blinker-wol" title="https://hub.docker.com/r/realwang/blinker-wol">https://hub.docker.com/r/realwang/blinker-wol</a></p>
+<p> 2. 在 python 环境中安装 Blinker 依赖环境，参考官方教程</p>
+<p>  <a target="_blank" rel="noopener" href="https://www.diandeng.tech/doc/python-support" title="点灯科技-点灯物联网解决方案">点灯科技 - 点灯物联网解决方案</a></p>
+<ol start="3">
+<li>手机端操作</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.下载个点灯科技APP,注册账户</span><br><span class="line"> </span><br><span class="line">2. 添加设备--&gt;独立设备--&gt;WIFI接入--&gt;阿里云--&gt;复制key</span><br><span class="line"> </span><br><span class="line">3. 右上角编辑--&gt;添加按钮--&gt;修改键名为&quot;btn-pc1&quot;类型勾选开关按键</span><br><span class="line"> </span><br><span class="line">4. 右拉添加个调试组件，锁定退出</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>编写 python 脚本，确保服务器 81 端口闲置</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"> </span><br><span class="line"># 本代码引用arduino论坛 南岛孤云</span><br><span class="line"># 直接拿去用需要改5处，1，密匙，2，局域网电脑的固定IP，3，电脑ssh用户名，4，电脑ssh密码 5，电脑的MAC地址</span><br><span class="line"> </span><br><span class="line">from Blinker import Blinker, BlinkerButton, BlinkerNumber, BlinkerMIOT</span><br><span class="line">from Blinker.BlinkerConfig import *</span><br><span class="line">from Blinker.BlinkerDebug import *</span><br><span class="line">from wakeonlan import send_magic_packet</span><br><span class="line">import paramiko</span><br><span class="line">import time</span><br><span class="line">import subprocess</span><br><span class="line"> </span><br><span class="line">auth = &#x27;xxxxxxxxxx&#x27;  # 1,点灯app上获得的密匙</span><br><span class="line"> </span><br><span class="line">BLINKER_DEBUG.debugAll()</span><br><span class="line"> </span><br><span class="line">Blinker.mode(&quot;BLINKER_WIFI&quot;)</span><br><span class="line">Blinker.miotType(&#x27;BLINKER_MIOT_OUTLET&#x27;)</span><br><span class="line">Blinker.begin(auth)</span><br><span class="line"> </span><br><span class="line">staticip = &quot;192.168.1.200&quot;  # 2,电脑局域网固定IP，用于检测电脑开关状态以及利用SSH关机，改为你的设置</span><br><span class="line">pcusr = &#x27;xxxxxx&#x27;  # 3,电脑ssh用户名</span><br><span class="line">pcpw = &#x27;xxxxxx&#x27;  # 4,电脑ssh密码</span><br><span class="line"> </span><br><span class="line">pcmac = &#x27;ff.ff.ff.ff.ff.ff&#x27;  # 5,MAC地址，改成你自己电脑网卡的</span><br><span class="line"> </span><br><span class="line">button1 = BlinkerButton(&quot;btn-pc1&quot;)  # 数据键，在App里设置一个一样的开关，类型为 &#x27;开关按键&#x27;，图标用滑动开关，其他随意，文本可为空</span><br><span class="line">cmd1 = &quot;timeout 0.1 ping -c 1 &quot; + staticip  # 电脑开关检测就是一个局域网内的ping，超时我设置为100ms，貌似太短或太长小爱都容易出错</span><br><span class="line">lockbutton1 = False</span><br><span class="line"> </span><br><span class="line">oState = &#x27;&#x27;</span><br><span class="line"> </span><br><span class="line">def miotPowerState(state):</span><br><span class="line">    &#x27;&#x27;&#x27; &#x27;&#x27;&#x27;</span><br><span class="line"> </span><br><span class="line">    global oState</span><br><span class="line"> </span><br><span class="line">    BLINKER_LOG(&#x27;need set power state: &#x27;, state)</span><br><span class="line"> </span><br><span class="line">    oState = state</span><br><span class="line">    BlinkerMIOT.powerState(state)</span><br><span class="line">    BlinkerMIOT.print()</span><br><span class="line"># 小爱控制的实际部分放在上报状态之后，因为电脑开机实际时间很长，小爱等久了她会以为没开</span><br><span class="line">    if state == &#x27;true&#x27;:</span><br><span class="line">        button1_callback(&#x27;on&#x27;)</span><br><span class="line">    elif state == &#x27;false&#x27;:</span><br><span class="line">        button1_callback(&#x27;off&#x27;)</span><br><span class="line"> </span><br><span class="line">def miotQuery(queryCode):</span><br><span class="line">    &#x27;&#x27;&#x27; &#x27;&#x27;&#x27;</span><br><span class="line"> </span><br><span class="line">    global oState</span><br><span class="line"> </span><br><span class="line"># 问小爱电脑开了吗，ping一次获得电脑实际状态</span><br><span class="line">    if subprocess.call(cmd1, shell=True)==0:</span><br><span class="line">        oState = &#x27;true&#x27;</span><br><span class="line">    else:</span><br><span class="line">        oState = &#x27;false&#x27;</span><br><span class="line"> </span><br><span class="line">    BLINKER_LOG(&#x27;MIOT Query codes: &#x27;, queryCode)</span><br><span class="line"> </span><br><span class="line">    if queryCode == BLINKER_CMD_QUERY_ALL_NUMBER :</span><br><span class="line">        BLINKER_LOG(&#x27;MIOT Query All&#x27;)</span><br><span class="line">        BlinkerMIOT.powerState(oState)</span><br><span class="line">        BlinkerMIOT.print()</span><br><span class="line">    elif queryCode == BLINKER_CMD_QUERY_POWERSTATE_NUMBER :</span><br><span class="line">        BLINKER_LOG(&#x27;MIOT Query Power State&#x27;)</span><br><span class="line">        BlinkerMIOT.powerState(oState)</span><br><span class="line">        BlinkerMIOT.print()</span><br><span class="line">    else :</span><br><span class="line">        BlinkerMIOT.powerState(oState)</span><br><span class="line">        BlinkerMIOT.print()</span><br><span class="line"> </span><br><span class="line"># 关机部分用paramiko的sshclient，不用密码的话可以改用密匙，具体查阅paramiko用法</span><br><span class="line">def shutdownpc():</span><br><span class="line"> </span><br><span class="line">    global staticip</span><br><span class="line">    global pcusr</span><br><span class="line">    global pcpw</span><br><span class="line"> </span><br><span class="line">    client = paramiko.SSHClient()</span><br><span class="line">    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())</span><br><span class="line">    client.connect(staticip, username=pcusr, password=pcpw)</span><br><span class="line">    stdin, stdout, stderr = client.exec_command(&#x27;shutdown -s -f -c &quot;小爱将在10秒内关闭这个电脑&quot; -t 10&#x27;)  </span><br><span class="line"> </span><br><span class="line">    if client is not None:</span><br><span class="line">        client.close()</span><br><span class="line">        del client, stdin, stdout, stderr</span><br><span class="line"> </span><br><span class="line"># 开关键，集成了开关功能，状态报告给小爱，开关过程中的运行保护，开关后状态的更新。</span><br><span class="line">def button1_callback(state):</span><br><span class="line">    &quot;&quot;&quot; &quot;&quot;&quot;</span><br><span class="line">    global lockbutton1</span><br><span class="line">    global oState</span><br><span class="line">    global pcmac</span><br><span class="line">    dtimeout = 60  # 开关机超时默认60秒</span><br><span class="line"> </span><br><span class="line">    if lockbutton1==False:</span><br><span class="line">        BLINKER_LOG(&#x27;get button state: &#x27;, state)</span><br><span class="line">        if state==&#x27;on&#x27;:</span><br><span class="line">            if subprocess.call(cmd1, shell=True)==0:</span><br><span class="line">                oState = &#x27;true&#x27;</span><br><span class="line">                Blinker.print(&quot;检测到电脑已开,按钮状态已更新&quot;)</span><br><span class="line">                button1.text(&#x27;已开机&#x27;)</span><br><span class="line">                button1.print(state)</span><br><span class="line">            else:</span><br><span class="line">                Blinker.print(&quot;发送开机指令...&quot;)</span><br><span class="line">                oState = &#x27;true&#x27;</span><br><span class="line">                lockbutton1 = True</span><br><span class="line">                tic = time.perf_counter()</span><br><span class="line">                toc = time.perf_counter()</span><br><span class="line">                send_magic_packet(pcmac)  # 发魔术包开机</span><br><span class="line">                while subprocess.call(cmd1, shell=True)!=0 and toc-tic&lt;dtimeout+2:</span><br><span class="line">                    time.sleep(2)</span><br><span class="line">                    toc = time.perf_counter()</span><br><span class="line">                if toc-tic &gt;= dtimeout:</span><br><span class="line">                    Blinker.print(&quot;开机超时!&quot;)</span><br><span class="line">                    button1.text(&#x27;已关机&#x27;)</span><br><span class="line">                    button1.print(&#x27;off&#x27;)</span><br><span class="line">                else:</span><br><span class="line">                    button1.text(&#x27;已开机&#x27;)</span><br><span class="line">                    button1.print(state)</span><br><span class="line">                lockbutton1 = False</span><br><span class="line">        elif state==&#x27;off&#x27;:</span><br><span class="line">            if subprocess.call(cmd1, shell=True)==0:</span><br><span class="line">                Blinker.print(&quot;发送关机指令...&quot;)</span><br><span class="line">                oState = &#x27;false&#x27;</span><br><span class="line">                lockbutton1 = True</span><br><span class="line">                tic = time.perf_counter()</span><br><span class="line">                toc = time.perf_counter()</span><br><span class="line">                shutdownpc()  # 关机</span><br><span class="line">                while subprocess.call(cmd1, shell=True)==0 and toc-tic&lt;dtimeout+2:</span><br><span class="line">                    time.sleep(2)</span><br><span class="line">                    toc = time.perf_counter()</span><br><span class="line">                if toc-tic &gt;= dtimeout:</span><br><span class="line">                    Blinker.print(&quot;关机超时!&quot;)</span><br><span class="line">                    button1.text(&#x27;已开机&#x27;)</span><br><span class="line">                    button1.print(&#x27;on&#x27;)</span><br><span class="line">                else:</span><br><span class="line">                    button1.text(&#x27;已关机&#x27;)</span><br><span class="line">                    button1.print(state)</span><br><span class="line">                lockbutton1 = False</span><br><span class="line">            else:</span><br><span class="line">                oState = &#x27;false&#x27;</span><br><span class="line">                Blinker.print(&quot;检测到电脑已关闭,按钮状态已更新&quot;)</span><br><span class="line">                button1.text(&#x27;已关机&#x27;)</span><br><span class="line">                button1.print(state)</span><br><span class="line">    else:</span><br><span class="line">        Blinker.print(&quot;正在开机或关机中..&quot;)</span><br><span class="line"> </span><br><span class="line"># 心跳加入了电脑状态检测，更新按钮</span><br><span class="line">def heartbeat_callback():</span><br><span class="line"> </span><br><span class="line">    global oState</span><br><span class="line"> </span><br><span class="line">    if subprocess.call(cmd1, shell=True)==0:</span><br><span class="line">        oState = &#x27;true&#x27;</span><br><span class="line">        button1.text(&#x27;已开机&#x27;)</span><br><span class="line">        button1.print(&quot;on&quot;)</span><br><span class="line">    else:</span><br><span class="line">        oState = &#x27;false&#x27;</span><br><span class="line">        button1.text(&#x27;已关机&#x27;)</span><br><span class="line">        button1.print(&quot;off&quot;)</span><br><span class="line"> </span><br><span class="line">button1.attach(button1_callback)</span><br><span class="line">Blinker.attachHeartbeat(heartbeat_callback)</span><br><span class="line"> </span><br><span class="line">BlinkerMIOT.attachPowerState(miotPowerState)</span><br><span class="line">BlinkerMIOT.attachQuery(miotQuery)</span><br><span class="line"> </span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line"> </span><br><span class="line">    while True:</span><br><span class="line">        Blinker.run()</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li><p>运行脚本，如果报错，缺什么补什么</p>
+</li>
+<li><p>电脑安装 openssh，ssh 测试一下到 win10</p>
+</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/5859782923174c11b6ea3c0099518950.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA55Ge5ZOlLVJlYWxXYW5n,size_6,color_FFFFFF,t_70,g_se,x_16"></p>
+<ol start="6">
+<li>跑起来手机上的设备会显示在线，手动操作开机后用小爱测试下</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://blog.real9.ml">Real</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.real9.ml/2022/05/24237/">https://blog.real9.ml/2022/05/24237/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.real9.ml" target="_blank">Real的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BE%A4%E6%99%96/">群晖</a><a class="post-meta__tags" href="/tags/Docker/">Docker</a><a class="post-meta__tags" href="/tags/IOT/">IOT</a></div><div class="post_share"><div class="social-share" data-image="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://jsdelivr.pai233.top/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/05/56789/"><img class="prev-cover" src="https://img-blog.csdnimg.cn/20210628114128538.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【群晖】在本地远程执行群晖上的命令 _ ssh 远程执行命令</div></div></a></div><div class="next-post pull-right"><a href="/2022/05/53059/"><img class="next-cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">群晖开启rootssh</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/56055/" title="Docker中使用AVDC 自动削刮番号 整理 小姐姐的家 | 削刮 番号AV"><img class="cover" src="https://img2.baidu.com/it/u=2972679164,2289919620&fm=253&fmt=auto&app=120&f=JPEG?w=650&h=366" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">Docker中使用AVDC 自动削刮番号 整理 小姐姐的家 | 削刮 番号AV</div></div></a></div><div><a href="/2022/05/14962/" title="Linux 查找特定文件 并移动到特定目录  自动剪切"><img class="cover" src="https://img-blog.csdnimg.cn/20210224162934610.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">Linux 查找特定文件 并移动到特定目录  自动剪切</div></div></a></div><div><a href="/2022/05/4776/" title="SMTP2BOT _ 群晖 消息推送到teleg bot"><img class="cover" src="https://img-blog.csdnimg.cn/20210628130947735.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">SMTP2BOT _ 群晖 消息推送到teleg bot</div></div></a></div><div><a href="/2022/05/6189/" title="从网页唤醒电脑WOL _ 群晖 外网网页唤醒群晖、电脑WOL"><img class="cover" src="https://img-blog.csdnimg.cn/2020073011561268.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">从网页唤醒电脑WOL _ 群晖 外网网页唤醒群晖、电脑WOL</div></div></a></div><div><a href="/2022/05/42167/" title="使用 电报机器人 tele bot 远程执行服务器上的命令"><img class="cover" src="https://img-blog.csdnimg.cn/20210628115238816.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">使用 电报机器人 tele bot 远程执行服务器上的命令</div></div></a></div><div><a href="/2022/05/33316/" title="使用Calibre-web创建游戏库，内容库 _ 仓鼠党整理 内容库"><img class="cover" src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">使用Calibre-web创建游戏库，内容库 _ 仓鼠党整理 内容库</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Twikoo</span><span class="switch-btn"></span><span class="second-comment">Waline</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://img1.baidu.com/it/u=3927275426,66649734&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPG?w=889&amp;h=500" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Real</div><div class="author-info__description">瑞哥的博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/wangrui1573/"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的小站！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/2XY2Z9J/" title="Emby 全平台开心版、认证服务器设置方法 | Velaciela"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Emby 全平台开心版、认证服务器设置方法 | Velaciela"/></a><div class="content"><a class="title" href="/2024/06/2XY2Z9J/" title="Emby 全平台开心版、认证服务器设置方法 | Velaciela">Emby 全平台开心版、认证服务器设置方法 | Velaciela</a><time datetime="2024-06-26T02:15:14.000Z" title="发表于 2024-06-26 10:15:14">2024-06-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/2SFMQJM/" title="KubeSphere 最佳实战：一文搞定 KubeKey v3"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="KubeSphere 最佳实战：一文搞定 KubeKey v3"/></a><div class="content"><a class="title" href="/2024/06/2SFMQJM/" title="KubeSphere 最佳实战：一文搞定 KubeKey v3">KubeSphere 最佳实战：一文搞定 KubeKey v3</a><time datetime="2024-06-12T08:05:53.000Z" title="发表于 2024-06-12 16:05:53">2024-06-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/2TA7R64/" title="虚拟机释放磁盘空间 | TIM Blog"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="虚拟机释放磁盘空间 | TIM Blog"/></a><div class="content"><a class="title" href="/2024/02/2TA7R64/" title="虚拟机释放磁盘空间 | TIM Blog">虚拟机释放磁盘空间 | TIM Blog</a><time datetime="2024-02-26T03:11:14.000Z" title="发表于 2024-02-26 11:11:14">2024-02-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/3CTW4J1/" title="Windows 自带的端口转发 | kekxv 技术博客"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Windows 自带的端口转发 | kekxv 技术博客"/></a><div class="content"><a class="title" href="/2024/02/3CTW4J1/" title="Windows 自带的端口转发 | kekxv 技术博客">Windows 自带的端口转发 | kekxv 技术博客</a><time datetime="2024-02-02T08:18:49.000Z" title="发表于 2024-02-02 16:18:49">2024-02-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/1HVQ0T5/" title="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客"><img src="https://bu.dusays.com/2021/03/06/daffe400090d4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客"/></a><div class="content"><a class="title" href="/2023/08/1HVQ0T5/" title="IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客">IOS 看书最终选择 | 源阅读转换 | 开源阅读 | IOS 自签_瑞哥 - RealWang 的博客 - CSDN 博客</a><time datetime="2023-08-01T07:55:53.000Z" title="发表于 2023-08-01 15:55:53">2023-08-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Real</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://jsdelivr.pai233.top/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://comment-rosy.vercel.app',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://comment-rosy.vercel.app',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://jsdelivr.pai233.top/npm/twikoo@1/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script><script>function loadWaline () {
+  function insertCSS () {
+    const link = document.createElement("link")
+    link.rel = "stylesheet"
+    link.href = "https://jsdelivr.pai233.top/npm/@waline/client/dist/waline.css"
+    document.head.appendChild(link)
+  }
+
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://walline.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+  }
+
+  if (typeof Waline === 'function') initWaline()
+  else {
+    insertCSS()
+    getScript('https://jsdelivr.pai233.top/npm/@waline/client/dist/waline.js').then(initWaline)
+  }
+}
+
+if ('Twikoo' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
